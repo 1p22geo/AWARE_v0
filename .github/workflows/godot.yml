@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Try to build for Windows and linux
+    name: Try to build for Windows and Linux
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
