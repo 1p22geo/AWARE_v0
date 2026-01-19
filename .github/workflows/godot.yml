@@ -1,0 +1,53 @@
+name: Status Checks
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Try to build for Windows and Linux
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["Windows Desktop", "Linux"]
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout
+        with:
+          filter: tree:0
+          fetch-depth: 0
+
+      - uses: chickensoft-games/setup-godot@v2
+        name: Setup Godot
+        with:
+          # Version must include major, minor, and patch, and be >= 4.0.0
+          # Pre-release label is optional.
+          version: 4.5.1
+          # Use .NET-enabled version of Godot (the default is also true).
+          use-dotnet: false
+          # Include the Godot Export Templates (the default is false).
+          include-templates: true
+
+      - name: Verify Setup
+        run: |
+          godot --version
+
+      - name: Prepare directories
+        run: |
+          mkdir -p "build/${{matrix.os}}"
+
+      - name: Build
+        run: |
+          OUTPUT_NAME="${{ matrix.os == 'Linux' && 'aware' || 'aware.exe' }}"
+          godot --headless --export-release "${{ matrix.os }}" "build/${{ matrix.os }}/$OUTPUT_NAME"
+
+      - uses: actions/upload-artifact@v4
+        name: Upload build
+        with:
+          name: AWARE (${{matrix.os}})
+          path: "build/${{matrix.os}}"
