@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://13h3en3o5ymm"]
+
+[ext_resource type="Script" uid="uid://d1igv2r1bo2ul" path="res://src/core/MovementComponent.gd" id="1_8gbba"]
+[ext_resource type="Script" uid="uid://4t18gpei6jwu" path="res://src/core/ThirdPersonCamera.gd" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://dh3hdeu86f251" path="res://src/core/PlayerController.gd" id="2_jjvhh"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kry3j"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_21xkr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6bp64"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jjgbg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jjgbg"]
+size = Vector3(1.5869141, 0.001, 1.9934082)
+
+[node name="Main" type="Node3D"]
+
+[node name="Player" type="CharacterBody3D" parent="."]
+
+[node name="MovementComponent" type="Node" parent="Player"]
+script = ExtResource("1_8gbba")
+metadata/_custom_type_script = "uid://d1igv2r1bo2ul"
+
+[node name="PlayerController" type="Node" parent="Player" node_paths=PackedStringArray("body", "camera")]
+script = ExtResource("2_jjvhh")
+body = NodePath("..")
+camera = NodePath("../../CameraRig/Camera3D")
+metadata/_custom_type_script = "uid://dh3hdeu86f251"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_kry3j")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Player/MeshInstance3D"]
+transform = Transform3D(0.5632775, 0, 0, 0, 0.34036982, 0, 0, 0, 0.57042336, 0.0701344, 0.7614379, -0.3592342)
+mesh = SubResource("BoxMesh_21xkr")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0016030073, 0, 0)
+shape = SubResource("CapsuleShape3D_6bp64")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(5.0513997, 0, 0, 0, 1, 0, 0, 0, 3.9911098, 0, -1.0415713, 0)
+mesh = SubResource("PlaneMesh_jjgbg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(6.367, 0, 0, 0, 0.562, 0, 0, 0, 3.991, -0.0031089187, -1.042, 0.004384637)
+shape = SubResource("BoxShape3D_jjgbg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3766322, 0)
+
+[node name="CameraRig" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig" node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0.0048526525, 2.7823973, 3.5959046)
+script = ExtResource("2_bo1nx")
+target = NodePath("../../Player")
