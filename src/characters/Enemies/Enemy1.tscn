@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bekrx0o22avha"]
+[gd_scene load_steps=6 format=3 uid="uid://bekrx0o22avha"]
 
 [ext_resource type="Script" uid="uid://c88f375nnh3gt" path="res://src/core/state/state_machine.gd" id="1_njfja"]
-[ext_resource type="Script" uid="uid://boa3dl7si1v1e" path="res://src/characters/Enemies/Enemy1States/idle.gd" id="2_eyb4x"]
+[ext_resource type="Script" uid="uid://boa3dl7si1v1e" path="res://src/characters/Enemies/Enemy1States/wander.gd" id="2_eyb4x"]
+[ext_resource type="Script" uid="uid://clccfa8wipmpl" path="res://src/characters/Enemies/Enemy1States/follow.gd" id="3_eyb4x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fb3t6"]
 
@@ -20,9 +21,10 @@ mesh = SubResource("CapsuleMesh_vd578")
 [node name="states" type="Node" parent="."]
 script = ExtResource("1_njfja")
 
-[node name="idle" type="Node" parent="states"]
+[node name="wander" type="Node" parent="states"]
 script = ExtResource("2_eyb4x")
 
 [node name="follow" type="Node" parent="states"]
+script = ExtResource("3_eyb4x")
 
 [node name="WalkComponent" type="Node3D" parent="."]
