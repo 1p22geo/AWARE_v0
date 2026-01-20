@@ -1,7 +1,7 @@
 extends State
-class_name follow
+class_name followState
 
-@onready var walk_component: Node3D = $"../../WalkComponent"
+@onready var movement_component: MovementComponent = $"../../../MovementComponent"
 
 @export var speed: float = 8
 

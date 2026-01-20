@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bekrx0o22avha"]
+[gd_scene load_steps=8 format=3 uid="uid://bekrx0o22avha"]
 
+[ext_resource type="Script" uid="uid://cxbw00w1ipabl" path="res://src/characters/Enemies/enemy_contoller.gd" id="1_iiyfu"]
 [ext_resource type="Script" uid="uid://c88f375nnh3gt" path="res://src/core/state/state_machine.gd" id="1_njfja"]
 [ext_resource type="Script" uid="uid://boa3dl7si1v1e" path="res://src/characters/Enemies/Enemy1States/wander.gd" id="2_eyb4x"]
 [ext_resource type="Script" uid="uid://clccfa8wipmpl" path="res://src/characters/Enemies/Enemy1States/follow.gd" id="3_eyb4x"]
+[ext_resource type="Script" uid="uid://d1igv2r1bo2ul" path="res://src/core/MovementComponent.gd" id="5_lskn8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fb3t6"]
 
@@ -18,13 +20,20 @@ shape = SubResource("CapsuleShape3D_fb3t6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_vd578")
 
-[node name="states" type="Node" parent="."]
+[node name="EnemyContoller" type="Node" parent="."]
+script = ExtResource("1_iiyfu")
+
+[node name="states" type="Node" parent="EnemyContoller" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_njfja")
+initial_state = NodePath("wander")
 
-[node name="wander" type="Node" parent="states"]
+[node name="wander" type="Node" parent="EnemyContoller/states" node_paths=PackedStringArray("enemy")]
 script = ExtResource("2_eyb4x")
+enemy = NodePath("../../..")
 
-[node name="follow" type="Node" parent="states"]
+[node name="follow" type="Node" parent="EnemyContoller/states"]
 script = ExtResource("3_eyb4x")
 
-[node name="WalkComponent" type="Node3D" parent="."]
+[node name="MovementComponent" type="Node" parent="."]
+script = ExtResource("5_lskn8")
+metadata/_custom_type_script = "uid://d1igv2r1bo2ul"
