@@ -1,5 +1,5 @@
 extends Node
-class_name MovementComponent
+class_name MovementController
 
 @export var speed := 6.0
 @export var acceleration := 10.0

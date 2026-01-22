@@ -4,7 +4,7 @@ class_name PlayerController
 @export var body: CharacterBody3D
 @export var camera: Camera3D
 
-@onready var movement: MovementComponent = $"../MovementComponent"
+@onready var movement: MovementController = $"../MovementController"
 
 func _physics_process(delta):
 	if body == null or camera == null:
