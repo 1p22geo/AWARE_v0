@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://13h3en3o5ymm"]
 
-[ext_resource type="Script" path="res://src/core/MovementComponent.gd" id="1_8gbba"]
-[ext_resource type="Script" path="res://src/core/ThirdPersonCamera.gd" id="2_bo1nx"]
-[ext_resource type="Script" path="res://src/core/PlayerController.gd" id="2_jjvhh"]
+[ext_resource type="Script" uid="uid://d1igv2r1bo2ul" path="res://src/core/MovementComponent.gd" id="1_8gbba"]
+[ext_resource type="Script" uid="uid://4t18gpei6jwu" path="res://src/core/ThirdPersonCamera.gd" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://dh3hdeu86f251" path="res://src/core/PlayerController.gd" id="2_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://bekrx0o22avha" path="res://src/characters/Enemies/Enemy1.tscn" id="4_t1ahj"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_kry3j"]
@@ -12,9 +12,10 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6bp64"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jjgbg"]
+size = Vector2(30, 30)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jjgbg"]
-size = Vector3(1.5869141, 0.001, 1.9934082)
+size = Vector3(30, 0.001, 30)
 
 [node name="Main" type="Node3D"]
 
@@ -43,11 +44,11 @@ shape = SubResource("CapsuleShape3D_6bp64")
 [node name="Floor" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(5.0513997, 0, 0, 0, 1, 0, 0, 0, 3.9911098, 0, -1.0415713, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0415713, 0)
 mesh = SubResource("PlaneMesh_jjgbg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-transform = Transform3D(6.367, 0, 0, 0, 0.562, 0, 0, 0, 3.991, -0.0031089187, -1.042, 0.004384637)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0031089187, -1.042, 0.004384637)
 shape = SubResource("BoxShape3D_jjgbg")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
