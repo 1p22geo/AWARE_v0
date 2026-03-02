@@ -41,6 +41,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0016030073, 0, 0)
 shape = SubResource("CapsuleShape3D_6bp64")
 
 [node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 transform = Transform3D(5.0513997, 0, 0, 0, 1, 0, 0, 0, 3.9911098, 0, -1.0415713, 0)
@@ -56,7 +57,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3766322, 0)
 [node name="CameraRig" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="CameraRig" node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0.0048526525, 2.7823973, 3.5959046)
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, -0.08749497, 5.502296, 5.129977)
 projection = 1
 current = true
 size = 12.576

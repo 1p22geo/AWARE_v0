@@ -23,7 +23,8 @@ func Update(_delta: float):
 	if wander_time > 0:
 		wander_time -= _delta
 	else:
-		wander()
+		Change.emit(self,"IdleState")
+		
 
 func Physics_Update(_delta: float):
 	movement_component.move(enemy,_delta)
