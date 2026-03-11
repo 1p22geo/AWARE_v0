@@ -6,6 +6,7 @@ class_name wanderState
 @export var speed : float = 1
 @export var enemy : CharacterBody3D
 
+
 var move_direction := Vector3.ZERO
 var wander_time : float
 
@@ -17,6 +18,7 @@ func wander():
 func Enter():
 	wander()
 	movement_component.speed = speed
+	print(3)
 	
 
 func Update(_delta: float):

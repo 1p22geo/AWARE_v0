@@ -27,17 +27,25 @@ func _update_screen_sizes() -> void:
 func _input(event: InputEvent) -> void:
 	if is_animating:
 		return
-	if event.pressed:
+
+	# Sprawdzamy przewijanie w dół (następny ekran)
+	var is_scroll_down = event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_WHEEL_DOWN
+	var is_ui_down := event.is_action_pressed("ui_down")
+
+	if is_scroll_down or is_ui_down:
 		if current_screen < TOTAL_SCREENS - 1:
-			if (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_DOWN) or event.is_action_pressed("ui_down"):
-				_go_to_screen(current_screen + 1)
-				get_viewport().set_input_as_handled()
-		elif current_screen > 0:
-			print(current_screen)
-			if(event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_UP) or event.is_action_pressed("ui_up"):
-				print(2)
-				_go_to_screen(current_screen - 1)
-				get_viewport().set_input_as_handled()
+			_go_to_screen(current_screen + 1)
+			get_viewport().set_input_as_handled()
+		return # Kończymy przetwarzanie, by uniknąć konfliktów
+
+	# Sprawdzamy przewijanie w górę (poprzedni ekran)
+	var is_scroll_up = event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_WHEEL_UP
+	var is_ui_up := event.is_action_pressed("ui_up")
+
+	if is_scroll_up or is_ui_up:
+		if current_screen > 0:
+			_go_to_screen(current_screen - 1)
+			get_viewport().set_input_as_handled()
 
 func _go_to_screen(index: int) -> void:
 	current_screen = index
