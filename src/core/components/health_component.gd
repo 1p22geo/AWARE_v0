@@ -4,7 +4,7 @@ class_name HealthComponent
 @export var MAX_HEALTH := 100.0
 
 signal die
-signal health_change
+signal health_change(hp)
 
 var health := MAX_HEALTH
 

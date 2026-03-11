@@ -1,10 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://b88qwo8jmkvpn"]
-
-[ext_resource type="Script" uid="uid://coglu1qfkbg0s" path="res://src/core/components/component.gd" id="1_v11bl"]
+[gd_scene load_steps=1 format=3 uid="uid://b88qwo8jmkvpn"]
 
 [node name="ComponentPlaceholder" type="Node"]
-script = ExtResource("1_v11bl")
-metadata/_custom_type_script = "uid://coglu1qfkbg0s"
 
 [node name="CompItem" type="Panel" parent="."]
 custom_minimum_size = Vector2(40, 30)
