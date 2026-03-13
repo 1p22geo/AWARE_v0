@@ -6,7 +6,7 @@
 [node name="World" type="Node3D" unique_id=571390285]
 
 [node name="Player" parent="." unique_id=340833514 instance=ExtResource("1_lfyvx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2156687, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2156687, 2.3386123, 0)
 
 [node name="world1" parent="." unique_id=749187332 instance=ExtResource("1_w2p53")]
 
