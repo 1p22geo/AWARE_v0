@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bx3ahwgpacte7" path="res://scenes/UI/menu.gd" id="1_u81ku"]
 
 [node name="Menu" type="CanvasLayer"]
-process_mode = 2
+process_mode = 3
 
 [node name="Control" type="Control" parent="."]
 process_mode = 3

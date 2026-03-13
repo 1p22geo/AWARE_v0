@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://u81pecjpkv0"]
+[gd_scene load_steps=15 format=3 uid="uid://u81pecjpkv0"]
 
-[ext_resource type="PackedScene" uid="uid://13h3en3o5ymm" path="res://scenes/levels/testScene.tscn" id="1_0wsoe"]
 [ext_resource type="Script" uid="uid://ou33p38skktc" path="res://src/UI/game_ui.gd" id="2_ui"]
+[ext_resource type="PackedScene" uid="uid://b4bmrng7uonyc" path="res://scenes/levels/world.tscn" id="2_wgnrc"]
+[ext_resource type="PackedScene" uid="uid://byt7eo7ffxjpb" path="res://scenes/UI/menu.tscn" id="3_84lt7"]
 [ext_resource type="Script" uid="uid://bis0wm74vnyen" path="res://src/UI/component_slot.gd" id="3_slot"]
 [ext_resource type="Script" uid="uid://bqkt3xr73hxym" path="res://src/UI/component_item.gd" id="4_item"]
 [ext_resource type="Script" uid="uid://un5hk7uo3mqa" path="res://src/core/components/component.gd" id="5_lj5up"]
@@ -83,7 +84,7 @@ size = Vector2i(544, 2)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="Main" parent="VBox/ScreenClipper/ScreensContainer/GameScreen/SubViewport" instance=ExtResource("1_0wsoe")]
+[node name="World" parent="VBox/ScreenClipper/ScreensContainer/GameScreen/SubViewport" instance=ExtResource("2_wgnrc")]
 
 [node name="CompsScreen" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer"]
 layout_mode = 2
@@ -445,3 +446,5 @@ show_percentage = false
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 8
+
+[node name="Menu" parent="." instance=ExtResource("3_84lt7")]

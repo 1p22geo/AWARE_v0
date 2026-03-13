@@ -14,7 +14,7 @@ size = Vector3(4.0474854, 0.51171875, 4.1047363)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.875574, 3.308885, 0.25913024)
 
 [node name="empty_1" parent="." instance=ExtResource("2_7k8c1")]
-transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 2.110869, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.374635, 0, 2.8749757)
