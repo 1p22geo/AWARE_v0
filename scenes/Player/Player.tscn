@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://caa1sxepyuvi0"]
 
-[ext_resource type="Script" uid="uid://d1igv2r1bo2ul" path="res://src/core/MovementComponent.gd" id="1_bvqhm"]
-[ext_resource type="Script" uid="uid://dh3hdeu86f251" path="res://src/core/PlayerController.gd" id="2_ved6o"]
-[ext_resource type="Script" uid="uid://4t18gpei6jwu" path="res://src/core/ThirdPersonCamera.gd" id="3_xcisb"]
+[ext_resource type="Script" uid="uid://d1igv2r1bo2ul" path="res://src/player/MovementController.gd" id="1_bvqhm"]
+[ext_resource type="Script" uid="uid://dh3hdeu86f251" path="res://src/player/PlayerController.gd" id="2_ved6o"]
+[ext_resource type="Script" uid="uid://4t18gpei6jwu" path="res://src/camera/ThirdPersonCamera.gd" id="3_xcisb"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_socpp"]
 
@@ -15,7 +15,7 @@
 [node name="Player" type="CharacterBody3D" parent="." unique_id=129569514]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13180351, 0, -0.30797958)
 
-[node name="MovementComponent" type="Node" parent="Player" unique_id=2112530169]
+[node name="MovementController" type="Node" parent="Player" unique_id=2112530169]
 script = ExtResource("1_bvqhm")
 
 [node name="PlayerController" type="Node" parent="Player" unique_id=652437371 node_paths=PackedStringArray("body", "camera")]
@@ -39,10 +39,10 @@ shape = SubResource("CapsuleShape3D_puxyr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2063856, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraRig" unique_id=694162924 node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, -6.2289057, 5.502296, 1.8580084)
-projection = 1
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, -6.2289057, 1.6835761, 1.8580084)
 current = true
 size = 12.576
+near = 0.001
 script = ExtResource("3_xcisb")
 target = NodePath("../../Player")
 
