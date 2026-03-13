@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://13h3en3o5ymm"]
+[gd_scene load_steps=11 format=3 uid="uid://13h3en3o5ymm"]
 
-[ext_resource type="Script" path="res://src/core/MovementComponent.gd" id="1_8gbba"]
-[ext_resource type="Script" path="res://src/core/ThirdPersonCamera.gd" id="2_bo1nx"]
-[ext_resource type="Script" path="res://src/core/PlayerController.gd" id="2_jjvhh"]
+[ext_resource type="Script" uid="uid://d1igv2r1bo2ul" path="res://src/core/MovementComponent.gd" id="1_8gbba"]
+[ext_resource type="Script" uid="uid://4t18gpei6jwu" path="res://src/core/ThirdPersonCamera.gd" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://dh3hdeu86f251" path="res://src/core/PlayerController.gd" id="2_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://bekrx0o22avha" path="res://src/characters/Enemies/Enemy1.tscn" id="4_t1ahj"]
+[ext_resource type="PackedScene" uid="uid://byt7eo7ffxjpb" path="res://scenes/UI/menu.tscn" id="5_nbwym"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_kry3j"]
 
@@ -66,3 +67,5 @@ target = NodePath("../../Player")
 
 [node name="Enemy" parent="." instance=ExtResource("4_t1ahj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.54, -1, 0)
+
+[node name="Menu" parent="." instance=ExtResource("5_nbwym")]

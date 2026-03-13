@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://byt7eo7ffxjpb"]
 
-[ext_resource type="Script" path="res://src/UI/menu.gd" id="1_u81ku"]
+[ext_resource type="Script" uid="uid://bx3ahwgpacte7" path="res://scenes/UI/menu.gd" id="1_u81ku"]
 
 [node name="Menu" type="CanvasLayer"]
 process_mode = 2
@@ -102,6 +102,6 @@ theme_override_font_sizes/font_size = 24
 text = "Back"
 
 [connection signal="pressed" from="Control/MainButtons/Button" to="Control" method="_on_resume"]
-[connection signal="pressed" from="Control/MainButtons/Button2" to="Control" method="on_options"]
+[connection signal="pressed" from="Control/MainButtons/Button2" to="Control" method="_on_options"]
 [connection signal="pressed" from="Control/MainButtons/Button3" to="Control" method="_on_exit"]
-[connection signal="pressed" from="Control/Options/Button" to="Control" method="_on_back_from_options"]
+[connection signal="pressed" from="Control/Options/Button" to="Control" method="_on_return_from_options"]
