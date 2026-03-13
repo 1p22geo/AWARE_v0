@@ -23,6 +23,9 @@ AWARE_v0
 ├── scenes
 │   └── levels
 └── src
+    ├── core
+    ├── camera
+    ├── player
     ├── lib
     └── scripts
 ```
@@ -59,6 +62,7 @@ NIEdozwolone wiadomości commitów:
 - `.`
 - `Added more icons to assets/png`
 - `trzymaj jakiś kodzik`
+- `Added files via upload`
 
 Prosiłbym o commitowanie regularnie, aby historia zmian była czytelna.
 

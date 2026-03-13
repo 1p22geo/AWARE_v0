@@ -40,3 +40,4 @@ script = ExtResource("5_aw7si")
 
 [node name="MovementComponent" type="Node" parent="."]
 script = ExtResource("5_lskn8")
+metadata/_custom_type_script = "uid://d1igv2r1bo2ul"

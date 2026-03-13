@@ -6,6 +6,13 @@ class_name ThirdPersonCamera
 @export var distance := 10.0
 @export var smooth := 5.0
 
+func _ready():
+	if target == null:
+		# Szukaj gracza w hierarchii
+		var player = get_tree().get_root().find_child("Player", true, false)
+		if player and player is CharacterBody3D:
+			target = player
+
 func _process(delta):
 	if target == null:
 		return
