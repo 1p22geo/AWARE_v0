@@ -1,7 +1,7 @@
 extends State
 class_name followState
 
-@onready var movement_component: MovementComponent = $"../../../MovementComponent"
+@onready var movement: MovementController = $"../../../MovementController"
 
 @export var speed: float = 8
 
