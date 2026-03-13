@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://caa1sxepyuvi0"]
+
+[ext_resource type="Script" uid="uid://d1igv2r1bo2ul" path="res://src/core/MovementComponent.gd" id="1_bvqhm"]
+[ext_resource type="Script" uid="uid://dh3hdeu86f251" path="res://src/core/PlayerController.gd" id="2_ved6o"]
+[ext_resource type="Script" uid="uid://4t18gpei6jwu" path="res://src/core/ThirdPersonCamera.gd" id="3_xcisb"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_socpp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fxc31"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_puxyr"]
+
+[node name="Player" type="Node3D" unique_id=340833514]
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=129569514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13180351, 0, -0.30797958)
+
+[node name="MovementComponent" type="Node" parent="Player" unique_id=2112530169]
+script = ExtResource("1_bvqhm")
+
+[node name="PlayerController" type="Node" parent="Player" unique_id=652437371 node_paths=PackedStringArray("body", "camera")]
+script = ExtResource("2_ved6o")
+body = NodePath("..")
+camera = NodePath("../../CameraRig/Camera3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=2016682688]
+mesh = SubResource("CapsuleMesh_socpp")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Player/MeshInstance3D" unique_id=748822155]
+transform = Transform3D(0.5632775, 0, 0, 0, 0.34036982, 0, 0, 0, 0.57042336, 0.0701344, 0.7614379, -0.3592342)
+mesh = SubResource("BoxMesh_fxc31")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=601152625]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0016030073, 0, 0)
+shape = SubResource("CapsuleShape3D_puxyr")
+
+[node name="CameraRig" type="Node3D" parent="." unique_id=1600046349]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2063856, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig" unique_id=694162924 node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, -6.2289057, 5.502296, 1.8580084)
+projection = 1
+current = true
+size = 12.576
+script = ExtResource("3_xcisb")
+target = NodePath("../../Player")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=956346513]

@@ -1,0 +1,447 @@
+[gd_scene load_steps=14 format=3 uid="uid://u81pecjpkv0"]
+
+[ext_resource type="PackedScene" uid="uid://13h3en3o5ymm" path="res://scenes/levels/testScene.tscn" id="1_0wsoe"]
+[ext_resource type="Script" uid="uid://ou33p38skktc" path="res://src/UI/game_ui.gd" id="2_ui"]
+[ext_resource type="Script" uid="uid://bis0wm74vnyen" path="res://src/UI/component_slot.gd" id="3_slot"]
+[ext_resource type="Script" uid="uid://bqkt3xr73hxym" path="res://src/UI/component_item.gd" id="4_item"]
+[ext_resource type="Script" uid="uid://un5hk7uo3mqa" path="res://src/core/components/component.gd" id="5_lj5up"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_secbg"]
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
+bg_color = Color(0.12, 0.12, 0.15, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slot"]
+bg_color = Color(0.18, 0.18, 0.22, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.35, 0.45, 1)
+
+[sub_resource type="Resource" id="Resource_wgnrc"]
+script = ExtResource("5_lj5up")
+metadata/_custom_type_script = "uid://un5hk7uo3mqa"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hudbg"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.08, 0.08, 0.1, 0.85)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hpbg"]
+bg_color = Color(0.1, 0.1, 0.1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hpfill"]
+bg_color = Color(0.8, 0.1, 0.1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_energybg"]
+bg_color = Color(0.1, 0.1, 0.1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_energyfill"]
+bg_color = Color(0.2, 0.4, 0.9, 1)
+
+[node name="Ui" type="Control"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ui")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScreenClipper" type="Control" parent="VBox"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScreensContainer" type="VBoxContainer" parent="VBox/ScreenClipper"]
+unique_name_in_owner = true
+layout_mode = 0
+theme_override_constants/separation = 0
+
+[node name="GameScreen" type="SubViewportContainer" parent="VBox/ScreenClipper/ScreensContainer"]
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="VBox/ScreenClipper/ScreensContainer/GameScreen"]
+handle_input_locally = false
+size = Vector2i(544, 2)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Main" parent="VBox/ScreenClipper/ScreensContainer/GameScreen/SubViewport" instance=ExtResource("1_0wsoe")]
+
+[node name="CompsScreen" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_secbg")
+
+[node name="CompsVBox" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Header" type="HBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Header"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "COMPS"
+
+[node name="Subtitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Header"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "(short for components btw)"
+vertical_alignment = 2
+
+[node name="CompViewStats" type="HBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="L_Armor" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/CompViewStats"]
+layout_mode = 2
+text = "Armor: 0"
+
+[node name="L_Speed" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/CompViewStats"]
+layout_mode = 2
+text = "Speed: 0"
+
+[node name="L_PowerLimit" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/CompViewStats"]
+layout_mode = 2
+text = "Power Limit: 0/0"
+
+[node name="Body" type="HBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="ComponentsGrid" type="GridContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 3
+
+[node name="Slot1" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+script = ExtResource("3_slot")
+
+[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid/Slot1"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slot2" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+script = ExtResource("3_slot")
+
+[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid/Slot2"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slot3" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+script = ExtResource("3_slot")
+
+[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid/Slot3"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slot4" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+script = ExtResource("3_slot")
+
+[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid/Slot4"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slot5" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+script = ExtResource("3_slot")
+
+[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid/Slot5"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slot6" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+script = ExtResource("3_slot")
+
+[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid/Slot6"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AddPanel" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="AddTitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/AddPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "ADD"
+horizontal_alignment = 1
+
+[node name="AddBtn1" type="Button" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/AddPanel"]
+layout_mode = 2
+text = "Component 1"
+script = ExtResource("4_item")
+component_data = SubResource("Resource_wgnrc")
+
+[node name="AddBtn2" type="Button" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/AddPanel"]
+layout_mode = 2
+text = "Component 2"
+script = ExtResource("4_item")
+
+[node name="AddBtn3" type="Button" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/AddPanel"]
+layout_mode = 2
+text = "Component 3"
+script = ExtResource("4_item")
+
+[node name="AddBtn4" type="Button" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/AddPanel"]
+layout_mode = 2
+text = "Component 4"
+script = ExtResource("4_item")
+
+[node name="AddBtn5" type="Button" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/AddPanel"]
+layout_mode = 2
+text = "Component 5"
+script = ExtResource("4_item")
+
+[node name="StatsScreen" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_secbg")
+
+[node name="HBox" type="HBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="StatsPanel" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="StatsTitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "STATS"
+
+[node name="StatsGrid" type="GridContainer" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel"]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 4
+columns = 2
+
+[node name="L_HP" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "HP:"
+
+[node name="V_HP" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "0 / 0"
+
+[node name="L_Energy" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "Energy:"
+
+[node name="V_Energy" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "0 / 0"
+
+[node name="L_EnergyRegen" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "Energy Regen:"
+
+[node name="V_EnergyRegen" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "0"
+
+[node name="L_Armor" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "Armor:"
+
+[node name="V_Armor" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "0"
+
+[node name="L_Speed" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "Speed:"
+
+[node name="V_Speed" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "0"
+
+[node name="L_DashPower" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "Dash Power:"
+
+[node name="V_DashPower" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "0"
+
+[node name="L_DashCooldown" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "Dash Cooldown:"
+
+[node name="V_DashCooldown" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "0s"
+
+[node name="L_Damage" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "Damage:"
+
+[node name="V_Damage" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "0"
+
+[node name="L_AttackSpeed" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "Attack Speed:"
+
+[node name="V_AttackSpeed" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "0"
+
+[node name="L_Range" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "Range:"
+
+[node name="V_Range" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "0"
+
+[node name="L_OverHeat" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "OverHeat Rate:"
+
+[node name="V_OverHeat" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "0"
+
+[node name="L_OverHeatLimit" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "OverHeat Limit:"
+
+[node name="V_OverHeatLimit" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "0"
+
+[node name="L_PowerLimit" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "Power Limit:"
+
+[node name="V_PowerLimit" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
+layout_mode = 2
+text = "0"
+
+[node name="ButtonsPanel" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ButtonsTitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/ButtonsPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "BUTTONS"
+
+[node name="Btn1" type="Button" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/ButtonsPanel"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+text = "Button 1"
+
+[node name="Btn2" type="Button" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/ButtonsPanel"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+text = "Button 2"
+
+[node name="Btn3" type="Button" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/ButtonsPanel"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+text = "Button 3"
+
+[node name="Btn4" type="Button" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/ButtonsPanel"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+text = "Button 4"
+
+[node name="BottomHUD" type="PanelContainer" parent="VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hudbg")
+
+[node name="HUDContent" type="VBoxContainer" parent="VBox/BottomHUD"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="BarsRow" type="HBoxContainer" parent="VBox/BottomHUD/HUDContent"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HealthBar" type="ProgressBar" parent="VBox/BottomHUD/HUDContent/BarsRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_hpbg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hpfill")
+step = 1.0
+value = 100.0
+rounded = true
+show_percentage = false
+
+[node name="EnergyBar" type="ProgressBar" parent="VBox/BottomHUD/HUDContent/BarsRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_energybg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_energyfill")
+step = 1.0
+value = 100.0
+rounded = true
+show_percentage = false
+
+[node name="OverheatContainer" type="HBoxContainer" parent="VBox/BottomHUD/HUDContent"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
