@@ -1,7 +1,7 @@
 extends State
 class_name wanderState
 
-@onready var movement_component: MovementController = $"../../../MovementController"
+@onready var movement_component: MovementController = %MovementController
 
 @export var speed : float = 1
 @export var enemy : CharacterBody3D
