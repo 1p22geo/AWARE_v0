@@ -5,6 +5,7 @@ class_name PlayerController
 @export var camera: Camera3D
 
 @onready var movement: MovementComponent = $"../MovementComponent"
+@onready var projectile: ProjectileController = get_tree().current_scene.find_child("ProjectileController")
 
 const RAY_LENGTH = 1000.0 
 
@@ -28,6 +29,15 @@ func get_mouse_world_position() -> Vector3:
 		return result["position"] 
 	return Vector3.ZERO
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			# fire a projectile in 3D space
+			# TODO: japczan, weź zrób jakieś projectile
+			var click_position = get_mouse_world_position()
+			if click_position != Vector3.ZERO:
+				projectile.create_projectile(body.global_position, click_position)
+				
 
 func _physics_process(delta):
 	if body == null or camera == null:
