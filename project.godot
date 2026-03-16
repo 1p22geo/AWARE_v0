@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="AWARE_v0"
-run/main_scene="uid://13h3en3o5ymm"
+run/main_scene="uid://cao56yrjq1apv"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://assets/svg/icon.svg"
 

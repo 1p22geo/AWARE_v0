@@ -18,7 +18,6 @@ func wander():
 func Enter():
 	wander()
 	movement_component.speed = speed
-	print(3)
 	
 
 func Update(_delta: float):

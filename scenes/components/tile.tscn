@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b82yijchla6di"]
+
+[ext_resource type="Script" uid="uid://dfhycl36r345u" path="res://src/level/tile.gd" id="1_d8t2i"]
+[ext_resource type="BoxMesh" uid="uid://cdse8pwl86fpf" path="res://scenes/components/tile.tres" id="1_elrc3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d8t2i"]
+size = Vector3(2, 0.2, 2)
+
+[node name="Tile" type="RigidBody3D"]
+gravity_scale = 0.0
+script = ExtResource("1_d8t2i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_elrc3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_d8t2i")
