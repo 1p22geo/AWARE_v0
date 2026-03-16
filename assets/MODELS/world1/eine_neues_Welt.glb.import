@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ct603w7orn13o"
-path="res://.godot/imported/world1.fbx-857da5d5c3b5669b54da73520ffd173d.scn"
+uid="uid://u1liuau4xg5"
+path="res://.godot/imported/eine_neues_Welt.glb-9e4b2c7b895f0e533e780fc8a5662755.scn"
 
 [deps]
 
-source_file="res://scenes/levels/world1.fbx"
-dest_files=["res://.godot/imported/world1.fbx-857da5d5c3b5669b54da73520ffd173d.scn"]
+source_file="res://assets/MODELS/world1/eine_neues_Welt.glb"
+dest_files=["res://.godot/imported/eine_neues_Welt.glb-9e4b2c7b895f0e533e780fc8a5662755.scn"]
 
 [params]
 
@@ -30,7 +30,7 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=true
+animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
@@ -38,7 +38,5 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={}
-fbx/importer=0
-fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
-fbx/naming_version=2
+gltf/naming_version=2
+gltf/embedded_image_handling=1
