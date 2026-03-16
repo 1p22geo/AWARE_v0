@@ -1,7 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4bmrng7uonyc"]
+[gd_scene load_steps=6 format=3 uid="uid://b4bmrng7uonyc"]
 
 [ext_resource type="PackedScene" uid="uid://caa1sxepyuvi0" path="res://scenes/Player/Player.tscn" id="1_lfyvx"]
 [ext_resource type="PackedScene" uid="uid://e3fla7hhclw5" path="res://assets/MODELS/world1/eine_neues_welt_model.tscn" id="2_7k8c1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7k8c1"]
+sky_top_color = Color(0.14117648, 0.5254902, 0.34117648, 1)
+sky_horizon_color = Color(0, 0.68235296, 1, 1)
+sky_curve = 0.36934325
+sky_energy_multiplier = 0.3
+ground_bottom_color = Color(1.7108977e-08, 0.020838784, 0.007898816, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+ground_curve = 0.42224178
+energy_multiplier = 8.05
+
+[sub_resource type="Sky" id="Sky_lfyvx"]
+sky_material = SubResource("ProceduralSkyMaterial_7k8c1")
+
+[sub_resource type="Environment" id="Environment_w2p53"]
+background_mode = 2
+sky = SubResource("Sky_lfyvx")
 
 [node name="World" type="Node3D"]
 
@@ -12,3 +29,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.374635, 0, 2.8749757)
 
 [node name="eine_neues_Welt" parent="." instance=ExtResource("2_7k8c1")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_w2p53")
