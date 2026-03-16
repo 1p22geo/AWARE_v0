@@ -11,7 +11,7 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vd578"]
 
-[node name="Enemy" type="CharacterBody3D"]
+[node name="Enemy" type="CharacterBody3D" groups=["Enemy"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -28,12 +28,12 @@ script = ExtResource("1_iiyfu")
 script = ExtResource("1_njfja")
 initial_state = NodePath("IdleState")
 
-[node name="wanderState" type="Node" parent="EnemyContoller/states" node_paths=PackedStringArray("enemy")]
+[node name="wanderState" type="Node" parent="EnemyContoller/states"]
 script = ExtResource("2_eyb4x")
-enemy = NodePath("../../..")
 
 [node name="follow" type="Node" parent="EnemyContoller/states"]
 script = ExtResource("3_eyb4x")
+speed = 1.5
 
 [node name="IdleState" type="Node" parent="EnemyContoller/states"]
 script = ExtResource("5_aw7si")
