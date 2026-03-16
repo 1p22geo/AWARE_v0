@@ -1,0 +1,8 @@
+[gd_scene load_steps=1 format=3 uid="uid://b88qwo8jmkvpn"]
+
+[node name="ComponentPlaceholder" type="Node"]
+
+[node name="CompItem" type="Panel" parent="."]
+custom_minimum_size = Vector2(40, 30)
+offset_right = 40.0
+offset_bottom = 40.0
