@@ -1,7 +1,7 @@
 extends Button
 class_name ComponentItem
 
-@export var component_data: Component
+@export var component_data: ComponentData
 
 func _get_drag_data(_at_position: Vector2) -> Variant:
 	if component_data == null:

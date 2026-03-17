@@ -1,5 +1,5 @@
 extends Resource
-class_name Component
+class_name ComponentData
 
 @export var name: String = "Component"
 @export var icon: Texture2D
