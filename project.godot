@@ -15,8 +15,8 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="AWARE_v0"
-run/main_scene="uid://b4bmrng7uonyc"
-config/features=PackedStringArray("4.6", "Mobile")
+run/main_scene="uid://u81pecjpkv0"
+config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://assets/svg/icon.svg"
 
 [editor_plugins]

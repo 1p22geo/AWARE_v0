@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://caa1sxepyuvi0"]
+[gd_scene load_steps=9 format=3 uid="uid://caa1sxepyuvi0"]
 
 [ext_resource type="Script" uid="uid://d1igv2r1bo2ul" path="res://src/core/MovementComponent.gd" id="1_bvqhm"]
 [ext_resource type="Script" uid="uid://dh3hdeu86f251" path="res://src/core/PlayerController.gd" id="2_ved6o"]
@@ -12,35 +12,35 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_puxyr"]
 
-[node name="Player" type="Node3D" unique_id=1368755214]
+[node name="Player" type="Node3D"]
 
-[node name="Player" type="CharacterBody3D" parent="." unique_id=1534795219]
+[node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13180351, 0, -0.30797958)
 
-[node name="MovementComponent" type="Node" parent="Player" unique_id=1981742247]
+[node name="MovementComponent" type="Node" parent="Player"]
 script = ExtResource("1_bvqhm")
 
-[node name="PlayerController" type="Node" parent="Player" unique_id=1213044974 node_paths=PackedStringArray("body", "camera")]
+[node name="PlayerController" type="Node" parent="Player" node_paths=PackedStringArray("body", "camera")]
 script = ExtResource("2_ved6o")
 body = NodePath("..")
 camera = NodePath("../../CameraRig/Camera3D")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=1133469770]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("CapsuleMesh_socpp")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Player/MeshInstance3D" unique_id=2007572616]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Player/MeshInstance3D"]
 transform = Transform3D(0.5632775, 0, 0, 0, 0.34036982, 0, 0, 0, 0.57042336, 0.0701344, 0.7614379, -0.3592342)
 mesh = SubResource("BoxMesh_fxc31")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1072038092]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0016030073, 0, 0)
 shape = SubResource("CapsuleShape3D_puxyr")
 
-[node name="jimmy" parent="Player" unique_id=1018962834 instance=ExtResource("3_ved6o")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.056431293, -0.9649503, -0.14729017)
+[node name="jimmy" parent="Player" instance=ExtResource("3_ved6o")]
+transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, 0.056431293, -0.9649503, -0.14729017)
 
-[node name="Skeleton3D" parent="Player/jimmy/Armature" parent_id_path=PackedInt32Array(1018962834, 387708768) index="0" unique_id=31476498]
+[node name="Skeleton3D" parent="Player/jimmy/Armature" index="0"]
 bones/1/rotation = Quaternion(-0.052158184, 1.1904703e-07, -6.2177397e-09, 0.9986388)
 bones/2/rotation = Quaternion(0.10805712, -1.0526359e-14, 2.576282e-08, 0.9941447)
 bones/3/rotation = Quaternion(-0.0076493267, 1.4160854e-14, -1.8237418e-09, 0.99997073)
@@ -79,21 +79,19 @@ bones/47/rotation = Quaternion(0.001766128, -0.00027212157, -0.08358636, 0.99649
 bones/48/rotation = Quaternion(-0.15109019, -0.00516489, 0.6165762, 0.7726441)
 bones/49/rotation = Quaternion(-0.01309015, -1.0830823e-07, 0.08428787, 0.9963555)
 
-[node name="Cube" parent="Player/jimmy/Armature/Skeleton3D" index="0" unique_id=1610670000]
+[node name="Cube" parent="Player/jimmy/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("4_xcisb")
 
-[node name="CameraRig" type="Node3D" parent="." unique_id=179810013]
+[node name="CameraRig" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2063856, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="CameraRig" unique_id=810252686 node_paths=PackedStringArray("target")]
+[node name="Camera3D" type="Camera3D" parent="CameraRig" node_paths=PackedStringArray("target")]
 transform = Transform3D(-4.371139e-08, -0.86602545, 0.49999997, 0, 0.49999997, 0.86602545, -1, 3.7855173e-08, -2.1855692e-08, -3.1827667, 5.502296, -0.118058205)
 current = true
 size = 12.576
 script = ExtResource("3_xcisb")
 target = NodePath("../../Player")
-height = 10.0
-distance = 8.0
 
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=2082199550]
+[node name="AnimationTree" type="AnimationTree" parent="."]
 
 [editable path="Player/jimmy"]
