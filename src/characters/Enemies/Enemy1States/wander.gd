@@ -1,7 +1,7 @@
 extends State
 class_name wanderState
 
-@onready var movement_component: MovementComponent = get_parent().get_parent().get_node("MovementComponent") as MovementComponent
+@onready var movement_component: MovementComponent = get_parent().get_parent().get_parent().get_node("MovementComponent") as MovementComponent
 
 @export var speed : float = 1
 var enemy : CharacterBody3D
@@ -17,7 +17,7 @@ func wander():
 		movement_component.move_direction = move_direction
 
 func Enter():
-	enemy = get_parent().get_parent() as CharacterBody3D
+	enemy = get_parent().get_parent().get_parent() as CharacterBody3D
 	if not movement_component:
 		return
 	wander()
@@ -28,7 +28,7 @@ func Update(_delta: float):
 	if not movement_component:
 		return
 	# Sprawdź czy gracz jest w zasięgu widzenia
-	var player = get_tree().get_first_node_in_group("Player").get_child(0)
+	var player = get_tree().get_first_node_in_group("Player").get_node("Player") as CharacterBody3D
 	if player and enemy.global_position.distance_to(player.global_position) < 15.0:
 		Change.emit(self, "follow")
 		return
