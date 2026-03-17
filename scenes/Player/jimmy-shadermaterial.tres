@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://capa7d7o0ucpu"]
+
+[ext_resource type="Shader" uid="uid://ccxogmqbtg3u0" path="res://scenes/Player/jimmy-shadermaterial.gdshader" id="1_4aqdv"]
+[ext_resource type="Texture2D" uid="uid://bqoe1lgo0vuy" path="res://scenes/Player/body1.png" id="2_wegyk"]
+[ext_resource type="Texture2D" uid="uid://vrvd7i1d5ab3" path="res://scenes/Player/jimmy_theme.png" id="3_0ifj2"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_4aqdv")
+shader_parameter/body_tex = ExtResource("2_wegyk")
+shader_parameter/theme_tex = ExtResource("3_0ifj2")
+shader_parameter/hue_shift = 0.5970000283575
+shader_parameter/sat_mul = 1.0
+shader_parameter/val_mul = 1.0
+shader_parameter/emission_strength = 2.0

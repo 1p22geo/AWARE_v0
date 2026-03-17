@@ -4,7 +4,7 @@ class_name wanderState
 @onready var movement_component: MovementComponent = $"../../../MovementComponent" as MovementComponent
 
 @export var speed : float = 1
-@export var enemy : CharacterBody3D
+var enemy : CharacterBody3D
 
 
 var move_direction := Vector3.ZERO
@@ -18,15 +18,20 @@ func wander():
 func Enter():
 	wander()
 	movement_component.speed = speed
-	print(3)
+	enemy = get_tree().get_first_node_in_group("Enemy")
 	
 
 func Update(_delta: float):
+	# Sprawdź czy gracz jest w zasięgu widzenia
+	var player = get_tree().get_first_node_in_group("Player").get_child(0)
+	if player and enemy.global_position.distance_to(player.global_position) < 15.0:
+		Change.emit(self, "follow")
+		return
+
 	if wander_time > 0:
 		wander_time -= _delta
 	else:
 		Change.emit(self,"IdleState")
-		
 
 func Physics_Update(_delta: float):
 	movement_component.move(enemy,_delta)
