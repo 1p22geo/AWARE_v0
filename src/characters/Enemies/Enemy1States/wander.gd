@@ -27,11 +27,14 @@ func Enter():
 func Update(_delta: float):
 	if not movement_component:
 		return
+		
 	# Sprawdź czy gracz jest w zasięgu widzenia
-	var player = get_tree().get_first_node_in_group("Player").get_node("Player") as CharacterBody3D
-	if player and enemy.global_position.distance_to(player.global_position) < 15.0:
-		Change.emit(self, "follow")
-		return
+	var player_group = get_tree().get_first_node_in_group("Player")
+	if player_group:
+		var player = player_group.get_node("Player") as CharacterBody3D
+		if player and is_instance_valid(player) and enemy.global_position.distance_to(player.global_position) < 15.0:
+			Change.emit(self, "follow")
+			return
 
 	if wander_time > 0:
 		wander_time -= _delta

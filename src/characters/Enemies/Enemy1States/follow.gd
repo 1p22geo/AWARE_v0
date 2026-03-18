@@ -3,7 +3,7 @@ class_name followState
 
 @onready var movement_component: MovementComponent = get_parent().get_parent().get_parent().get_node("MovementComponent") as MovementComponent
 
-@export var speed: float = 8
+@export var speed: float = 1.5
 
 
 var enemy : CharacterBody3D
@@ -11,7 +11,10 @@ var player : CharacterBody3D
 
 func Enter():
 	enemy = get_parent().get_parent().get_parent() as CharacterBody3D
-	player = get_tree().get_first_node_in_group("Player").get_node("Player") as CharacterBody3D
+	var player_group = get_tree().get_first_node_in_group("Player")
+	if player_group:
+		player = player_group.get_node("Player") as CharacterBody3D
+		
 	if not movement_component:
 		return
 	movement_component.speed = speed
