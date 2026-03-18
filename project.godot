@@ -19,6 +19,11 @@ run/main_scene="uid://bag0oxvak101b"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://assets/svg/icon.svg"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/gut/plugin.cfg")

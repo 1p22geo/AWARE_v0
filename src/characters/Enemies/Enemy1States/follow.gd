@@ -1,7 +1,7 @@
 extends State
 class_name followState
 
-@onready var movement_component: MovementComponent = $"../../../MovementComponent" as MovementComponent
+@onready var movement_component: MovementComponent = get_parent().get_parent().get_parent().get_node("MovementComponent") as MovementComponent
 
 @export var speed: float = 8
 
@@ -10,12 +10,15 @@ var enemy : CharacterBody3D
 var player : CharacterBody3D
 
 func Enter():
-	player = get_tree().get_first_node_in_group("Player").get_child(0)
-	enemy = get_tree().get_first_node_in_group("Enemy")
+	enemy = get_parent().get_parent().get_parent() as CharacterBody3D
+	player = get_tree().get_first_node_in_group("Player").get_node("Player") as CharacterBody3D
+	if not movement_component:
+		return
+	movement_component.speed = speed
 
 
-func Physics_Update(_delta: float):
-	if not player or not is_instance_valid(player):
+func Update(_delta: float):
+	if not player or not is_instance_valid(player) or not movement_component:
 		Change.emit(self, "wanderState")
 		return
 
@@ -26,5 +29,8 @@ func Physics_Update(_delta: float):
 
 	var direction = (player.global_position - enemy.global_position).normalized()
 	movement_component.move_direction = direction
-	movement_component.speed = speed
+
+func Physics_Update(_delta: float):
+	if not movement_component or not enemy:
+		return
 	movement_component.move(enemy, _delta)

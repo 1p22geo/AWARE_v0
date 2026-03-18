@@ -10,32 +10,39 @@ class_name MovementComponent
 var move_direction := Vector3.ZERO
 var look_target := Vector3.ZERO
 var velocity := Vector3.ZERO
+var is_jumping := false
+
+
+func jump() -> void:
+	# Public method to signal a jump intention.
+	is_jumping = true
 
 
 func move(body: CharacterBody3D, delta: float):
-	# rotation towards mouse
-	var target_rot = atan2(
-		body.global_position.x - look_target.x,
-		body.global_position.z - look_target.z
-	)
+	# Only rotate if a look_target has been set.
+	if look_target != Vector3.ZERO:
+		var target_rot = atan2(
+			body.global_position.x - look_target.x,
+			body.global_position.z - look_target.z
+		)
+		
+		body.rotation.y = lerp_angle(
+			body.rotation.y,
+			target_rot,
+			rotation_speed * delta
+		)
 	
-	body.rotation.y = lerp_angle(
-		body.rotation.y,
-		target_rot,
-		rotation_speed * delta
-	)
-	
-	# gravity
+	# Gravity
 	if not body.is_on_floor():
 		body.velocity.y -= gravity * delta
 	else:
 		body.velocity.y = 0
 		
-	#  jumping
-	if body.is_on_floor() and Input.is_action_just_pressed("jump"):
+	# Jumping - now driven by the is_jumping flag.
+	if body.is_on_floor() and is_jumping:
 		body.velocity.y = jump_height
 		
-	# player movement
+	# Movement
 	if move_direction.length() > 0:
 		move_direction = move_direction.normalized()
 		velocity = velocity.lerp(move_direction * speed, acceleration * delta)
@@ -46,3 +53,5 @@ func move(body: CharacterBody3D, delta: float):
 	body.velocity.x = velocity.x
 	body.velocity.z = velocity.z
 	body.move_and_slide()
+
+	is_jumping = false

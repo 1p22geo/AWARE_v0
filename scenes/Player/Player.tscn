@@ -26,6 +26,7 @@ body = NodePath("..")
 camera = NodePath("../../CameraRig/Camera3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+visible = false
 mesh = SubResource("CapsuleMesh_socpp")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Player/MeshInstance3D"]
