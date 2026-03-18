@@ -33,7 +33,6 @@ script = ExtResource("2_eyb4x")
 
 [node name="follow" type="Node" parent="EnemyContoller/states"]
 script = ExtResource("3_eyb4x")
-speed = 1.5
 
 [node name="IdleState" type="Node" parent="EnemyContoller/states"]
 script = ExtResource("5_aw7si")

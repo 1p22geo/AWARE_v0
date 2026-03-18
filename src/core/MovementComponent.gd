@@ -1,11 +1,11 @@
 extends Node
 class_name MovementComponent
 
-@export var speed := 16.0
+@export var speed := 5.0
 @export var acceleration := 10.0
 @export var rotation_speed := 30.0
 @export var gravity := 55.0
-@export var jump_height := 30.0
+@export var jump_height := 0.0 # Disabled by default
 
 var move_direction := Vector3.ZERO
 var look_target := Vector3.ZERO
@@ -14,8 +14,9 @@ var is_jumping := false
 
 
 func jump() -> void:
-	# Public method to signal a jump intention.
-	is_jumping = true
+	# Only allow jumping if jump_height is set (by a component)
+	if jump_height > 0:
+		is_jumping = true
 
 
 func move(body: CharacterBody3D, delta: float):

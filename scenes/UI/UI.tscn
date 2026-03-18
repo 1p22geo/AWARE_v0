@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://u81pecjpkv0"]
+[gd_scene load_steps=0 format=3 uid="uid://u81pecjpkv0"]
 
 [ext_resource type="Script" uid="uid://ou33p38skktc" path="res://src/UI/game_ui.gd" id="2_ui"]
 [ext_resource type="PackedScene" uid="uid://b4bmrng7uonyc" path="res://scenes/levels/world.tscn" id="2_wgnrc"]
@@ -6,6 +6,11 @@
 [ext_resource type="Script" uid="uid://bis0wm74vnyen" path="res://src/UI/component_slot.gd" id="3_slot"]
 [ext_resource type="Script" uid="uid://bqkt3xr73hxym" path="res://src/UI/component_item.gd" id="4_item"]
 [ext_resource type="Script" uid="uid://un5hk7uo3mqa" path="res://src/core/components/component.gd" id="5_lj5up"]
+[ext_resource type="Resource" uid="uid://c6lhp7v2m3v8u" path="res://scenes/components/core_health.tres" id="6_health"]
+[ext_resource type="Resource" uid="uid://dp66vsc6n6i3t" path="res://scenes/components/attack_component.tres" id="7_attack"]
+[ext_resource type="Resource" uid="uid://cnbkv7d3p6v2u" path="res://scenes/components/speed_module.tres" id="8_speed"]
+[ext_resource type="Resource" uid="uid://r537m50tge1g" path="res://scenes/components/jump_component.tres" id="9_jump"]
+[ext_resource type="Resource" uid="uid://cnbkv7d3p6v2v" path="res://scenes/components/regen_module.tres" id="10_regen"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_secbg"]
 content_margin_left = 16.0
@@ -210,42 +215,106 @@ layout_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AddPanel" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body" unique_id=1195845807]
-custom_minimum_size = Vector2(180, 0)
+[node name="InventoryPanel" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body" unique_id=1195845807]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="AddTitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/AddPanel" unique_id=579919424]
+[node name="InvTitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel" unique_id=579919424]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "ADD"
+text = "INVENTORY"
 horizontal_alignment = 1
 
-[node name="AddBtn1" type="Button" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/AddPanel" unique_id=1697825366]
+[node name="InventoryGrid" type="GridContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel" unique_id=291609069]
 layout_mode = 2
-text = "Component 1"
-script = ExtResource("4_item")
-component_data = SubResource("Resource_wgnrc")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 3
 
-[node name="AddBtn2" type="Button" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/AddPanel" unique_id=1964790933]
+[node name="InvSlot1" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid" unique_id=1413256015]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-text = "Component 2"
-script = ExtResource("4_item")
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+script = ExtResource("3_slot")
+component = ExtResource("6_health")
 
-[node name="AddBtn3" type="Button" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/AddPanel" unique_id=2148890]
+[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot1" unique_id=1785322115]
 layout_mode = 2
-text = "Component 3"
-script = ExtResource("4_item")
+text = "Core Health"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="AddBtn4" type="Button" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/AddPanel" unique_id=1762562062]
+[node name="InvSlot2" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid" unique_id=1413256016]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-text = "Component 4"
-script = ExtResource("4_item")
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+script = ExtResource("3_slot")
+component = ExtResource("7_attack")
 
-[node name="AddBtn5" type="Button" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/AddPanel" unique_id=286437945]
+[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot2" unique_id=1785322116]
 layout_mode = 2
-text = "Component 5"
-script = ExtResource("4_item")
+text = "Laser Cannon"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InvSlot3" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid" unique_id=1413256017]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+script = ExtResource("3_slot")
+component = ExtResource("8_speed")
+
+[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot3" unique_id=1785322117]
+layout_mode = 2
+text = "Speed Module"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InvSlot4" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid" unique_id=1413256018]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+script = ExtResource("3_slot")
+component = ExtResource("9_jump")
+
+[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot4" unique_id=1785322118]
+layout_mode = 2
+text = "Jump Module"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InvSlot5" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid" unique_id=1413256019]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+script = ExtResource("3_slot")
+component = ExtResource("10_regen")
+
+[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot5" unique_id=1785322119]
+layout_mode = 2
+text = "Regen Nano-bots"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InvSlot6" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid" unique_id=1413256020]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+script = ExtResource("3_slot")
+
+[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot6" unique_id=1785322120]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StatsScreen" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer" unique_id=878362773]
 layout_mode = 2

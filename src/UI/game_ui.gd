@@ -1,10 +1,13 @@
 extends Control
 
+signal components_updated(equipped_components: Array[ComponentData])
+
 @onready var health_bar: ProgressBar = %HealthBar
 @onready var energy_bar: ProgressBar = %EnergyBar
 @onready var overheat_container: HBoxContainer = %OverheatContainer
 @onready var screen_clipper: Control = %ScreenClipper
 @onready var screens_container: VBoxContainer = %ScreensContainer
+@onready var components_grid: GridContainer = find_child("ComponentsGrid", true, false)
 
 var current_screen := 0
 const TOTAL_SCREENS := 3
@@ -12,8 +15,30 @@ const ANIM_DURATION := 0.35
 var is_animating := false
 
 func _ready() -> void:
+	add_to_group("UI")
 	_update_screen_sizes()
 	screen_clipper.resized.connect(_update_screen_sizes)
+	
+	# Connect slots to signal
+	if components_grid:
+		for slot in components_grid.get_children():
+			if slot is ComponentDataSlot:
+				slot.component_changed.connect(_on_component_changed)
+
+func get_equipped_components() -> Array[ComponentData]:
+	var equipped: Array[ComponentData] = []
+	if components_grid:
+		for slot in components_grid.get_children():
+			if slot is ComponentDataSlot and slot.component:
+				equipped.append(slot.component)
+	return equipped
+
+func _on_component_changed(_comp: ComponentData) -> void:
+	var equipped: Array[ComponentData] = []
+	for slot in components_grid.get_children():
+		if slot is ComponentDataSlot and slot.component:
+			equipped.append(slot.component)
+	components_updated.emit(equipped)
 
 func _update_screen_sizes() -> void:
 	var h := screen_clipper.size.y
@@ -28,6 +53,14 @@ func _input(event: InputEvent) -> void:
 	if is_animating:
 		return
 
+	if event.is_action_pressed("inventory"):
+		if current_screen == 1:
+			_go_to_screen(0) # Back to game
+		else:
+			_go_to_screen(1) # To Comps
+		get_viewport().set_input_as_handled()
+		return
+
 	# Sprawdzamy przewijanie w dół (następny ekran)
 	var is_scroll_down = event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_WHEEL_DOWN
 	var is_ui_down := event.is_action_pressed("ui_down")
@@ -36,7 +69,7 @@ func _input(event: InputEvent) -> void:
 		if current_screen < TOTAL_SCREENS - 1:
 			_go_to_screen(current_screen + 1)
 			get_viewport().set_input_as_handled()
-		return # Kończymy przetwarzanie, by uniknąć konfliktów
+		return
 
 	# Sprawdzamy przewijanie w górę (poprzedni ekran)
 	var is_scroll_up = event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_WHEEL_UP
@@ -57,10 +90,12 @@ func _go_to_screen(index: int) -> void:
 	tween.tween_callback(func(): is_animating = false)
 
 func update_health(current_hp: float, max_hp: float) -> void:
+	if not health_bar: return
 	health_bar.max_value = max_hp
 	health_bar.value = current_hp
 
 func update_energy(current_energy: float, max_energy: float) -> void:
+	if not energy_bar: return
 	energy_bar.max_value = max_energy
 	energy_bar.value = current_energy
 
