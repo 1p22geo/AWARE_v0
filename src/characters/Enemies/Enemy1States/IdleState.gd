@@ -1,14 +1,7 @@
-extends Node
+extends State
 class_name IdleState
 
-signal Change(state, new_state_name)
-
 var idle_time : float
-
-func _ready():
-	# For some reason, without this line, the Change signal is not recognized
-	# and the state machine gets stuck.
-	add_user_signal("Change", [{"name": "state", "type": TYPE_OBJECT}, {"name": "new_state_name", "type": TYPE_STRING}])
 
 
 func Enter():

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ComponentData" load_steps=2 format=3 uid="uid://dp66vsc6n6i3t"]
+
+[ext_resource type="Script" uid="uid://un5hk7uo3mqa" path="res://src/core/components/component.gd" id="1_un5hk"]
+
+[resource]
+script = ExtResource("1_un5hk")
+name = "Laser Cannon"
+hp = 20.0
+energy_storage = 0.0
+energy_regen = 0.0
+armor = 0.0
+speed = 0.0
+dash_power = 0.0
+dash_cooldown = 0.0
+damage = 25.0
+attack_speed = 1.0
+attack_range = 20.0
+overheat = 5.0
+overheat_limit = 100.0
+power_cost = 10.0
+metadata/_custom_type_script = "uid://un5hk7uo3mqa"

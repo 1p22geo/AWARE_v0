@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SynergyData" load_steps=2 format=3 uid="uid://c7m5n1p2q3r4s"]
+
+[ext_resource type="Script" uid="uid://xh0td0trnoks" path="res://src/core/components/synergy_data.gd" id="1_syn"]
+
+[resource]
+script = ExtResource("1_syn")
+name = "Lightning"
+description = "Core & Speed reduces damage by 50% but adds big speed"
+component_a = "Core Health"
+component_b = "Speed Module"
+speed_bonus = 10.0
+armor_bonus = -5.0
+dash_power_bonus = 5.0
+hp_mult = 0.8
+speed_mult = 2.0
+armor_mult = 0.5
+damage_mult = 0.5
+link_power_cost = 6.0

@@ -1,9 +1,15 @@
 [gd_scene load_steps=9 format=3 uid="uid://caa1sxepyuvi0"]
 
+[ext_resource type="Script" uid="uid://df6v41m8eun65" path="res://src/core/components/health_component.gd" id="1_health"]
 [ext_resource type="Script" uid="uid://d1igv2r1bo2ul" path="res://src/core/MovementComponent.gd" id="1_bvqhm"]
 [ext_resource type="Script" uid="uid://dh3hdeu86f251" path="res://src/core/PlayerController.gd" id="2_ved6o"]
+[ext_resource type="Script" uid="uid://dghlyg1isb2v5" path="res://src/core/components/component_manager.gd" id="3_comp_mgr"]
 [ext_resource type="PackedScene" uid="uid://celxmljo2squ6" path="res://scenes/Player/jimmy.glb" id="3_ved6o"]
 [ext_resource type="Script" uid="uid://4t18gpei6jwu" path="res://src/camera/ThirdPersonCamera.gd" id="3_xcisb"]
+[ext_resource type="Resource" uid="uid://cyk2m8v3j6x7n" path="res://scenes/components/synergy_attack_health.tres" id="5_syn"]
+[ext_resource type="Resource" uid="uid://dj4m8v3n1p7q2" path="res://scenes/components/synergy_jump_regen.tres" id="6_syn"]
+[ext_resource type="Resource" uid="uid://b8v3m2p7q5n1r" path="res://scenes/components/synergy_armor_regen.tres" id="7_syn"]
+[ext_resource type="Resource" uid="uid://c7m5n1p2q3r4s" path="res://scenes/components/synergy_core_speed.tres" id="8_syn"]
 [ext_resource type="Material" uid="uid://capa7d7o0ucpu" path="res://scenes/Player/jimmy-shadermaterial.tres" id="4_xcisb"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_socpp"]
@@ -19,6 +25,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13180351, 0, -0.30797958)
 
 [node name="MovementComponent" type="Node" parent="Player"]
 script = ExtResource("1_bvqhm")
+
+[node name="HealthComponent" type="Node" parent="Player"]
+script = ExtResource("1_health")
+
+[node name="ComponentManager" type="Node" parent="Player" node_paths=PackedStringArray("player_body", "health_component", "movement_component")]
+script = ExtResource("3_comp_mgr")
+player_body = NodePath("..")
+health_component = NodePath("../HealthComponent")
+movement_component = NodePath("../MovementComponent")
+synergies = Array[Resource]([ExtResource("5_syn"), ExtResource("6_syn"), ExtResource("7_syn"), ExtResource("8_syn")])
 
 [node name="PlayerController" type="Node" parent="Player" node_paths=PackedStringArray("body", "camera")]
 script = ExtResource("2_ved6o")
