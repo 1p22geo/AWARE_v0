@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://src/UI/component_graph_ui.gd" id="11_graph"]
 [ext_resource type="Resource" uid="uid://b5k8v3m2l7p9q" path="res://scenes/components/armor_module.tres" id="12_armor"]
 [ext_resource type="Resource" uid="uid://cnbkv7d3p6v2v" path="res://scenes/components/regen_module.tres" id="10_regen"]
+[ext_resource type="PackedScene" uid="uid://bdeath001" path="res://scenes/UI/death_screen.tscn" id="99_death"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_secbg"]
 content_margin_left = 16.0
@@ -446,4 +447,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Menu" parent="." unique_id=1023082040 instance=ExtResource("3_84lt7")]
+[node name="Menu" parent="." unique_name_in_owner=true instance=ExtResource("3_84lt7")]
+
+[node name="DeathScreen" parent="." unique_name_in_owner=true instance=ExtResource("99_death")]
+visible = false

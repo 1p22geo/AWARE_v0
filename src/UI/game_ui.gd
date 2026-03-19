@@ -21,6 +21,8 @@ signal graph_updated(nodes: Dictionary, connections: Array)
 @onready var l_synergies: Label = find_child("L_Synergies", true, false)
 @onready var synergies_list: VBoxContainer = find_child("SynergiesList", true, false)
 
+@onready var death_screen: CanvasLayer = find_child("DeathScreen", true, false)
+
 var current_screen := 0
 const TOTAL_SCREENS := 3
 const ANIM_DURATION := 0.35
@@ -30,9 +32,30 @@ func _ready() -> void:
 	add_to_group("UI")
 	_update_screen_sizes()
 	screen_clipper.resized.connect(_update_screen_sizes)
-	
+
 	if component_graph:
 		component_graph.graph_updated.connect(_on_graph_updated)
+
+	_connect_to_player_death.call_deferred()
+
+func _connect_to_player_death() -> void:
+	# Find player via the game world SubViewport
+	var world = find_child("World", true, false)
+	if world:
+		var player = world.find_child("Player", true, false)
+		if player:
+			var health = player.find_child("HealthComponent", true, false)
+			if health and health.has_signal("die"):
+				health.die.connect(_on_player_death)
+
+func _on_player_death() -> void:
+	if death_screen:
+		death_screen.show_death()
+		if not death_screen.restart_requested.is_connected(_on_restart_requested):
+			death_screen.restart_requested.connect(_on_restart_requested)
+
+func _on_restart_requested() -> void:
+	get_tree().reload_current_scene()
 
 func _on_graph_updated(nodes: Dictionary, connections: Array) -> void:
 	graph_updated.emit(nodes, connections)
