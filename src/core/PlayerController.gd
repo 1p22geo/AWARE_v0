@@ -40,6 +40,8 @@ func _physics_process(delta):
 		direction += input_dir.x * basis.x
 		direction += input_dir.y * basis.z
 		direction = direction.normalized()
-
+		var target_angle = atan2(direction.x, direction.z)
+		body.rotation.y = lerp_angle(body.rotation.y, target_angle, 0.2)
+	
 	movement.move_direction = direction
 	movement.move(body, delta)

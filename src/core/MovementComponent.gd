@@ -21,17 +21,10 @@ func jump() -> void:
 
 func move(body: CharacterBody3D, delta: float):
 	# Only rotate if a look_target has been set.
-	if look_target != Vector3.ZERO:
-		var target_rot = atan2(
-			body.global_position.x - look_target.x,
-			body.global_position.z - look_target.z
-		)
+	
+	
 		
-		body.rotation.y = lerp_angle(
-			body.rotation.y,
-			target_rot,
-			rotation_speed * delta
-		)
+		
 	
 	# Gravity
 	if not body.is_on_floor():

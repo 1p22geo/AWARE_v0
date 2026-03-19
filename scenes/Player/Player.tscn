@@ -50,38 +50,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0016030073, 0, 0)
 shape = SubResource("CapsuleShape3D_puxyr")
 
 [node name="jimmy" parent="Player" instance=ExtResource("3_ved6o")]
-transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, 0.056431293, -0.9649503, -0.14729017)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.056431293, -0.9649503, -0.14729017)
 
 [node name="Skeleton3D" parent="Player/jimmy/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.052158184, 1.1904703e-07, -6.2177397e-09, 0.9986388)
-bones/2/rotation = Quaternion(0.10805712, -1.0526359e-14, 2.576282e-08, 0.9941447)
-bones/3/rotation = Quaternion(-0.0076493267, 1.4160854e-14, -1.8237418e-09, 0.99997073)
-bones/4/rotation = Quaternion(0.6618078, 0.06261775, 0.7376788, -0.117981106)
-bones/5/rotation = Quaternion(-0.025099225, -0.006763512, -0.14315554, 0.9893588)
-bones/7/rotation = Quaternion(-0.19375065, 0.014331134, -0.09099262, 0.9767169)
-bones/8/rotation = Quaternion(-0.24674745, -0.01512723, 0.0023963484, 0.9689588)
-bones/10/rotation = Quaternion(-0.22352104, 0.0011362428, -0.03417345, 0.9740993)
-bones/11/rotation = Quaternion(-0.18570809, -0.018828526, 0.030983018, 0.98193586)
-bones/13/rotation = Quaternion(-0.23794767, 0.00052047917, -0.02018251, 0.97106814)
-bones/14/rotation = Quaternion(-0.21320626, 0.017179837, 0.019103331, 0.9766694)
-bones/16/rotation = Quaternion(-0.30553818, -0.032863956, 0.045302648, 0.95053357)
-bones/17/rotation = Quaternion(-0.115530305, 0.0035443874, -0.021018513, 0.99307525)
-bones/20/rotation = Quaternion(-0.050314978, -0.00092153734, 0.12664805, 0.9906704)
-bones/21/rotation = Quaternion(0.01829075, 0.028990986, 0.16412617, 0.9858436)
-bones/23/rotation = Quaternion(-0.66180795, 0.062617816, 0.7376786, 0.11798124)
-bones/24/rotation = Quaternion(-0.025099393, 0.006763529, 0.14315571, 0.9893588)
-bones/25/rotation = Quaternion(-0.018811401, -0.0067441813, -0.11769698, 0.99284846)
-bones/26/rotation = Quaternion(-0.19375066, -0.014331142, 0.09099266, 0.97671676)
-bones/27/rotation = Quaternion(-0.24674745, 0.015127214, -0.0023963314, 0.9689588)
-bones/29/rotation = Quaternion(-0.223521, -0.0011362528, 0.034173466, 0.9740992)
-bones/30/rotation = Quaternion(-0.18570803, 0.01882852, -0.030983044, 0.98193586)
-bones/32/rotation = Quaternion(-0.23794763, -0.00052049675, 0.02018249, 0.97106814)
-bones/33/rotation = Quaternion(-0.21320625, -0.017179834, -0.019103339, 0.9766694)
-bones/35/rotation = Quaternion(-0.30553806, 0.032863934, -0.04530268, 0.9505336)
-bones/36/rotation = Quaternion(-0.115530394, -0.0035443432, 0.021018518, 0.99307525)
-bones/38/rotation = Quaternion(-0.19426307, -0.02704902, 0.2305482, 0.9530885)
-bones/40/rotation = Quaternion(0.018290775, -0.028991023, -0.16412628, 0.98584354)
-bones/41/rotation = Quaternion(-0.0016878825, 0.011480595, -0.13507587, 0.9907673)
+bones/1/rotation = Quaternion(-0.051891055, -0.10093901, -0.0052719824, 0.99352443)
+bones/2/rotation = Quaternion(0.10805712, -3.755624e-09, 2.5357554e-08, 0.9941447)
+bones/3/rotation = Quaternion(-0.0076493197, -3.790154e-09, -2.41471e-09, 0.99997073)
+bones/4/rotation = Quaternion(0.6618078, 0.06261775, 0.7376788, -0.11798109)
+bones/5/rotation = Quaternion(-0.025099235, -0.0067635262, -0.14315552, 0.9893588)
+bones/7/rotation = Quaternion(-0.19375065, 0.014331117, -0.09099262, 0.9767169)
+bones/8/rotation = Quaternion(-0.24674743, -0.01512722, 0.0023963477, 0.9689588)
+bones/10/rotation = Quaternion(-0.22352105, 0.0011362577, -0.03417346, 0.9740993)
+bones/11/rotation = Quaternion(-0.1857081, -0.018828537, 0.030983029, 0.98193586)
+bones/13/rotation = Quaternion(-0.23794767, 0.0005204623, -0.020182503, 0.97106814)
+bones/14/rotation = Quaternion(-0.21320623, 0.017179826, 0.019103339, 0.9766694)
+bones/16/rotation = Quaternion(-0.30553818, -0.03286395, 0.045302637, 0.95053357)
+bones/17/rotation = Quaternion(-0.11553031, 0.0035443793, -0.021018505, 0.99307525)
+bones/20/rotation = Quaternion(-0.05031498, -0.0009215491, 0.12664805, 0.9906704)
+bones/21/rotation = Quaternion(0.018290775, 0.028990965, 0.16412617, 0.9858436)
+bones/24/rotation = Quaternion(-0.02509939, 0.00676353, 0.14315572, 0.9893588)
+bones/25/rotation = Quaternion(-0.018811403, -0.006744185, -0.11769698, 0.99284846)
+bones/26/rotation = Quaternion(-0.19375065, -0.014331132, 0.090992674, 0.97671676)
+bones/27/rotation = Quaternion(-0.24674745, 0.015127215, -0.0023963386, 0.9689588)
+bones/29/rotation = Quaternion(-0.22352101, -0.00113625, 0.034173466, 0.9740992)
+bones/30/rotation = Quaternion(-0.18570803, 0.018828515, -0.030983044, 0.98193586)
+bones/32/rotation = Quaternion(-0.23794763, -0.00052048714, 0.020182494, 0.97106814)
+bones/33/rotation = Quaternion(-0.21320625, -0.017179832, -0.019103343, 0.9766694)
+bones/35/rotation = Quaternion(-0.30553806, 0.03286394, -0.045302674, 0.9505336)
+bones/36/rotation = Quaternion(-0.115530394, -0.0035443478, 0.021018516, 0.99307525)
+bones/38/rotation = Quaternion(-0.19426307, -0.027049031, 0.2305482, 0.9530885)
+bones/40/rotation = Quaternion(0.01829077, -0.028991014, -0.16412628, 0.98584354)
+bones/41/rotation = Quaternion(-0.0016878865, 0.011480595, -0.13507587, 0.9907673)
 bones/42/rotation = Quaternion(0.7780087, 0.04162853, 0.6257548, -0.037423562)
 bones/43/rotation = Quaternion(0.001766128, 0.00027212157, 0.08358636, 0.99649894)
 bones/44/rotation = Quaternion(-0.15109019, 0.00516489, -0.6165762, 0.7726441)
@@ -94,16 +93,17 @@ bones/49/rotation = Quaternion(-0.01309015, -1.0830823e-07, 0.08428787, 0.996355
 [node name="Cube" parent="Player/jimmy/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("4_xcisb")
 
+[node name="AnimationTree" type="AnimationTree" parent="Player/jimmy"]
+advance_expression_base_node = NodePath("../AnimationPlayer")
+
 [node name="CameraRig" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2063856, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraRig" node_paths=PackedStringArray("target")]
-transform = Transform3D(-4.371139e-08, -0.86602545, 0.49999997, 0, 0.49999997, 0.86602545, -1, 3.7855173e-08, -2.1855692e-08, -3.1827667, 5.502296, -0.118058205)
+transform = Transform3D(-4.371139e-08, -0.8660255, 0.49999988, 0, 0.49999988, 0.8660255, -1, 3.7855177e-08, -2.1855689e-08, -3.1827667, 5.502296, -0.118058205)
 current = true
-size = 12.576
+size = 26.168
 script = ExtResource("3_xcisb")
 target = NodePath("../../Player")
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
 
 [editable path="Player/jimmy"]
