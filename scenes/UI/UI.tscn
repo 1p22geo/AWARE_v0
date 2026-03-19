@@ -129,7 +129,14 @@ text = "Speed: 0"
 
 [node name="L_PowerLimit" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/CompViewStats" unique_id=2011571225]
 layout_mode = 2
-text = "Power Limit: 0/0"
+text = "Power: 0/0"
+
+[node name="L_Synergies" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/CompViewStats" unique_id=314159265]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.4, 1, 0.4, 1)
+text = "Active Synergies: None"
+horizontal_alignment = 2
 
 [node name="Body" type="HBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox" unique_id=1045250307]
 layout_mode = 2
@@ -242,6 +249,15 @@ script = ExtResource("3_slot")
 layout_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Footer" type="HBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox"]
+layout_mode = 2
+
+[node name="ScrollHint" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Footer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.490196)
+theme_override_font_sizes/font_size = 12
+text = "v Scroll down to see full stats"
 
 [node name="StatsScreen" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer" unique_id=878362773]
 layout_mode = 2
@@ -371,35 +387,19 @@ text = "Power Limit:"
 layout_mode = 2
 text = "0"
 
-[node name="ButtonsPanel" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox" unique_id=1865394440]
-custom_minimum_size = Vector2(200, 0)
+[node name="SynergiesPanel" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox" unique_id=27182818]
 layout_mode = 2
-theme_override_constants/separation = 8
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
 
-[node name="ButtonsTitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/ButtonsPanel" unique_id=1387276322]
+[node name="SynTitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/SynergiesPanel" unique_id=314159266]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "BUTTONS"
+text = "ACTIVE SYNERGIES"
 
-[node name="Btn1" type="Button" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/ButtonsPanel" unique_id=2033387007]
-custom_minimum_size = Vector2(0, 36)
+[node name="SynergiesList" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/SynergiesPanel" unique_id=16180339]
 layout_mode = 2
-text = "Button 1"
-
-[node name="Btn2" type="Button" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/ButtonsPanel" unique_id=632427347]
-custom_minimum_size = Vector2(0, 36)
-layout_mode = 2
-text = "Button 2"
-
-[node name="Btn3" type="Button" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/ButtonsPanel" unique_id=1693580189]
-custom_minimum_size = Vector2(0, 36)
-layout_mode = 2
-text = "Button 3"
-
-[node name="Btn4" type="Button" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/ButtonsPanel" unique_id=405584027]
-custom_minimum_size = Vector2(0, 36)
-layout_mode = 2
-text = "Button 4"
+theme_override_constants/separation = 8
 
 [node name="BottomHUD" type="PanelContainer" parent="VBox" unique_id=1984847216]
 unique_name_in_owner = true

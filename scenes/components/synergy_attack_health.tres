@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SynergyData" load_steps=2 format=3 uid="uid://cyk2m8v3j6x7n"]
 
-[ext_resource type="Script" uid="uid://c7x8v5b4n3m2l" path="res://src/core/components/synergy_data.gd" id="1_syn"]
+[ext_resource type="Script" uid="uid://xh0td0trnoks" path="res://src/core/components/synergy_data.gd" id="1_syn"]
 
 [resource]
 script = ExtResource("1_syn")
@@ -8,14 +8,6 @@ name = "Brute Force"
 description = "Attack + Health provides extra damage"
 component_a = "Core Health"
 component_b = "Laser Cannon"
-hp_bonus = 0.0
-speed_bonus = 0.0
-armor_bonus = 0.0
 damage_bonus = 5.0
-energy_regen_bonus = 0.0
-dash_power_bonus = 0.0
-hp_mult = 1.0
-speed_mult = 1.0
-armor_mult = 1.0
 damage_mult = 1.2
 link_power_cost = 5.0

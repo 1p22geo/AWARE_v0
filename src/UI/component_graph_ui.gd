@@ -10,6 +10,16 @@ func _ready() -> void:
 	disconnection_request.connect(_on_disconnection_request)
 	delete_nodes_request.connect(_on_delete_nodes_request)
 
+func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
+	return data is ComponentData
+
+func _drop_data(at_position: Vector2, data: Variant) -> void:
+	if data is ComponentData:
+		# Convert local mouse position to graph space
+		# Graph space = (local_pos + scroll_offset) / zoom
+		var graph_pos = (at_position + scroll_offset) / zoom
+		add_component(data, graph_pos)
+
 func add_component(comp_resource: ComponentData, pos: Vector2) -> void:
 	var node = GraphNode.new()
 	var id = str(Time.get_ticks_msec()) + "_" + str(randi() % 1000)
@@ -83,6 +93,16 @@ func _on_disconnection_request(from_node: StringName, from_port: int, to_node: S
 func _on_delete_nodes_request(nodes: Array[StringName]) -> void:
 	for node_name in nodes:
 		_on_node_close(node_name)
+
+func highlight_connections(indices: Array) -> void:
+	var connections = get_connection_list()
+	for i in range(connections.size()):
+		var c = connections[i]
+		if i in indices:
+			# Highlight synergized connection
+			set_connection_activity(c.from_node, c.from_port, c.to_node, c.to_port, 1.0)
+		else:
+			set_connection_activity(c.from_node, c.from_port, c.to_node, c.to_port, 0.0)
 
 func _emit_update() -> void:
 	var connections = []

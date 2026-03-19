@@ -18,6 +18,8 @@ signal graph_updated(nodes: Dictionary, connections: Array)
 @onready var l_damage: Label = find_child("V_Damage", true, false)
 @onready var l_power_limit: Label = find_child("V_PowerLimit", true, false)
 @onready var l_power_limit_small: Label = find_child("L_PowerLimit", true, false)
+@onready var l_synergies: Label = find_child("L_Synergies", true, false)
+@onready var synergies_list: VBoxContainer = find_child("SynergiesList", true, false)
 
 var current_screen := 0
 const TOTAL_SCREENS := 3
@@ -31,33 +33,6 @@ func _ready() -> void:
 	
 	if component_graph:
 		component_graph.graph_updated.connect(_on_graph_updated)
-		
-	# Connect inventory slots
-	if inventory_grid:
-		for slot in inventory_grid.get_children():
-			if slot.has_signal("pressed"):
-				slot.pressed.connect(func(): _on_inventory_item_clicked(slot))
-			elif slot is Button:
-				slot.pressed.connect(func(): _on_inventory_item_clicked(slot))
-			# If they are just panels, we might need a button inside or a GUI input
-			slot.gui_input.connect(func(event): _on_inventory_gui_input(event, slot))
-
-func _on_inventory_gui_input(event: InputEvent, slot) -> void:
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		var comp = slot.get("component")
-		if not comp and slot.get("component_data"):
-			comp = slot.get("component_data")
-			
-		if comp and component_graph:
-			component_graph.add_component(comp, Vector2(50, 50))
-
-func _on_inventory_item_clicked(slot) -> void:
-	var comp = slot.get("component")
-	if not comp and slot.get("component_data"):
-		comp = slot.get("component_data")
-		
-	if comp and component_graph:
-		component_graph.add_component(comp, Vector2(50, 50))
 
 func _on_graph_updated(nodes: Dictionary, connections: Array) -> void:
 	graph_updated.emit(nodes, connections)
@@ -69,13 +44,52 @@ func get_graph_data() -> Dictionary:
 
 func update_total_bonuses(stats: Dictionary) -> void:
 	if l_hp: l_hp.text = str(snapped(stats.hp, 0.1))
-	if l_armor: l_armor.text = str(snapped(stats.armor, 0.1))
-	if l_speed: l_speed.text = str(snapped(stats.speed, 0.1))
+	if l_armor: 
+		l_armor.text = str(snapped(stats.armor, 0.1))
+		var l_armor_small = find_child("L_Armor", true, false)
+		if l_armor_small: l_armor_small.text = "Armor: " + l_armor.text
+		
+	if l_speed: 
+		l_speed.text = str(snapped(stats.speed, 0.1))
+		var l_speed_small = find_child("L_Speed", true, false)
+		if l_speed_small: l_speed_small.text = "Speed: " + l_speed.text
+		
 	if l_damage: l_damage.text = str(snapped(stats.damage, 0.1))
 	
 	var power_text = str(snapped(stats.power_cost, 0.1)) + " / " + str(stats.max_power)
 	if l_power_limit: l_power_limit.text = power_text
 	if l_power_limit_small: l_power_limit_small.text = "Power: " + power_text
+	
+	if l_synergies:
+		if stats.has("synergies") and stats.synergies.size() > 0:
+			var names = []
+			for s in stats.synergies: names.append(s.name)
+			l_synergies.text = "Active Synergies: " + ", ".join(names)
+		else:
+			l_synergies.text = "Active Synergies: None"
+			
+	if synergies_list:
+		for child in synergies_list.get_children():
+			child.queue_free()
+		
+		if stats.has("synergies"):
+			for s in stats.synergies:
+				var label = Label.new()
+				label.text = ">> " + s.name + " (Cost: " + str(s.power) + ")"
+				label.add_theme_color_override("font_color", Color(0.4, 1.0, 0.4))
+				synergies_list.add_child(label)
+				
+				var details = Label.new()
+				var bonus_str = ""
+				if s.hp != 0: bonus_str += " HP:+" + str(s.hp)
+				if s.speed != 0: bonus_str += " Speed:+" + str(s.speed)
+				if s.damage != 0: bonus_str += " Damage:+" + str(s.damage)
+				details.text = "    " + bonus_str
+				details.add_theme_font_size_override("font_size", 12)
+				synergies_list.add_child(details)
+
+	if component_graph and stats.has("synergized_connections"):
+		component_graph.highlight_connections(stats.synergized_connections)
 	
 	if stats.power_cost > stats.max_power:
 		if l_power_limit: l_power_limit.add_theme_color_override("font_color", Color.RED)

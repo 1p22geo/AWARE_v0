@@ -78,7 +78,11 @@ func apply_stats() -> void:
 		current_power += comp.power_cost
 		
 	# Synergy stats & link costs
-	for conn in connections:
+	var active_synergies_details: Array[Dictionary] = []
+	var synergized_connections: Array = []
+	
+	for i in range(connections.size()):
+		var conn = connections[i]
 		var node_a = equipped_nodes[conn.from].data
 		var node_b = equipped_nodes[conn.to].data
 		
@@ -101,8 +105,18 @@ func apply_stats() -> void:
 				total_armor *= syn.armor_mult
 				total_damage *= syn.damage_mult
 				
-				# Increase power cost for synergy links (optional, maybe link_power_cost in SynergyData)
-				current_power += syn.link_power_cost - 2.0 # Replace default link cost with syn link cost
+				active_synergies_details.append({
+					"name": syn.name,
+					"hp": syn.hp_bonus,
+					"speed": syn.speed_bonus,
+					"damage": syn.damage_bonus,
+					"power": syn.link_power_cost
+				})
+				synergized_connections.append(i)
+				
+				# Increase power cost for synergy links
+				current_power += syn.link_power_cost - 2.0
+				break
 	
 	total_power_cost = current_power
 	
@@ -130,5 +144,7 @@ func apply_stats() -> void:
 			"armor": total_armor,
 			"damage": total_damage,
 			"power_cost": total_power_cost,
-			"max_power": max_power
+			"max_power": max_power,
+			"synergies": active_synergies_details,
+			"synergized_connections": synergized_connections
 		})
