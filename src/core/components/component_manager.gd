@@ -12,6 +12,7 @@ class_name ComponentManager
 var equipped_nodes: Dictionary = {} # ID: { "data": ComponentData, "position": Vector2 }
 var connections: Array = [] # [ { "from": ID, "to": ID } ]
 var total_power_cost: float = 0.0
+var total_armor: float = 0.0
 
 func _ready() -> void:
 	_find_ui_and_connect.call_deferred()
@@ -62,7 +63,7 @@ func apply_stats() -> void:
 	var total_jump_height := 0.0 
 	var total_jump_count := 1
 	var total_regen := 0.0
-	var total_armor := 0.0
+	var calculated_armor := 0.0
 	var total_damage := 0.0
 	var current_power := 0.0
 	var jump_disabled := false
@@ -75,8 +76,8 @@ func apply_stats() -> void:
 		total_speed += comp.speed
 		total_jump_height += comp.dash_power 
 		total_jump_count += comp.jump_count
-		total_regen += comp.energy_regen 
-		total_armor += comp.armor
+		total_regen += comp.energy_regen
+		calculated_armor += comp.armor
 		total_damage += comp.damage
 		current_power += comp.power_cost
 		
@@ -98,7 +99,7 @@ func apply_stats() -> void:
 			   (syn.component_a == node_b.name and syn.component_b == node_a.name):
 				total_hp += syn.hp_bonus
 				total_speed += syn.speed_bonus
-				total_armor += syn.armor_bonus
+				calculated_armor += syn.armor_bonus
 				total_damage += syn.damage_bonus
 				total_regen += syn.energy_regen_bonus
 				total_jump_height += syn.dash_power_bonus
@@ -107,7 +108,7 @@ func apply_stats() -> void:
 				
 				total_hp *= syn.hp_mult
 				total_speed *= syn.speed_mult
-				total_armor *= syn.armor_mult
+				calculated_armor *= syn.armor_mult
 				total_damage *= syn.damage_mult
 				
 				active_synergies_details.append({
@@ -124,7 +125,8 @@ func apply_stats() -> void:
 				break
 	
 	total_power_cost = current_power
-	
+	self.total_armor = calculated_armor
+
 	if health_component:
 		var old_max = health_component.MAX_HEALTH
 		var old_hp = health_component.health
@@ -148,10 +150,13 @@ func apply_stats() -> void:
 		ui.update_total_bonuses({
 			"hp": total_hp,
 			"speed": total_speed,
-			"armor": total_armor,
+			"armor": calculated_armor,
 			"damage": total_damage,
 			"power_cost": total_power_cost,
 			"max_power": max_power,
 			"synergies": active_synergies_details,
 			"synergized_connections": synergized_connections
 		})
+
+func get_total_armor() -> float:
+	return total_armor

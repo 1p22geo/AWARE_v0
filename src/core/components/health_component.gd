@@ -19,8 +19,9 @@ func _process(delta: float) -> void:
 	if regen_rate > 0.0 and health < MAX_HEALTH:
 		heal(regen_rate * delta)
 
-func take_damage(amount):
-	health -= amount
+func take_damage(amount: float, armor: float = 0.0) -> void:
+	var reduced = amount * (1.0 - armor / (armor + 100.0))  # diminishing returns formula
+	health -= reduced
 	if health <= 0:
 		health = 0
 		die.emit()

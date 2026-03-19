@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SynergyData" load_steps=2 format=3 uid="uid://b8v3m2p7q5n1r"]
 
-[ext_resource type="Script" path="res://src/core/components/synergy_data.gd" id="1_syn"]
+[ext_resource type="Script" uid="uid://xh0td0trnoks" path="res://src/core/components/synergy_data.gd" id="1_syn"]
 
 [resource]
 script = ExtResource("1_syn")
@@ -11,13 +11,8 @@ component_b = "Regen Nano-bots"
 hp_bonus = 50.0
 speed_bonus = -2.0
 armor_bonus = 20.0
-damage_bonus = 0.0
-energy_regen_bonus = 0.0
-dash_power_bonus = 0.0
-jump_count_bonus = 0
 jump_disabled = true
 hp_mult = 2.0
 speed_mult = 0.5
 armor_mult = 2.0
-damage_mult = 1.0
 link_power_cost = 10.0
