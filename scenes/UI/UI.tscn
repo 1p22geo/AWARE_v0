@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://dp66vsc6n6i3t" path="res://scenes/components/attack_component.tres" id="7_attack"]
 [ext_resource type="Resource" uid="uid://cnbkv7d3p6v2u" path="res://scenes/components/speed_module.tres" id="8_speed"]
 [ext_resource type="Resource" uid="uid://r537m50tge1g" path="res://scenes/components/jump_component.tres" id="9_jump"]
+[ext_resource type="Script" path="res://src/UI/component_graph_ui.gd" id="11_graph"]
 [ext_resource type="Resource" uid="uid://cnbkv7d3p6v2v" path="res://scenes/components/regen_module.tres" id="10_regen"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_secbg"]
@@ -135,85 +136,11 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 16
 
-[node name="ComponentsGrid" type="GridContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body" unique_id=291609068]
+[node name="ComponentGraph" type="GraphEdit" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body" unique_id=291609068]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/h_separation = 8
-theme_override_constants/v_separation = 8
-columns = 3
-
-[node name="Slot1" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid" unique_id=1413256014]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
-script = ExtResource("3_slot")
-
-[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid/Slot1" unique_id=1785322114]
-layout_mode = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Slot2" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid" unique_id=1410658306]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
-script = ExtResource("3_slot")
-
-[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid/Slot2" unique_id=1367266556]
-layout_mode = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Slot3" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid" unique_id=369437280]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
-script = ExtResource("3_slot")
-
-[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid/Slot3" unique_id=2020751745]
-layout_mode = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Slot4" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid" unique_id=797490315]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
-script = ExtResource("3_slot")
-
-[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid/Slot4" unique_id=1007946531]
-layout_mode = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Slot5" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid" unique_id=23703056]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
-script = ExtResource("3_slot")
-
-[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid/Slot5" unique_id=368012906]
-layout_mode = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Slot6" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid" unique_id=327648313]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
-script = ExtResource("3_slot")
-
-[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/ComponentsGrid/Slot6" unique_id=2027579760]
-layout_mode = 2
-horizontal_alignment = 1
-vertical_alignment = 1
+script = ExtResource("11_graph")
 
 [node name="InventoryPanel" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body" unique_id=1195845807]
 custom_minimum_size = Vector2(300, 0)

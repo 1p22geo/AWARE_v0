@@ -1,13 +1,23 @@
 extends Control
 
 signal components_updated(equipped_components: Array[ComponentData])
+signal graph_updated(nodes: Dictionary, connections: Array)
 
 @onready var health_bar: ProgressBar = %HealthBar
 @onready var energy_bar: ProgressBar = %EnergyBar
 @onready var overheat_container: HBoxContainer = %OverheatContainer
 @onready var screen_clipper: Control = %ScreenClipper
 @onready var screens_container: VBoxContainer = %ScreensContainer
-@onready var components_grid: GridContainer = find_child("ComponentsGrid", true, false)
+@onready var component_graph: ComponentGraphUI = find_child("ComponentGraph", true, false)
+@onready var inventory_grid: GridContainer = find_child("InventoryGrid", true, false)
+
+# Labels for total bonuses
+@onready var l_hp: Label = find_child("V_HP", true, false)
+@onready var l_armor: Label = find_child("V_Armor", true, false)
+@onready var l_speed: Label = find_child("V_Speed", true, false)
+@onready var l_damage: Label = find_child("V_Damage", true, false)
+@onready var l_power_limit: Label = find_child("V_PowerLimit", true, false)
+@onready var l_power_limit_small: Label = find_child("L_PowerLimit", true, false)
 
 var current_screen := 0
 const TOTAL_SCREENS := 3
@@ -19,26 +29,58 @@ func _ready() -> void:
 	_update_screen_sizes()
 	screen_clipper.resized.connect(_update_screen_sizes)
 	
-	# Connect slots to signal
-	if components_grid:
-		for slot in components_grid.get_children():
-			if slot is ComponentDataSlot:
-				slot.component_changed.connect(_on_component_changed)
+	if component_graph:
+		component_graph.graph_updated.connect(_on_graph_updated)
+		
+	# Connect inventory slots
+	if inventory_grid:
+		for slot in inventory_grid.get_children():
+			if slot.has_signal("pressed"):
+				slot.pressed.connect(func(): _on_inventory_item_clicked(slot))
+			elif slot is Button:
+				slot.pressed.connect(func(): _on_inventory_item_clicked(slot))
+			# If they are just panels, we might need a button inside or a GUI input
+			slot.gui_input.connect(func(event): _on_inventory_gui_input(event, slot))
 
-func get_equipped_components() -> Array[ComponentData]:
-	var equipped: Array[ComponentData] = []
-	if components_grid:
-		for slot in components_grid.get_children():
-			if slot is ComponentDataSlot and slot.component:
-				equipped.append(slot.component)
-	return equipped
+func _on_inventory_gui_input(event: InputEvent, slot) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		var comp = slot.get("component")
+		if not comp and slot.get("component_data"):
+			comp = slot.get("component_data")
+			
+		if comp and component_graph:
+			component_graph.add_component(comp, Vector2(50, 50))
 
-func _on_component_changed(_comp: ComponentData) -> void:
-	var equipped: Array[ComponentData] = []
-	for slot in components_grid.get_children():
-		if slot is ComponentDataSlot and slot.component:
-			equipped.append(slot.component)
-	components_updated.emit(equipped)
+func _on_inventory_item_clicked(slot) -> void:
+	var comp = slot.get("component")
+	if not comp and slot.get("component_data"):
+		comp = slot.get("component_data")
+		
+	if comp and component_graph:
+		component_graph.add_component(comp, Vector2(50, 50))
+
+func _on_graph_updated(nodes: Dictionary, connections: Array) -> void:
+	graph_updated.emit(nodes, connections)
+
+func get_graph_data() -> Dictionary:
+	if component_graph:
+		return component_graph.get_graph_data()
+	return { "nodes": {}, "connections": [] }
+
+func update_total_bonuses(stats: Dictionary) -> void:
+	if l_hp: l_hp.text = str(snapped(stats.hp, 0.1))
+	if l_armor: l_armor.text = str(snapped(stats.armor, 0.1))
+	if l_speed: l_speed.text = str(snapped(stats.speed, 0.1))
+	if l_damage: l_damage.text = str(snapped(stats.damage, 0.1))
+	
+	var power_text = str(snapped(stats.power_cost, 0.1)) + " / " + str(stats.max_power)
+	if l_power_limit: l_power_limit.text = power_text
+	if l_power_limit_small: l_power_limit_small.text = "Power: " + power_text
+	
+	if stats.power_cost > stats.max_power:
+		if l_power_limit: l_power_limit.add_theme_color_override("font_color", Color.RED)
+	else:
+		if l_power_limit: l_power_limit.remove_theme_color_override("font_color")
 
 func _update_screen_sizes() -> void:
 	var h := screen_clipper.size.y
@@ -59,6 +101,10 @@ func _input(event: InputEvent) -> void:
 		else:
 			_go_to_screen(1) # To Comps
 		get_viewport().set_input_as_handled()
+		return
+
+	# Prevent scroll switching screen if mouse is over GraphEdit
+	if component_graph and component_graph.get_global_rect().has_point(get_global_mouse_position()) and current_screen == 1:
 		return
 
 	# Sprawdzamy przewijanie w dół (następny ekran)
