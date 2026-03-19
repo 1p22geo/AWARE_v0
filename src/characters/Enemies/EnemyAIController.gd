@@ -11,4 +11,3 @@ func _ready():
 	var player_nodes = get_tree().get_nodes_in_group("player")
 	if player_nodes.size() > 0:
 		player = player_nodes[0]
-
