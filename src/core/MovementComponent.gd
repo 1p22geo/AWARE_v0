@@ -5,47 +5,46 @@ class_name MovementComponent
 @export var acceleration := 10.0
 @export var rotation_speed := 30.0
 @export var gravity := 55.0
-@export var jump_height := 0.0 # Disabled by default
+@export var jump_height := 0.0 # Vertical impulse
+@export var max_jumps := 1
+@export var jump_disabled := false
 
 var move_direction := Vector3.ZERO
 var look_target := Vector3.ZERO
 var velocity := Vector3.ZERO
 var is_jumping := false
+var current_jumps := 0
 
 
 func jump() -> void:
-	# Only allow jumping if jump_height is set (by a component)
-	if jump_height > 0:
+	if jump_disabled or jump_height <= 0:
+		return
+		
+	if current_jumps < max_jumps:
 		is_jumping = true
+		current_jumps += 1
 
 
 func move(body: CharacterBody3D, delta: float):
-	# Only rotate if a look_target has been set.
-	
-	
-		
-		
-	
 	# Gravity
 	if not body.is_on_floor():
 		body.velocity.y -= gravity * delta
 	else:
 		body.velocity.y = 0
+		current_jumps = 0 # Reset jump count on floor
 		
 	# Jumping - now driven by the is_jumping flag.
-	if body.is_on_floor() and is_jumping:
+	if is_jumping:
 		body.velocity.y = jump_height
+		is_jumping = false
 		
 	# Movement
 	if move_direction.length() > 0:
 		move_direction = move_direction.normalized()
 		velocity = velocity.lerp(move_direction * speed, acceleration * delta)
-
 	else:
 		velocity = velocity.lerp(Vector3.ZERO, acceleration * delta)
 
 	body.velocity.x = velocity.x
 	body.velocity.z = velocity.z
 	body.move_and_slide()
-
-	is_jumping = false

@@ -59,11 +59,13 @@ func apply_stats() -> void:
 	# Base stats
 	var total_hp := 50.0 
 	var total_speed := 5.0 
-	var total_jump := 0.0 
+	var total_jump_height := 0.0 
+	var total_jump_count := 1
 	var total_regen := 0.0
 	var total_armor := 0.0
 	var total_damage := 0.0
 	var current_power := 0.0
+	var jump_disabled := false
 	
 	# Node stats
 	for id in equipped_nodes:
@@ -71,7 +73,8 @@ func apply_stats() -> void:
 		if not comp.is_active: continue
 		total_hp += comp.hp
 		total_speed += comp.speed
-		total_jump += comp.dash_power 
+		total_jump_height += comp.dash_power 
+		total_jump_count += comp.jump_count
 		total_regen += comp.energy_regen 
 		total_armor += comp.armor
 		total_damage += comp.damage
@@ -98,7 +101,9 @@ func apply_stats() -> void:
 				total_armor += syn.armor_bonus
 				total_damage += syn.damage_bonus
 				total_regen += syn.energy_regen_bonus
-				total_jump += syn.dash_power_bonus
+				total_jump_height += syn.dash_power_bonus
+				total_jump_count += syn.jump_count_bonus
+				if syn.jump_disabled: jump_disabled = true
 				
 				total_hp *= syn.hp_mult
 				total_speed *= syn.speed_mult
@@ -132,7 +137,9 @@ func apply_stats() -> void:
 		
 	if movement_component:
 		movement_component.speed = total_speed
-		movement_component.jump_height = total_jump
+		movement_component.jump_height = total_jump_height
+		movement_component.max_jumps = total_jump_count
+		movement_component.jump_disabled = jump_disabled
 
 	# Notify UI about total stats if needed
 	var ui = get_tree().get_first_node_in_group("UI")

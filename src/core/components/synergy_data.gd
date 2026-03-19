@@ -15,6 +15,8 @@ class_name SynergyData
 @export var damage_bonus: float = 0.0
 @export var energy_regen_bonus: float = 0.0
 @export var dash_power_bonus: float = 0.0
+@export var jump_count_bonus: int = 0
+@export var jump_disabled: bool = false
 
 # Multipliers
 @export var hp_mult: float = 1.0

@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://cnbkv7d3p6v2u" path="res://scenes/components/speed_module.tres" id="8_speed"]
 [ext_resource type="Resource" uid="uid://r537m50tge1g" path="res://scenes/components/jump_component.tres" id="9_jump"]
 [ext_resource type="Script" path="res://src/UI/component_graph_ui.gd" id="11_graph"]
+[ext_resource type="Resource" uid="uid://b5k8v3m2l7p9q" path="res://scenes/components/armor_module.tres" id="12_armor"]
 [ext_resource type="Resource" uid="uid://cnbkv7d3p6v2v" path="res://scenes/components/regen_module.tres" id="10_regen"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_secbg"]
@@ -244,9 +245,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
 script = ExtResource("3_slot")
+component = ExtResource("12_armor")
 
 [node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot6" unique_id=1785322120]
 layout_mode = 2
+text = "Armor Plate"
 horizontal_alignment = 1
 vertical_alignment = 1
 
