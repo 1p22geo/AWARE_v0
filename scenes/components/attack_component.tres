@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_un5hk")
 name = "Laser Cannon"
+description = "High-energy emitter. Adds damage and range but increases heat generation under sustained fire."
 hp = 20.0
 energy_storage = 0.0
 energy_regen = 0.0

@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_un5hk")
 name = "Regen Nano-bots"
+description = "Self-maintenance swarm. Increases energy regeneration to sustain active systems longer."
 hp = 10.0
 energy_storage = 0.0
 energy_regen = 10.0

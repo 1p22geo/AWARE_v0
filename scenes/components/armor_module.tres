@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_un5hk")
 name = "Armor Plate"
+description = "Reactive composite plating. Significantly increases armor at the cost of movement speed."
 hp = 20.0
 energy_storage = 0.0
 energy_regen = 0.0

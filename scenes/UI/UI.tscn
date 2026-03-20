@@ -1,59 +1,90 @@
-[gd_scene load_steps=0 format=3 uid="uid://u81pecjpkv0"]
+[gd_scene load_steps=14 format=3 uid="uid://u81pecjpkv0"]
 
 [ext_resource type="Script" uid="uid://ou33p38skktc" path="res://src/UI/game_ui.gd" id="2_ui"]
 [ext_resource type="PackedScene" uid="uid://b4bmrng7uonyc" path="res://scenes/levels/world.tscn" id="2_wgnrc"]
 [ext_resource type="PackedScene" uid="uid://byt7eo7ffxjpb" path="res://scenes/UI/menu.tscn" id="3_84lt7"]
 [ext_resource type="Script" uid="uid://bis0wm74vnyen" path="res://src/UI/component_slot.gd" id="3_slot"]
-[ext_resource type="Script" uid="uid://bqkt3xr73hxym" path="res://src/UI/component_item.gd" id="4_item"]
-[ext_resource type="Script" uid="uid://un5hk7uo3mqa" path="res://src/core/components/component.gd" id="5_lj5up"]
-[ext_resource type="Resource" uid="uid://c6lhp7v2m3v8u" path="res://scenes/components/core_health.tres" id="6_health"]
-[ext_resource type="Resource" uid="uid://dp66vsc6n6i3t" path="res://scenes/components/attack_component.tres" id="7_attack"]
-[ext_resource type="Resource" uid="uid://cnbkv7d3p6v2u" path="res://scenes/components/speed_module.tres" id="8_speed"]
-[ext_resource type="Resource" uid="uid://r537m50tge1g" path="res://scenes/components/jump_component.tres" id="9_jump"]
-[ext_resource type="Script" path="res://src/UI/component_graph_ui.gd" id="11_graph"]
-[ext_resource type="Resource" uid="uid://b5k8v3m2l7p9q" path="res://scenes/components/armor_module.tres" id="12_armor"]
-[ext_resource type="Resource" uid="uid://cnbkv7d3p6v2v" path="res://scenes/components/regen_module.tres" id="10_regen"]
-[ext_resource type="PackedScene" uid="uid://bdeath001" path="res://scenes/UI/death_screen.tscn" id="99_death"]
+[ext_resource type="Script" uid="uid://c6obfqb6y3qbc" path="res://src/UI/component_graph_ui.gd" id="11_graph"]
+[ext_resource type="PackedScene" uid="uid://qu7fb0cneenk" path="res://scenes/UI/death_screen.tscn" id="99_death"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_secbg"]
-content_margin_left = 16.0
-content_margin_top = 12.0
-content_margin_right = 16.0
-content_margin_bottom = 12.0
-bg_color = Color(0.12, 0.12, 0.15, 1)
+	content_margin_left = 16.0
+	content_margin_top = 12.0
+	content_margin_right = 16.0
+	content_margin_bottom = 12.0
+	bg_color = Color(0.07, 0.08, 0.1, 0.96)
+	border_width_left = 1
+	border_width_top = 1
+	border_width_right = 1
+	border_width_bottom = 1
+	border_color = Color(0.2, 0.95, 1, 0.22)
+	corner_radius_top_left = 12
+	corner_radius_top_right = 12
+	corner_radius_bottom_right = 12
+	corner_radius_bottom_left = 12
+	shadow_color = Color(0, 0, 0, 0.55)
+	shadow_size = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slot"]
-bg_color = Color(0.18, 0.18, 0.22, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.35, 0.35, 0.45, 1)
-
-[sub_resource type="Resource" id="Resource_wgnrc"]
-script = ExtResource("5_lj5up")
-metadata/_custom_type_script = "uid://un5hk7uo3mqa"
+	bg_color = Color(0.1, 0.11, 0.14, 0.95)
+	border_width_left = 1
+	border_width_top = 1
+	border_width_right = 1
+	border_width_bottom = 1
+	border_color = Color(0.2, 0.95, 1, 0.28)
+	corner_radius_top_left = 10
+	corner_radius_top_right = 10
+	corner_radius_bottom_right = 10
+	corner_radius_bottom_left = 10
+	shadow_color = Color(0, 0, 0, 0.4)
+	shadow_size = 6
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hudbg"]
-content_margin_left = 12.0
-content_margin_top = 6.0
-content_margin_right = 12.0
-content_margin_bottom = 6.0
-bg_color = Color(0.08, 0.08, 0.1, 0.85)
+	content_margin_left = 12.0
+	content_margin_top = 6.0
+	content_margin_right = 12.0
+	content_margin_bottom = 6.0
+	bg_color = Color(0.05, 0.06, 0.08, 0.82)
+	border_width_left = 1
+	border_width_top = 1
+	border_width_right = 1
+	border_width_bottom = 1
+	border_color = Color(0.2, 0.95, 1, 0.18)
+	corner_radius_top_left = 10
+	corner_radius_top_right = 10
+	corner_radius_bottom_right = 10
+	corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hpbg"]
-bg_color = Color(0.1, 0.1, 0.1, 1)
+	bg_color = Color(0.05, 0.05, 0.07, 0.9)
+	corner_radius_top_left = 8
+	corner_radius_top_right = 8
+	corner_radius_bottom_right = 8
+	corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hpfill"]
-bg_color = Color(0.8, 0.1, 0.1, 1)
+	bg_color = Color(1, 0.22, 0.28, 0.95)
+	corner_radius_top_left = 8
+	corner_radius_top_right = 8
+	corner_radius_bottom_right = 8
+	corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_energybg"]
-bg_color = Color(0.1, 0.1, 0.1, 1)
+	bg_color = Color(0.05, 0.05, 0.07, 0.9)
+	corner_radius_top_left = 8
+	corner_radius_top_right = 8
+	corner_radius_bottom_right = 8
+	corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_energyfill"]
-bg_color = Color(0.2, 0.4, 0.9, 1)
+	bg_color = Color(0.2, 0.95, 1, 0.95)
+	corner_radius_top_left = 8
+	corner_radius_top_right = 8
+	corner_radius_bottom_right = 8
+	corner_radius_bottom_left = 8
 
-[node name="Ui" type="Control" unique_id=995739079]
+[node name="Ui" type="Control"]
+process_mode = 3
 z_index = 10
 layout_mode = 3
 anchors_preset = 15
@@ -63,7 +94,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_ui")
 
-[node name="VBox" type="VBoxContainer" parent="." unique_id=930430859]
+[node name="VBox" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -71,98 +102,102 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScreenClipper" type="Control" parent="VBox" unique_id=119551600]
+[node name="ScreenClipper" type="Control" parent="VBox"]
 unique_name_in_owner = true
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScreensContainer" type="VBoxContainer" parent="VBox/ScreenClipper" unique_id=243735099]
+[node name="ScreensContainer" type="VBoxContainer" parent="VBox/ScreenClipper"]
 unique_name_in_owner = true
 layout_mode = 0
 theme_override_constants/separation = 0
 
-[node name="GameScreen" type="SubViewportContainer" parent="VBox/ScreenClipper/ScreensContainer" unique_id=1367959405]
+[node name="GameScreen" type="SubViewportContainer" parent="VBox/ScreenClipper/ScreensContainer"]
 layout_mode = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="VBox/ScreenClipper/ScreensContainer/GameScreen" unique_id=311490305]
+[node name="SubViewport" type="SubViewport" parent="VBox/ScreenClipper/ScreensContainer/GameScreen"]
+process_mode = 1
 handle_input_locally = false
-size = Vector2i(544, 2)
+size = Vector2i(495, 2)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="World" parent="VBox/ScreenClipper/ScreensContainer/GameScreen/SubViewport" unique_id=1146691634 instance=ExtResource("2_wgnrc")]
+[node name="World" parent="VBox/ScreenClipper/ScreensContainer/GameScreen/SubViewport" instance=ExtResource("2_wgnrc")]
 
-[node name="CompsScreen" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer" unique_id=764472681]
+[node name="CompsScreen" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_secbg")
 
-[node name="CompsVBox" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen" unique_id=563179356]
+[node name="CompsVBox" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Header" type="HBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox" unique_id=1775502792]
+[node name="Header" type="HBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Title" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Header" unique_id=631878506]
+[node name="Title" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Header"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.2, 0.95, 1, 1)
 text = "COMPS"
 
-[node name="Subtitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Header" unique_id=1715097084]
+[node name="Subtitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Header"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "(short for components btw)"
 vertical_alignment = 2
 
-[node name="CompViewStats" type="HBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox" unique_id=1044809175]
+[node name="CompViewStats" type="HBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox"]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="L_Armor" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/CompViewStats" unique_id=623391006]
+[node name="L_Armor" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/CompViewStats"]
 layout_mode = 2
 text = "Armor: 0"
 
-[node name="L_Speed" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/CompViewStats" unique_id=1798538761]
+[node name="L_Speed" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/CompViewStats"]
 layout_mode = 2
 text = "Speed: 0"
 
-[node name="L_PowerLimit" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/CompViewStats" unique_id=2011571225]
+[node name="L_PowerLimit" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/CompViewStats"]
 layout_mode = 2
 text = "Power: 0/0"
 
-[node name="L_Synergies" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/CompViewStats" unique_id=314159265]
+[node name="L_Synergies" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/CompViewStats"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.4, 1, 0.4, 1)
 text = "Active Synergies: None"
 horizontal_alignment = 2
 
-[node name="Body" type="HBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox" unique_id=1045250307]
+[node name="Body" type="HBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 16
 
-[node name="ComponentGraph" type="GraphEdit" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body" unique_id=291609068]
+[node name="ComponentGraph" type="GraphEdit" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("11_graph")
 
-[node name="InventoryPanel" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body" unique_id=1195845807]
+[node name="InventoryPanel" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="InvTitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel" unique_id=579919424]
+[node name="InvTitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.2, 0.95, 1, 0.95)
 text = "INVENTORY"
 horizontal_alignment = 1
 
-[node name="InventoryGrid" type="GridContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel" unique_id=291609069]
+[node name="InventoryGrid" type="GridContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel"]
+process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -170,85 +205,85 @@ theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 columns = 3
 
-[node name="InvSlot1" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid" unique_id=1413256015]
+[node name="InvSlot1" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid"]
+process_mode = 3
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
 script = ExtResource("3_slot")
-component = ExtResource("6_health")
 
-[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot1" unique_id=1785322115]
+[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot1"]
 layout_mode = 2
 text = "Core Health"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InvSlot2" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid" unique_id=1413256016]
+[node name="InvSlot2" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid"]
+process_mode = 3
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
 script = ExtResource("3_slot")
-component = ExtResource("7_attack")
 
-[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot2" unique_id=1785322116]
+[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot2"]
 layout_mode = 2
 text = "Laser Cannon"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InvSlot3" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid" unique_id=1413256017]
+[node name="InvSlot3" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid"]
+process_mode = 3
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
 script = ExtResource("3_slot")
-component = ExtResource("8_speed")
 
-[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot3" unique_id=1785322117]
+[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot3"]
 layout_mode = 2
 text = "Speed Module"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InvSlot4" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid" unique_id=1413256018]
+[node name="InvSlot4" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid"]
+process_mode = 3
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
 script = ExtResource("3_slot")
-component = ExtResource("9_jump")
 
-[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot4" unique_id=1785322118]
+[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot4"]
 layout_mode = 2
 text = "Jump Module"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InvSlot5" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid" unique_id=1413256019]
+[node name="InvSlot5" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid"]
+process_mode = 3
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
 script = ExtResource("3_slot")
-component = ExtResource("10_regen")
 
-[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot5" unique_id=1785322119]
+[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot5"]
 layout_mode = 2
 text = "Regen Nano-bots"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InvSlot6" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid" unique_id=1413256020]
+[node name="InvSlot6" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid"]
+process_mode = 3
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
 script = ExtResource("3_slot")
-component = ExtResource("12_armor")
 
-[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot6" unique_id=1785322120]
+[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot6"]
 layout_mode = 2
 text = "Armor Plate"
 horizontal_alignment = 1
@@ -259,166 +294,227 @@ layout_mode = 2
 
 [node name="ScrollHint" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Footer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 0.490196)
+theme_override_colors/font_color = Color(0.7, 0.85, 0.95, 0.55)
 theme_override_font_sizes/font_size = 12
 text = "v Scroll down to see full stats"
 
-[node name="StatsScreen" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer" unique_id=878362773]
+[node name="StatsScreen" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_secbg")
 
-[node name="HBox" type="HBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen" unique_id=292526122]
+[node name="HBox" type="HBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen"]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="StatsPanel" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox" unique_id=2126051175]
+[node name="StatsPanel" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 6
 
-[node name="StatsTitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel" unique_id=1427877204]
+[node name="StatsTitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.2, 0.95, 1, 1)
 text = "STATS"
 
-[node name="StatsGrid" type="GridContainer" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel" unique_id=1242729268]
+[node name="StatsGrid" type="GridContainer" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel"]
 layout_mode = 2
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 4
 columns = 2
 
-[node name="L_HP" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=1116465717]
+[node name="L_HP" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "HP:"
 
-[node name="V_HP" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=1525544079]
+[node name="V_HP" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "0 / 0"
 
-[node name="L_Energy" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=917833904]
+[node name="L_Energy" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "Energy:"
 
-[node name="V_Energy" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=1005456008]
+[node name="V_Energy" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "0 / 0"
 
-[node name="L_EnergyRegen" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=2002877252]
+[node name="L_EnergyRegen" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "Energy Regen:"
 
-[node name="V_EnergyRegen" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=1015208308]
+[node name="V_EnergyRegen" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "0"
 
-[node name="L_Armor" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=1900907882]
+[node name="L_Armor" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "Armor:"
 
-[node name="V_Armor" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=65059693]
+[node name="V_Armor" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "0"
 
-[node name="L_Speed" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=517423929]
+[node name="L_Speed" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "Speed:"
 
-[node name="V_Speed" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=31655100]
+[node name="V_Speed" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "0"
 
-[node name="L_DashPower" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=1700761042]
+[node name="L_DashPower" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "Dash Power:"
 
-[node name="V_DashPower" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=1824459267]
+[node name="V_DashPower" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "0"
 
-[node name="L_DashCooldown" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=927708048]
+[node name="L_DashCooldown" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "Dash Cooldown:"
 
-[node name="V_DashCooldown" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=1182776978]
+[node name="V_DashCooldown" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "0s"
 
-[node name="L_Damage" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=2061803336]
+[node name="L_Damage" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "Damage:"
 
-[node name="V_Damage" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=1051345284]
+[node name="V_Damage" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "0"
 
-[node name="L_AttackSpeed" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=310942009]
+[node name="L_AttackSpeed" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "Attack Speed:"
 
-[node name="V_AttackSpeed" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=1071817050]
+[node name="V_AttackSpeed" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "0"
 
-[node name="L_Range" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=761712095]
+[node name="L_Range" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "Range:"
 
-[node name="V_Range" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=420765481]
+[node name="V_Range" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "0"
 
-[node name="L_OverHeat" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=1303938524]
+[node name="L_OverHeat" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "OverHeat Rate:"
 
-[node name="V_OverHeat" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=1635911736]
+[node name="V_OverHeat" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "0"
 
-[node name="L_OverHeatLimit" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=334248773]
+[node name="L_OverHeatLimit" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "OverHeat Limit:"
 
-[node name="V_OverHeatLimit" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=1006059049]
+[node name="V_OverHeatLimit" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "0"
 
-[node name="L_PowerLimit" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=455327840]
+[node name="L_PowerLimit" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "Power Limit:"
 
-[node name="V_PowerLimit" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid" unique_id=1635878201]
+[node name="V_PowerLimit" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "0"
 
-[node name="SynergiesPanel" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox" unique_id=27182818]
+[node name="SynergiesPanel" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 6
 
-[node name="SynTitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/SynergiesPanel" unique_id=314159266]
+[node name="SynTitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/SynergiesPanel"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.2, 0.95, 1, 1)
 text = "ACTIVE SYNERGIES"
 
-[node name="SynergiesList" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/SynergiesPanel" unique_id=16180339]
+[node name="SynergiesList" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/SynergiesPanel"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="BottomHUD" type="PanelContainer" parent="VBox" unique_id=1984847216]
+[node name="CodexScreen" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_secbg")
+
+[node name="CodexVBox" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CodexScreen"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="CodexHeader" type="HBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CodexScreen/CodexVBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CodexTitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CodexScreen/CodexVBox/CodexHeader"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.2, 0.95, 1, 1)
+text = "COMPENDIUM"
+
+[node name="CodexSubtitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CodexScreen/CodexVBox/CodexHeader"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "(system index)"
+vertical_alignment = 2
+
+[node name="CodexBody" type="HBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CodexScreen/CodexVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="CodexList" type="ItemList" parent="VBox/ScreenClipper/ScreensContainer/CodexScreen/CodexVBox/CodexBody"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_minimum_size = Vector2(320, 0)
+allow_reselect = true
+select_mode = 0
+
+[node name="CodexDetails" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CodexScreen/CodexVBox/CodexBody"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="CodexName" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CodexScreen/CodexVBox/CodexBody/CodexDetails"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+text = "-"
+
+[node name="CodexDesc" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CodexScreen/CodexVBox/CodexBody/CodexDetails"]
+layout_mode = 2
+autowrap_mode = 3
+text = ""
+
+[node name="CodexStats" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CodexScreen/CodexVBox/CodexBody/CodexDetails"]
+layout_mode = 2
+autowrap_mode = 3
+text = ""
+
+[node name="BottomHUD" type="PanelContainer" parent="VBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hudbg")
 
-[node name="HUDContent" type="VBoxContainer" parent="VBox/BottomHUD" unique_id=1025907462]
+[node name="HUDContent" type="VBoxContainer" parent="VBox/BottomHUD"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="BarsRow" type="HBoxContainer" parent="VBox/BottomHUD/HUDContent" unique_id=1878269730]
+[node name="BarsRow" type="HBoxContainer" parent="VBox/BottomHUD/HUDContent"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="HealthBar" type="ProgressBar" parent="VBox/BottomHUD/HUDContent/BarsRow" unique_id=1148222441]
+[node name="HealthBar" type="ProgressBar" parent="VBox/BottomHUD/HUDContent/BarsRow"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
@@ -430,7 +526,7 @@ value = 100.0
 rounded = true
 show_percentage = false
 
-[node name="EnergyBar" type="ProgressBar" parent="VBox/BottomHUD/HUDContent/BarsRow" unique_id=443253285]
+[node name="EnergyBar" type="ProgressBar" parent="VBox/BottomHUD/HUDContent/BarsRow"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
@@ -442,12 +538,12 @@ value = 100.0
 rounded = true
 show_percentage = false
 
-[node name="OverheatContainer" type="HBoxContainer" parent="VBox/BottomHUD/HUDContent" unique_id=1251290640]
+[node name="OverheatContainer" type="HBoxContainer" parent="VBox/BottomHUD/HUDContent"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Menu" parent="." unique_name_in_owner=true instance=ExtResource("3_84lt7")]
+[node name="Menu" parent="." instance=ExtResource("3_84lt7")]
 
-[node name="DeathScreen" parent="." unique_name_in_owner=true instance=ExtResource("99_death")]
+[node name="DeathScreen" parent="." instance=ExtResource("99_death")]
 visible = false
