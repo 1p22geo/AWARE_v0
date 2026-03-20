@@ -42,6 +42,8 @@ func _ready() -> void:
 
 	if component_graph:
 		component_graph.graph_updated.connect(_on_graph_updated)
+		if component_graph.has_signal("component_removed"):
+			component_graph.component_removed.connect(_on_graph_component_removed)
 
 	_populate_inventory_defaults.call_deferred()
 	_init_codex.call_deferred()
@@ -67,6 +69,21 @@ func _populate_inventory_defaults() -> void:
 		var res := load(default_paths[i])
 		if res is ComponentData:
 			slots[i].set_component(res)
+
+func _on_graph_component_removed(comp: ComponentData) -> void:
+	_return_component_to_inventory(comp)
+
+func _return_component_to_inventory(comp: ComponentData) -> void:
+	if inventory_grid == null or comp == null:
+		return
+	for child in inventory_grid.get_children():
+		if not child.has_method("set_component"):
+			continue
+		# ComponentDataSlot keeps the currently stored component in `component`.
+		var current: Variant = child.get("component")
+		if current == null:
+			child.set_component(comp)
+			return
 
 func _init_codex() -> void:
 	if codex_list == null:
