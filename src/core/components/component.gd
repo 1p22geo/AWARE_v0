@@ -1,5 +1,5 @@
 extends Resource
-class_name Component
+class_name ComponentData
 
 @export var name: String = "Component"
 @export var icon: Texture2D
@@ -19,6 +19,7 @@ var current_hp: float = 50.0
 @export var speed: float = 0.0
 @export var dash_power: float = 0.0
 @export var dash_cooldown: float = 0.0
+@export var jump_count: int = 0
 
 # Offense
 @export var damage: float = 0.0

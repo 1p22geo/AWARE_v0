@@ -1,9 +1,9 @@
 extends PanelContainer
-class_name ComponentSlot
+class_name ComponentDataSlot
 
-signal component_changed(component: Component)
+signal component_changed(component: ComponentData)
 
-var component: Component = null
+var component: ComponentData = null
 
 @onready var label: Label = $Label
 
@@ -11,12 +11,12 @@ func _ready() -> void:
 	_update_display()
 
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
-	return data is Component
+	return data is ComponentData
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
-	set_component(data as Component)
+	set_component(data as ComponentData)
 
-func set_component(comp: Component) -> void:
+func set_component(comp: ComponentData) -> void:
 	component = comp
 	_update_display()
 	component_changed.emit(component)
@@ -41,6 +41,6 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
 	preview.text = component.name
 	preview.modulate = Color(1, 1, 1, 0.7)
 	set_drag_preview(preview)
-	var comp: Component = component
+	var comp: ComponentData = component
 	clear()
 	return comp
