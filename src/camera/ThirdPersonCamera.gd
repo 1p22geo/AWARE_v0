@@ -3,7 +3,7 @@ class_name ThirdPersonCamera
 
 @export var target: Node3D
 @export var height := 7.0
-@export var distance := 10.0
+@export var distance := 9.0
 @export var smooth := 30.0
 
 func _ready():
