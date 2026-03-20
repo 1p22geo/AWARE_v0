@@ -1,16 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://caa1sxepyuvi0"]
+[gd_scene load_steps=16 format=3 uid="uid://caa1sxepyuvi0"]
 
-[ext_resource type="Script" uid="uid://df6v41m8eun65" path="res://src/core/components/health_component.gd" id="1_health"]
 [ext_resource type="Script" uid="uid://d1igv2r1bo2ul" path="res://src/core/MovementComponent.gd" id="1_bvqhm"]
+[ext_resource type="Script" uid="uid://d31wigai530m1" path="res://src/core/components/health_component.gd" id="1_health"]
 [ext_resource type="Script" uid="uid://dh3hdeu86f251" path="res://src/core/PlayerController.gd" id="2_ved6o"]
-[ext_resource type="Script" uid="uid://dghlyg1isb2v5" path="res://src/core/components/component_manager.gd" id="3_comp_mgr"]
+[ext_resource type="Script" uid="uid://fu5b4dacf15k" path="res://src/core/components/component_manager.gd" id="3_comp_mgr"]
 [ext_resource type="PackedScene" uid="uid://celxmljo2squ6" path="res://scenes/Player/jimmy.glb" id="3_ved6o"]
 [ext_resource type="Script" uid="uid://4t18gpei6jwu" path="res://src/camera/ThirdPersonCamera.gd" id="3_xcisb"]
+[ext_resource type="Script" uid="uid://xh0td0trnoks" path="res://src/core/components/synergy_data.gd" id="4_qt7jd"]
+[ext_resource type="Material" uid="uid://capa7d7o0ucpu" path="res://scenes/Player/jimmy-shadermaterial.tres" id="4_xcisb"]
 [ext_resource type="Resource" uid="uid://cyk2m8v3j6x7n" path="res://scenes/components/synergy_attack_health.tres" id="5_syn"]
 [ext_resource type="Resource" uid="uid://dj4m8v3n1p7q2" path="res://scenes/components/synergy_jump_regen.tres" id="6_syn"]
 [ext_resource type="Resource" uid="uid://b8v3m2p7q5n1r" path="res://scenes/components/synergy_armor_regen.tres" id="7_syn"]
 [ext_resource type="Resource" uid="uid://c7m5n1p2q3r4s" path="res://scenes/components/synergy_core_speed.tres" id="8_syn"]
-[ext_resource type="Material" uid="uid://capa7d7o0ucpu" path="res://scenes/Player/jimmy-shadermaterial.tres" id="4_xcisb"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_socpp"]
 
@@ -34,7 +35,7 @@ script = ExtResource("3_comp_mgr")
 player_body = NodePath("..")
 health_component = NodePath("../HealthComponent")
 movement_component = NodePath("../MovementComponent")
-synergies = Array[Resource]([ExtResource("5_syn"), ExtResource("6_syn"), ExtResource("7_syn"), ExtResource("8_syn")])
+synergies = Array[ExtResource("4_qt7jd")]([ExtResource("5_syn"), ExtResource("6_syn"), ExtResource("7_syn"), ExtResource("8_syn")])
 
 [node name="PlayerController" type="Node" parent="Player" node_paths=PackedStringArray("body", "camera")]
 script = ExtResource("2_ved6o")
@@ -105,7 +106,7 @@ advance_expression_base_node = NodePath("../AnimationPlayer")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2063856, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraRig" node_paths=PackedStringArray("target")]
-transform = Transform3D(-4.371139e-08, -0.8660255, 0.49999988, 0, 0.49999988, 0.8660255, -1, 3.7855177e-08, -2.1855689e-08, -3.1827667, 5.502296, -0.118058205)
+transform = Transform3D(-4.371139e-08, -0.8660255, 0.49999988, 0, 0.49999988, 0.8660255, -1, 3.7855177e-08, -2.1855689e-08, -4.333061, 5.502296, -0.118058205)
 current = true
 size = 26.168
 script = ExtResource("3_xcisb")
