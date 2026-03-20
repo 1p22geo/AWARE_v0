@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://caa1sxepyuvi0" path="res://scenes/Player/Player.tscn" id="1_lfyvx"]
 [ext_resource type="PackedScene" uid="uid://e3fla7hhclw5" path="res://assets/MODELS/world1/eine_neues_welt_model.tscn" id="2_7k8c1"]
 [ext_resource type="PackedScene" uid="uid://bekrx0o22avha" path="res://src/characters/Enemies/Enemy1.tscn" id="2_w2p53"]
-[ext_resource type="Script" path="res://src/core/ProjectileController.gd" id="3_lfyvx"]
+[ext_resource type="Script" uid="uid://ulgfn1yqjmd2" path="res://src/core/ProjectileController.gd" id="3_lfyvx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7k8c1"]
 sky_top_color = Color(0.14117648, 0.5254902, 0.34117648, 1)
@@ -29,7 +29,7 @@ unique_name_in_owner = true
 script = ExtResource("3_lfyvx")
 
 [node name="Enemy" parent="." instance=ExtResource("2_w2p53")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8593807, 2.100222, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121.706985, 2.100222, 0)
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("1_lfyvx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)

@@ -2,6 +2,8 @@ extends Resource
 class_name ComponentData
 
 @export var name: String = "Component"
+
+@export var description: String = ""
 @export var icon: Texture2D
 
 # Component HP

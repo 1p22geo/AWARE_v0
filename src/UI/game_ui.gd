@@ -11,6 +11,11 @@ signal graph_updated(nodes: Dictionary, connections: Array)
 @onready var component_graph: ComponentGraphUI = find_child("ComponentGraph", true, false)
 @onready var inventory_grid: GridContainer = find_child("InventoryGrid", true, false)
 
+@onready var codex_list: ItemList = find_child("CodexList", true, false)
+@onready var codex_name: Label = find_child("CodexName", true, false)
+@onready var codex_desc: Label = find_child("CodexDesc", true, false)
+@onready var codex_stats: Label = find_child("CodexStats", true, false)
+
 # Labels for total bonuses
 @onready var l_hp: Label = find_child("V_HP", true, false)
 @onready var l_armor: Label = find_child("V_Armor", true, false)
@@ -24,9 +29,11 @@ signal graph_updated(nodes: Dictionary, connections: Array)
 @onready var death_screen: CanvasLayer = find_child("DeathScreen", true, false)
 
 var current_screen := 0
-const TOTAL_SCREENS := 3
+const TOTAL_SCREENS := 4
 const ANIM_DURATION := 0.35
 var is_animating := false
+
+var codex_components: Array[ComponentData] = []
 
 func _ready() -> void:
 	add_to_group("UI")
@@ -36,7 +43,107 @@ func _ready() -> void:
 	if component_graph:
 		component_graph.graph_updated.connect(_on_graph_updated)
 
+	_populate_inventory_defaults.call_deferred()
+	_init_codex.call_deferred()
+
 	_connect_to_player_death.call_deferred()
+
+func _populate_inventory_defaults() -> void:
+	if inventory_grid == null:
+		return
+	var default_paths := [
+		"res://scenes/components/core_health.tres",
+		"res://scenes/components/attack_component.tres",
+		"res://scenes/components/speed_module.tres",
+		"res://scenes/components/jump_component.tres",
+		"res://scenes/components/regen_module.tres",
+		"res://scenes/components/armor_module.tres",
+	]
+	var slots := []
+	for child in inventory_grid.get_children():
+		if child.has_method("set_component"):
+			slots.append(child)
+	for i in range(min(slots.size(), default_paths.size())):
+		var res := load(default_paths[i])
+		if res is ComponentData:
+			slots[i].set_component(res)
+
+func _init_codex() -> void:
+	if codex_list == null:
+		return
+	if not codex_list.item_selected.is_connected(_on_codex_selected):
+		codex_list.item_selected.connect(_on_codex_selected)
+	_load_codex_components()
+	_refresh_codex_list()
+	if codex_components.size() > 0:
+		codex_list.select(0)
+		_show_codex_component(codex_components[0])
+
+func _load_codex_components() -> void:
+	codex_components.clear()
+	var dir := DirAccess.open("res://scenes/components")
+	if dir == null:
+		return
+	dir.list_dir_begin()
+	while true:
+		var file_name := dir.get_next()
+		if file_name == "":
+			break
+		if dir.current_is_dir():
+			continue
+		if not file_name.ends_with(".tres"):
+			continue
+		var path := "res://scenes/components/" + file_name
+		var res := load(path)
+		if res is ComponentData:
+			codex_components.append(res)
+	dir.list_dir_end()
+	# Stable order
+	codex_components.sort_custom(func(a: ComponentData, b: ComponentData) -> bool:
+		return a.name.naturalnocasecmp_to(b.name) < 0
+	)
+
+func _refresh_codex_list() -> void:
+	if codex_list == null:
+		return
+	codex_list.clear()
+	for c in codex_components:
+		codex_list.add_item(c.name)
+
+func _on_codex_selected(index: int) -> void:
+	if index < 0 or index >= codex_components.size():
+		return
+	_show_codex_component(codex_components[index])
+
+func _show_codex_component(c: ComponentData) -> void:
+	if codex_name:
+		codex_name.text = c.name
+	if codex_desc:
+		codex_desc.text = c.description
+	if codex_stats:
+		codex_stats.text = _format_component_stats(c)
+
+func _format_component_stats(c: ComponentData) -> String:
+	var lines: Array[String] = []
+	lines.append("Power Cost: " + str(c.power_cost))
+	lines.append("")
+	lines.append("HP: " + str(c.hp))
+	lines.append("Armor: " + str(c.armor))
+	lines.append("Speed: " + str(c.speed))
+	lines.append("Dash Power: " + str(c.dash_power))
+	lines.append("Dash Cooldown: " + str(c.dash_cooldown))
+	lines.append("Jump Count: " + str(c.jump_count))
+	lines.append("")
+	lines.append("Damage: " + str(c.damage))
+	lines.append("Attack Speed: " + str(c.attack_speed))
+	lines.append("Attack Range: " + str(c.attack_range))
+	lines.append("")
+	lines.append("Energy Storage: " + str(c.energy_storage))
+	lines.append("Energy Regen: " + str(c.energy_regen))
+	lines.append("")
+	lines.append("Overheat: " + str(c.overheat))
+	lines.append("Overheat Limit: " + str(c.overheat_limit))
+	return "\n".join(lines)
 
 func _connect_to_player_death() -> void:
 	# Find player via the game world SubViewport
@@ -165,12 +272,16 @@ func _input(event: InputEvent) -> void:
 
 func _go_to_screen(index: int) -> void:
 	current_screen = index
+	
 	is_animating = true
 	var target_y := -current_screen * screen_clipper.size.y
 	var tween := create_tween()
+	# Ensure UI transition still plays while the game is paused.
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(screens_container, "position:y", target_y, ANIM_DURATION)\
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_callback(func(): is_animating = false)
+	get_tree().paused = current_screen != 0
 
 func update_health(current_hp: float, max_hp: float) -> void:
 	if not health_bar: return
