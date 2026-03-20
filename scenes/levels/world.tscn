@@ -8,7 +8,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_glitch"]
 shader = ExtResource("4_glitch")
-shader_parameter/strength = 1.6
+shader_parameter/strength = 0.7
 shader_parameter/speed = 2.0
 shader_parameter/edge_start = 0.4
 shader_parameter/vignette_intensity = 0.45
