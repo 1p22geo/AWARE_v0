@@ -5,22 +5,38 @@
 [ext_resource type="PackedScene" uid="uid://bekrx0o22avha" path="res://src/characters/Enemies/Enemy1.tscn" id="2_w2p53"]
 [ext_resource type="Script" uid="uid://ulgfn1yqjmd2" path="res://src/core/ProjectileController.gd" id="3_lfyvx"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7k8c1"]
-sky_top_color = Color(0.14117648, 0.5254902, 0.34117648, 1)
-sky_horizon_color = Color(0, 0.68235296, 1, 1)
-sky_curve = 0.36934325
-sky_energy_multiplier = 0.3
-ground_bottom_color = Color(1.7108977e-08, 0.020838784, 0.007898816, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w2p53"]
+sky_top_color = Color(0.10039287, 0.20019403, 0.23124209, 1)
+sky_horizon_color = Color(0.046541333, 0.17843229, 0.20671725, 1)
+sky_curve = 1.9494033
+ground_bottom_color = Color(0.22322297, 0.14309826, 0.3047093, 1)
 ground_horizon_color = Color(0, 0, 0, 1)
-ground_curve = 0.42224178
-energy_multiplier = 8.05
+ground_curve = 0.06964411
+sun_angle_max = 0.0
+sun_curve = 0.00013454311
 
-[sub_resource type="Sky" id="Sky_lfyvx"]
-sky_material = SubResource("ProceduralSkyMaterial_7k8c1")
+[sub_resource type="Sky" id="Sky_7xgas"]
+sky_material = SubResource("ProceduralSkyMaterial_w2p53")
+process_mode = 2
 
-[sub_resource type="Environment" id="Environment_w2p53"]
+[sub_resource type="Environment" id="Environment_gy5pc"]
 background_mode = 2
-sky = SubResource("Sky_lfyvx")
+sky = SubResource("Sky_7xgas")
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.077489115, 0.35746032, 0.4028017, 1)
+fog_light_energy = 0.83
+fog_sun_scatter = 0.46
+fog_density = 0.5054
+fog_aerial_perspective = 0.607
+fog_height = 0.8
+fog_height_density = 0.6513
+fog_depth_curve = 0.23325804
+fog_depth_begin = 53.0
+fog_depth_end = 1779.6
+adjustment_enabled = true
+adjustment_brightness = 0.74
+adjustment_saturation = 0.83
 
 [node name="World" type="Node3D"]
 
@@ -35,9 +51,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121.706985, 2.100222, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.374635, 0, 2.8749757)
+transform = Transform3D(0.7119541, -0.6095604, 0.34865063, 0.3404383, 0.7338541, 0.5878433, -0.6141848, -0.29982346, 0.72998834, 18.774185, 18.491755, 16.765146)
+light_color = Color(0.8953755, 0.87669873, 0.8813775, 1)
+light_energy = 1.19
+light_volumetric_fog_energy = 16.0
+light_angular_distance = 16.7
+light_specular = 4.959
+shadow_enabled = true
+directional_shadow_fade_start = 0.46
+directional_shadow_max_distance = 32.8
+sky_mode = 1
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.33121142, 0.3687657, -0.8685107, -0.11545438, 0.89770913, 0.42519242, 0.9364664, 0.241102, -0.2547559, -30.204819, 18.491755, -10.60596)
+light_color = Color(0.59282887, 0.21831131, 0.31078166, 1)
+light_energy = 0.695
+light_indirect_energy = 1.485
+light_volumetric_fog_energy = 2.853
+light_angular_distance = 16.7
+light_specular = 7.433
+shadow_enabled = true
+directional_shadow_fade_start = 0.46
+directional_shadow_max_distance = 32.8
+sky_mode = 1
 
 [node name="eine_neues_Welt" parent="." instance=ExtResource("2_7k8c1")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_w2p53")
+environment = SubResource("Environment_gy5pc")
