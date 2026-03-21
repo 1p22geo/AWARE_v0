@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="AWARE_v0"
-run/main_scene="uid://bag0oxvak101b"
+run/main_scene="res://scenes/Boot/Boot.tscn"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://assets/svg/icon.svg"
 

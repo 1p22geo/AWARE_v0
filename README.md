@@ -44,7 +44,7 @@ GDScript jest językiem obiektowym.
 
 ## Commity gita
 
-Zalecałbym zapoznanie się ze standardem *conventional commits*.
+Zalecałbym zapoznanie się ze standardem _conventional commits_.
 
 [https://www.conventionalcommits.org/en/v1.0.0/](https://www.conventionalcommits.org/en/v1.0.0/)
 
@@ -68,3 +68,17 @@ Prosiłbym o commitowanie regularnie, aby historia zmian była czytelna.
 
 Każda zmiana która coś dodała lub naprawiła (o ile działa :3)
 powinna być zaraz commitowana i pushowana.
+
+## Działające Audio
+
+Na windowsie musicie pobrać git-lfs z internetu
+
+<https://git-lfs.com/>
+
+A po zpullowaniu repozytorium musicie uruchomić:
+
+git lfs install
+
+i powinno działać
+
+1p22geo sprawdzi czy nie tripuje balls:
