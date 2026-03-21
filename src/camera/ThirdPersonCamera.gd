@@ -2,9 +2,9 @@ extends Camera3D
 class_name ThirdPersonCamera
 
 @export var target: Node3D
-@export var default_offset := Vector3(0, 12, 10)
+@export var default_offset := Vector3(0, 8, 10)
 @export var map_offset := Vector3(0, 100, 80)
-@export var follow_speed := 4.0
+@export var follow_speed := 6.0
 @export var zoom_speed := 5.0
 
 var smoothed_position := Vector3.ZERO
@@ -31,4 +31,4 @@ func _physics_process(delta):
 	smoothed_position = smoothed_position.lerp(target.global_position, follow_speed * delta)
 	global_position = smoothed_position + current_offset
 	
-	look_at(smoothed_position + Vector3(0, 1, 0), Vector3.UP)
+	look_at(smoothed_position + Vector3(0, 2, 0), Vector3.UP)
