@@ -1,9 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bag0oxvak101b"]
+[gd_scene load_steps=6 format=3 uid="uid://bag0oxvak101b"]
 
 [ext_resource type="Texture2D" uid="uid://d0eiv5fk4o6yn" path="res://assets/bg.png" id="1_7pemc"]
-[ext_resource type="Script" uid="uid://3cae4swy37rg" path="res://scenes/UI/MainMenu/button.gd" id="2_7pemc"]
+[ext_resource type="Script" path="res://scenes/UI/MainMenu/button.gd" id="2_7pemc"]
+[ext_resource type="AudioStream" uid="uid://bbwapttb2qskg" path="res://assets/AUDIO/backgroundmusic/test.wav" id="3_si7on"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5o0ao"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_5o0ao"]
+stream_count = 1
+stream_0 = ExtResource("3_si7on")
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -55,5 +60,9 @@ offset_bottom = 517.0
 theme_override_font_sizes/font_size = 96
 text = "- AWARE - 
 Artificial Idiots"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPlaylist_5o0ao")
+autoplay = true
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
