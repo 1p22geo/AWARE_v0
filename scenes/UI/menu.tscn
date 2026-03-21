@@ -74,16 +74,142 @@ offset_bottom = 191.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Control/Options"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Options"]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 58.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -227.0
+offset_top = -125.0
+offset_right = 227.0
+offset_bottom = 125.0
 grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="Control/Options/VBoxContainer"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Options"
 horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="MasterVolumeBox" type="HBoxContainer" parent="Control/Options/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Control/Options/VBoxContainer/MasterVolumeBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_font_sizes/font_size = 20
+text = "Master"
+
+[node name="MasterSlider" type="HSlider" parent="Control/Options/VBoxContainer/MasterVolumeBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+min_value = 0.0
+max_value = 100.0
+step = 0.0
+value = 100.0
+
+[node name="MasterValue" type="Label" parent="Control/Options/VBoxContainer/MasterVolumeBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+theme_override_font_sizes/font_size = 20
+text = "100%"
+
+[node name="MusicVolumeBox" type="HBoxContainer" parent="Control/Options/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Control/Options/VBoxContainer/MusicVolumeBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_font_sizes/font_size = 20
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="Control/Options/VBoxContainer/MusicVolumeBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+min_value = 0.0
+max_value = 100.0
+step = 0.0
+value = 100.0
+
+[node name="MusicValue" type="Label" parent="Control/Options/VBoxContainer/MusicVolumeBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+theme_override_font_sizes/font_size = 20
+text = "100%"
+
+[node name="SfxVolumeBox" type="HBoxContainer" parent="Control/Options/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Control/Options/VBoxContainer/SfxVolumeBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_font_sizes/font_size = 20
+text = "SFX"
+
+[node name="SfxSlider" type="HSlider" parent="Control/Options/VBoxContainer/SfxVolumeBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+min_value = 0.0
+max_value = 100.0
+step = 0.0
+value = 100.0
+
+[node name="SfxValue" type="Label" parent="Control/Options/VBoxContainer/SfxVolumeBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+theme_override_font_sizes/font_size = 20
+text = "100%"
+
+[node name="EnvironmentVolumeBox" type="HBoxContainer" parent="Control/Options/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Control/Options/VBoxContainer/EnvironmentVolumeBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_font_sizes/font_size = 20
+text = "Environment"
+
+[node name="EnvironmentSlider" type="HSlider" parent="Control/Options/VBoxContainer/EnvironmentVolumeBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+min_value = 0.0
+max_value = 100.0
+step = 0.0
+value = 100.0
+
+[node name="EnvironmentValue" type="Label" parent="Control/Options/VBoxContainer/EnvironmentVolumeBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+theme_override_font_sizes/font_size = 20
+text = "100%"
 
 [node name="Button" type="Button" parent="Control/Options"]
 layout_mode = 1
@@ -104,4 +230,8 @@ text = "Back"
 [connection signal="pressed" from="Control/MainButtons/Button" to="Control" method="_on_resume"]
 [connection signal="pressed" from="Control/MainButtons/Button2" to="Control" method="_on_options"]
 [connection signal="pressed" from="Control/MainButtons/Button3" to="Control" method="_on_exit"]
+[connection signal="value_changed" from="Control/Options/VBoxContainer/MasterVolumeBox/MasterSlider" to="Control" method="_on_master_slider_changed"]
+[connection signal="value_changed" from="Control/Options/VBoxContainer/MusicVolumeBox/MusicSlider" to="Control" method="_on_music_slider_changed"]
+[connection signal="value_changed" from="Control/Options/VBoxContainer/SfxVolumeBox/SfxSlider" to="Control" method="_on_sfx_slider_changed"]
+[connection signal="value_changed" from="Control/Options/VBoxContainer/EnvironmentVolumeBox/EnvironmentSlider" to="Control" method="_on_environment_slider_changed"]
 [connection signal="pressed" from="Control/Options/Button" to="Control" method="_on_return_from_options"]
