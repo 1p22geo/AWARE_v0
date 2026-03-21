@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bag0oxvak101b"]
+[gd_scene load_steps=6 format=3 uid="uid://bag0oxvak101b"]
 
-[ext_resource type="Texture2D" uid="uid://b5d2yeopmjwaa" path="res://assets/bg.jpg" id="1_6quh8"]
-[ext_resource type="Script" uid="uid://3cae4swy37rg" path="res://scenes/UI/MainMenu/button.gd" id="2_7pemc"]
+[ext_resource type="Texture2D" uid="uid://d0eiv5fk4o6yn" path="res://assets/bg.png" id="1_7pemc"]
+[ext_resource type="Script" path="res://scenes/UI/MainMenu/button.gd" id="2_7pemc"]
+[ext_resource type="AudioStream" uid="uid://bbwapttb2qskg" path="res://assets/AUDIO/backgroundmusic/test.wav" id="3_si7on"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5o0ao"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_5o0ao"]
+stream_count = 1
+stream_0 = ExtResource("3_si7on")
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -21,7 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 5
 accessibility_name = "background"
-texture = ExtResource("1_6quh8")
+texture = ExtResource("1_7pemc")
 stretch_mode = 6
 
 [node name="Button" type="Button" parent="."]
@@ -31,14 +38,31 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -44.0
-offset_top = 160.0
-offset_right = 44.0
-offset_bottom = 191.0
+offset_left = -780.0
+offset_top = 90.0
+offset_right = -406.0
+offset_bottom = 148.0
 grow_horizontal = 2
 grow_vertical = 2
 accessibility_name = "start button"
-text = "BE AWARE"
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5o0ao")
+text = "Start game
+"
 script = ExtResource("2_7pemc")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_left = 100.0
+offset_top = 250.0
+offset_right = 772.0
+offset_bottom = 517.0
+theme_override_font_sizes/font_size = 96
+text = "- AWARE - 
+Artificial Idiots"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPlaylist_5o0ao")
+autoplay = true
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

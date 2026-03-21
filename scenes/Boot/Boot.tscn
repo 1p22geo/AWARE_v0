@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1j1w1f1g1h1"]
+
+[ext_resource type="Script" path="res://scenes/Boot/Boot.gd" id="1_abcde"]
+[ext_resource type="AudioStream" uid="uid://bjy8livb61ajl" path="res://assets/AUDIO/sfx/alare_boot_sample.wav" id="2_84glb"]
+
+[node name="Boot" type="Control" node_paths=PackedStringArray("Title")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+accessibility_name = "splash"
+script = ExtResource("1_abcde")
+Title = NodePath("Label")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+accessibility_name = "splash"
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.5
+offset_top = -11.5
+offset_right = 42.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+accessibility_name = "splash"
+theme_override_font_sizes/font_size = 82
+text = "AWARE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_84glb")
+volume_db = -5.0
+autoplay = true
+bus = &"SFX"
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
