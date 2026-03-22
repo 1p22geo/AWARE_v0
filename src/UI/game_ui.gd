@@ -49,6 +49,7 @@ func _ready() -> void:
 
 	_connect_to_player_death.call_deferred()
 	_connect_to_level_complete.call_deferred()
+	_show_tutorial.call_deferred()
 
 func _populate_inventory_defaults() -> void:
 	if inventory_grid == null:
@@ -144,6 +145,12 @@ func _format_component_stats(c: ComponentData) -> String:
 	lines.append("Overheat: " + str(c.overheat))
 	lines.append("Overheat Limit: " + str(c.overheat_limit))
 	return "\n".join(lines)
+
+func _show_tutorial() -> void:
+	var script_res := load("res://src/UI/tutorial_overlay.gd")
+	var overlay := CanvasLayer.new()
+	overlay.set_script(script_res)
+	add_child(overlay)
 
 func _connect_to_player_death() -> void:
 	# Find player via the game world SubViewport
