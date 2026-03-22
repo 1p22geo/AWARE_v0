@@ -7,6 +7,7 @@ class_name PlayerController
 @onready var movement: MovementComponent = $"../MovementComponent"
 @onready var projectile_controller: ProjectileController = $"../ProjectileController"
 @onready var animation_player: AnimationPlayer = $"../jimmy/AnimationPlayer"
+@onready var component_manager: ComponentManager = $"../ComponentManager"
 
 var last_ray_result: Dictionary = {}
 
@@ -37,7 +38,32 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		do_raycast(event.position)
 
+func has_laser_cannon() -> bool:
+	if not component_manager:
+		return false
+	
+	for id in component_manager.equipped_nodes:
+		var comp: ComponentData = component_manager.equipped_nodes[id].data
+		if comp.name == "Laser Cannon" and comp.is_active:
+			return true
+	return false
+
+func get_attack_damage() -> float:
+	if not component_manager:
+		return 0.0
+	
+	var damage = 0.0
+	for id in component_manager.equipped_nodes:
+		var comp: ComponentData = component_manager.equipped_nodes[id].data
+		if comp.is_active:
+			damage += comp.damage
+	return damage
+
 func attack() -> void:
+	# Check if player has Laser Cannon equipped
+	if not has_laser_cannon():
+		return
+	
 	# Do a fresh raycast at the current mouse position
 	var mouse_pos = body.get_viewport().get_mouse_position()
 	var result = do_raycast(mouse_pos)
@@ -51,8 +77,8 @@ func attack() -> void:
 	var src = body.global_position + Vector3(0, 1.5, 0)
 
 	if projectile_controller:
-		print("PlayerController: creating projectile from ", src, " to ", dest)
-		projectile_controller.create_projectile(src, dest)
+		var damage = get_attack_damage()
+		projectile_controller.create_projectile(src, dest, damage)
 
 	if animation_player and animation_player.has_animation("attack"):
 		animation_player.play("attack")
