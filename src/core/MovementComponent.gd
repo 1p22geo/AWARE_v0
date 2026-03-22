@@ -8,6 +8,7 @@ class_name MovementComponent
 @export var jump_height := 0.0 # Vertical impulse
 @export var max_jumps := 1
 @export var jump_disabled := false
+@export var animation_player: AnimationPlayer
 
 var move_direction := Vector3.ZERO
 var look_target := Vector3.ZERO
@@ -23,6 +24,8 @@ func jump() -> void:
 	if current_jumps < max_jumps:
 		is_jumping = true
 		current_jumps += 1
+		if animation_player and animation_player.has_animation("jump"):
+			animation_player.play("jump")
 
 
 func move(body: CharacterBody3D, delta: float):
@@ -48,3 +51,25 @@ func move(body: CharacterBody3D, delta: float):
 	body.velocity.x = velocity.x
 	body.velocity.z = velocity.z
 	body.move_and_slide()
+	
+	_update_animations(body)
+
+func _update_animations(body: CharacterBody3D) -> void:
+	if not animation_player:
+		return
+		
+	if not body.is_on_floor():
+		# If we are in the air and not playing jump, we could play a fall/jump animation
+		# but since 'jump' was triggered in jump(), we might want to let it finish 
+		# or loop if it's a long fall. For now, jump() handles the trigger.
+		pass
+	else:
+		# On floor
+		if velocity.length() > 0.1:
+			if animation_player.has_animation("walking"):
+				if animation_player.current_animation != "walking":
+					animation_player.play("walking")
+		else:
+			if animation_player.has_animation("idle"):
+				if animation_player.current_animation != "idle":
+					animation_player.play("idle")

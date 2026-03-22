@@ -24,8 +24,9 @@
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13180351, 0, -0.30797958)
 
-[node name="MovementComponent" type="Node" parent="Player"]
+[node name="MovementComponent" type="Node" parent="Player" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_bvqhm")
+animation_player = NodePath("../jimmy/AnimationPlayer")
 
 [node name="HealthComponent" type="Node" parent="Player"]
 script = ExtResource("1_health")
