@@ -1,6 +1,6 @@
 extends Node
 
-var master_volume: float = 1.0
+var master_volume: float = 0.5
 var sfx_volume: float = 1.0
 var music_volume: float = 1.0
 var environment_volume: float = 1.0

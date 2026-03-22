@@ -1,6 +1,9 @@
 extends Node
 class_name ComponentManager
 
+const ComponentData = preload("res://src/core/components/component.gd")
+signal component_acquired(component: ComponentData)
+
 @export var player_body: CharacterBody3D
 @export var health_component: HealthComponent
 @export var movement_component: MovementComponent
@@ -14,17 +17,37 @@ var total_power_cost: float = 0.0
 var total_armor: float = 0.0
 
 func _ready() -> void:
+	print("ComponentManager _ready called.")
+	component_acquired.connect(
+		func(component: ComponentData):
+			print("Component acquired signal connected to NotificationUI. Showing notification for: ", component.name)
+			# Access the Control node within the NotificationUI scene
+			var notification_control = NotificationUI.get_node("Control")
+			if notification_control and notification_control.has_method("show_notification"):
+				notification_control.show_notification("New Component Acquired: " + component.name)
+			else:
+				push_warning("NotificationUI Control node or show_notification method not found.")
+	)
 	_find_ui_and_connect.call_deferred()
 	
 	if health_component:
 		health_component.health_change.connect(_on_health_changed)
 
 func _find_ui_and_connect() -> void:
+	print("ComponentManager _find_ui_and_connect called.")
 	var ui = get_tree().get_first_node_in_group("UI")
 	if not ui:
 		ui = get_tree().root.find_child("Ui", true, false)
 		
 	if ui:
+		print("UI node found: ", ui.name)
+		if ui.has_method("add_component_to_inventory"):
+			print("UI has add_component_to_inventory method. Connecting signal.")
+			component_acquired.connect(ui.add_component_to_inventory)
+		else:
+			print("UI DOES NOT have add_component_to_inventory method.")
+
+		# For the graph-based UI, we expect a slightly different update
 		if ui.has_signal("graph_updated"):
 			ui.graph_updated.connect(_on_graph_updated)
 			
@@ -151,3 +174,7 @@ func apply_stats() -> void:
 
 func get_total_armor() -> float:
 	return total_armor
+
+func acquire_component(component: ComponentData):
+	print("Acquire component called for: ", component.name)
+	emit_signal("component_acquired", component)

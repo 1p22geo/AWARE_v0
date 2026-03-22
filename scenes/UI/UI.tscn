@@ -262,34 +262,6 @@ text = "Jump Module"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InvSlot5" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid"]
-process_mode = 3
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
-script = ExtResource("3_slot")
-
-[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot5"]
-layout_mode = 2
-text = "Regen Nano-bots"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="InvSlot6" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid"]
-process_mode = 3
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
-script = ExtResource("3_slot")
-
-[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot6"]
-layout_mode = 2
-text = "Armor Plate"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Footer" type="HBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox"]
 layout_mode = 2
 

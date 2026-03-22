@@ -6,8 +6,8 @@ signal return_to_menu
 @onready var subtitle_label: Label = $CenterContainer/VBox/SubtitleLabel
 @onready var press_any_key: Label = $CenterContainer/VBox/PressAnyKey
 
-var fall_duration := 1.8
-var fall_delay := 0.5
+var fall_duration := 3.0
+var fall_delay := 1.0
 var screen_height: float = DisplayServer.window_get_size().y
 
 var _base_x: float
@@ -52,13 +52,14 @@ func _on_land() -> void:
 
 	# Fade in subtitle
 	var t_sub := create_tween()
-	t_sub.tween_property(subtitle_label, "modulate:a", 1.0, 0.6)
+	t_sub.tween_interval(1.0)
+	t_sub.tween_property(subtitle_label, "modulate:a", 1.0, 1.2)
 
-	# Show hint
+	# Show hint after a long pause
 	var t := create_tween()
-	t.tween_interval(0.8)
-	t.tween_property(press_any_key, "modulate:a", 1.0, 0.4)
-	t.parallel().tween_property(press_any_key, "scale", Vector2(1.0, 1.0), 0.3)
+	t.tween_interval(4.0)
+	t.tween_property(press_any_key, "modulate:a", 1.0, 0.6)
+	t.parallel().tween_property(press_any_key, "scale", Vector2(1.0, 1.0), 0.4)
 	t.tween_callback(func(): set_process_input(true))
 
 func _input(event: InputEvent) -> void:
