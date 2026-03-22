@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://bis0wm74vnyen" path="res://src/UI/component_slot.gd" id="3_slot"]
 [ext_resource type="Script" uid="uid://c6obfqb6y3qbc" path="res://src/UI/component_graph_ui.gd" id="11_graph"]
 [ext_resource type="PackedScene" uid="uid://qu7fb0cneenk" path="res://scenes/UI/death_screen.tscn" id="99_death"]
-[ext_resource type="PackedScene" path="res://scenes/UI/level_complete_screen.tscn" id="100_lvlcomplete"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_secbg"]
 content_margin_left = 16.0
@@ -544,7 +543,4 @@ theme_override_constants/separation = 8
 [node name="Menu" parent="." instance=ExtResource("3_84lt7")]
 
 [node name="DeathScreen" parent="." instance=ExtResource("99_death")]
-visible = false
-
-[node name="LevelCompleteScreen" parent="." instance=ExtResource("100_lvlcomplete")]
 visible = false

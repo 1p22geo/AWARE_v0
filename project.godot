@@ -24,6 +24,7 @@ config/icon="res://assets/svg/icon.svg"
 [autoload]
 
 AudioController="*res://scenes/components/AudioController.tscn"
+GameState="*res://src/core/game_state.gd"
 
 [display]
 
