@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bekrx0o22avha"]
+[gd_scene load_steps=10 format=3 uid="uid://bekrx0o22avha"]
 
 [ext_resource type="Script" uid="uid://cxbw00w1ipabl" path="res://src/characters/Enemies/enemy_contoller.gd" id="1_iiyfu"]
 [ext_resource type="Script" uid="uid://c88f375nnh3gt" path="res://src/core/state/state_machine.gd" id="1_njfja"]
@@ -6,10 +6,9 @@
 [ext_resource type="Script" uid="uid://clccfa8wipmpl" path="res://src/characters/Enemies/Enemy1States/follow.gd" id="3_eyb4x"]
 [ext_resource type="Script" uid="uid://1kinb2gq3kgr" path="res://src/characters/Enemies/Enemy1States/IdleState.gd" id="5_aw7si"]
 [ext_resource type="Script" uid="uid://d1igv2r1bo2ul" path="res://src/core/MovementComponent.gd" id="5_lskn8"]
+[ext_resource type="PackedScene" uid="uid://dqk1v2xmhcpl" path="res://enemy1.glb" id="7_enemy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fb3t6"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_vd578"]
 
 [node name="Enemy" type="CharacterBody3D" groups=["Enemy"]]
 
@@ -17,9 +16,8 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_fb3t6")
 
-[node name="Pivot" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_vd578")
+[node name="enemy1" parent="." instance=ExtResource("7_enemy")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="EnemyContoller" type="Node" parent="."]
 script = ExtResource("1_iiyfu")

@@ -5,23 +5,50 @@ class_name PlayerController
 @export var camera: Camera3D
 
 @onready var movement: MovementComponent = $"../MovementComponent"
+@onready var projectile_controller: ProjectileController = $"../ProjectileController"
+@onready var animation_player: AnimationPlayer = $"../jimmy/AnimationPlayer"
+
+var last_ray_result: Dictionary = {}
+
+func _ready() -> void:
+	print("PlayerController: ready - attack action exists: ", InputMap.has_action("attack"))
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not camera or not body:
 		return
-		
+
 	if event is InputEventMouseMotion:
 		var ray_length = 1000
 		var mouse_pos = event.position
 		var from = camera.project_ray_origin(mouse_pos)
 		var to = from + camera.project_ray_normal(mouse_pos) * ray_length
-		
+
 		var space_state = body.get_world_3d().direct_space_state
 		var query = PhysicsRayQueryParameters3D.create(from, to)
 		var result = space_state.intersect_ray(query)
-		
+
 		if result:
 			movement.look_target = result.position
+			last_ray_result = result
+		else:
+			movement.look_target = to
+
+func attack() -> void:
+	print("PlayerController: attack called")
+	var dest: Vector3
+	if last_ray_result.is_empty():
+		dest = movement.look_target
+	else:
+		dest = last_ray_result.position
+
+	var src = body.global_position + Vector3(0, 1.5, 0)
+
+	if projectile_controller:
+		print("PlayerController: creating projectile from ", src, " to ", dest)
+		projectile_controller.create_projectile(src, dest)
+
+	if animation_player and animation_player.has_animation("attack"):
+		animation_player.play("attack")
 
 const VOID_Y_THRESHOLD := -10.0
 const VOID_DAMAGE := 25.0
@@ -29,6 +56,10 @@ const VOID_DAMAGE := 25.0
 func _physics_process(delta):
 	if body == null or camera == null or movement == null:
 		return
+
+	# Check for attack input in physics process as backup
+	if Input.is_action_just_pressed("attack"):
+		attack()
 
 	# Handle void damage
 	if body.global_position.y < VOID_Y_THRESHOLD:

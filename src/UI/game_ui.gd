@@ -236,14 +236,19 @@ func _update_screen_sizes() -> void:
 	screens_container.position.y = -current_screen * h
 
 func _input(event: InputEvent) -> void:
+	# Minimal debug - print when attack action fires
+	if event.is_action("attack") and event.is_pressed():
+		print("GameUI: attack action fired")
+		_handle_attack()
+
 	if is_animating:
 		return
 
 	if event.is_action_pressed("inventory"):
 		if current_screen == 1:
-			_go_to_screen(0) # Back to game
+			_go_to_screen(0)
 		else:
-			_go_to_screen(1) # To Comps
+			_go_to_screen(1)
 		get_viewport().set_input_as_handled()
 		return
 
@@ -269,6 +274,17 @@ func _input(event: InputEvent) -> void:
 		if current_screen > 0:
 			_go_to_screen(current_screen - 1)
 			get_viewport().set_input_as_handled()
+
+func _handle_attack() -> void:
+	var world = find_child("World", true, false)
+	if not world:
+		return
+	var player = world.find_child("Player", true, false)
+	if not player:
+		return
+	var player_controller = player.find_child("PlayerController", true, false)
+	if player_controller and player_controller.has_method("attack"):
+		player_controller.attack()
 
 func _go_to_screen(index: int) -> void:
 	current_screen = index

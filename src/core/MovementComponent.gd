@@ -64,7 +64,6 @@ func _update_animations(body: CharacterBody3D, is_on_floor: bool) -> void:
 	if not is_on_floor:
 		if animation_player.current_animation == "jump":
 			var anim = animation_player.get_animation("jump")
-			# bruh
 			if animation_player.current_animation_position > anim.length * 0.5:
 				animation_player.pause()
 	else:
