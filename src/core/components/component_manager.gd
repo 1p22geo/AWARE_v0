@@ -1,6 +1,8 @@
 extends Node
 class_name ComponentManager
 
+signal component_acquired(component: Resource)
+
 @export var player_body: CharacterBody3D
 @export var health_component: HealthComponent
 @export var movement_component: MovementComponent
@@ -160,3 +162,6 @@ func apply_stats() -> void:
 
 func get_total_armor() -> float:
 	return total_armor
+
+func acquire_component(component: Resource):
+	emit_signal("component_acquired", component)
