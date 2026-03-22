@@ -27,7 +27,6 @@ signal graph_updated(nodes: Dictionary, connections: Array)
 @onready var synergies_list: VBoxContainer = find_child("SynergiesList", true, false)
 
 @onready var death_screen: CanvasLayer = find_child("DeathScreen", true, false)
-@onready var level_complete_screen: CanvasLayer = find_child("LevelCompleteScreen", true, false)
 
 var current_screen := 0
 const TOTAL_SCREENS := 4
@@ -48,7 +47,6 @@ func _ready() -> void:
 	_init_codex.call_deferred()
 
 	_connect_to_player_death.call_deferred()
-	_connect_to_level_complete.call_deferred()
 
 func _populate_inventory_defaults() -> void:
 	if inventory_grid == null:
@@ -162,29 +160,12 @@ func _on_player_death() -> void:
 			death_screen.restart_requested.connect(_on_restart_requested)
 
 func _on_restart_requested() -> void:
-	GameState.reset()
 	get_tree().reload_current_scene()
-
-func _connect_to_level_complete() -> void:
-	if not GameState.level_completed.is_connected(_on_level_completed):
-		GameState.level_completed.connect(_on_level_completed)
-
-func _on_level_completed() -> void:
-	if level_complete_screen:
-		level_complete_screen.show_level_complete()
-		if not level_complete_screen.return_to_menu.is_connected(_on_return_to_menu):
-			level_complete_screen.return_to_menu.connect(_on_return_to_menu)
-
-func _on_return_to_menu() -> void:
-	GameState.reset()
-	get_tree().change_scene_to_file("res://scenes/UI/MainMenu/MainMenu.tscn")
 
 func add_component_to_inventory(component_resource: ComponentData):
 	print("add_component_to_inventory called for: ", component_resource.name)
 	if inventory_grid == null:
 		return
-
-	GameState.collect_component()
 
 	var new_slot = PanelContainer.new()
 	new_slot.custom_minimum_size = Vector2(80, 80)
@@ -222,6 +203,7 @@ func add_component_to_inventory(component_resource: ComponentData):
 		component_data_slot.set_component(component_resource)
 	else:
 		push_warning("Failed to cast new_slot to ComponentDataSlot.")
+
 
 func _on_graph_updated(nodes: Dictionary, connections: Array) -> void:
 	graph_updated.emit(nodes, connections)
