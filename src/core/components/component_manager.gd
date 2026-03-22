@@ -6,7 +6,6 @@ class_name ComponentManager
 @export var movement_component: MovementComponent
 @export var max_power := 100.0
 
-# Predefined synergies
 @export var synergies: Array[SynergyData] = []
 
 var equipped_nodes: Dictionary = {} # ID: { "data": ComponentData, "position": Vector2 }
@@ -26,10 +25,6 @@ func _find_ui_and_connect() -> void:
 		ui = get_tree().root.find_child("Ui", true, false)
 		
 	if ui:
-		if ui.has_signal("components_updated"):
-			ui.components_updated.connect(_on_components_updated)
-		
-		# For the graph-based UI, we expect a slightly different update
 		if ui.has_signal("graph_updated"):
 			ui.graph_updated.connect(_on_graph_updated)
 			
@@ -45,12 +40,10 @@ func _on_health_changed(hp: float, max_hp: float) -> void:
 	if ui:
 		ui.update_health(hp, max_hp)
 
-func _on_components_updated(_components: Array[ComponentData]) -> void:
-	# Deprecated, use _on_graph_updated
-	pass
 
 func _on_graph_updated(nodes: Dictionary, conn: Array) -> void:
 	equipped_nodes = nodes
+	print(nodes)
 	connections = conn
 	apply_stats()
 
@@ -61,7 +54,7 @@ func apply_stats() -> void:
 	var total_hp := 50.0 
 	var total_speed := 5.0 
 	var total_jump_height := 0.0 
-	var total_jump_count := 1
+	var total_jump_count := 0
 	var total_regen := 0.0
 	var calculated_armor := 0.0
 	var total_damage := 0.0
@@ -120,7 +113,6 @@ func apply_stats() -> void:
 				})
 				synergized_connections.append(i)
 				
-				# Increase power cost for synergy links
 				current_power += syn.link_power_cost - 2.0
 				break
 	
@@ -143,7 +135,6 @@ func apply_stats() -> void:
 		movement_component.max_jumps = total_jump_count
 		movement_component.jump_disabled = jump_disabled
 
-	# Notify UI about total stats if needed
 	var ui = get_tree().get_first_node_in_group("UI")
 	if not ui: ui = get_tree().root.find_child("Ui", true, false)
 	if ui and ui.has_method("update_total_bonuses"):
