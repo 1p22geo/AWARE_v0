@@ -21,7 +21,12 @@ func _ready() -> void:
 	component_acquired.connect(
 		func(component: Resource):
 			print("Component acquired signal connected to NotificationUI. Showing notification for: ", component.name)
-			NotificationUI.show_notification("New Component Acquired: " + component.name)
+			# Access the Control node within the NotificationUI scene
+			var notification_control = NotificationUI.get_node("Control")
+			if notification_control and notification_control.has_method("show_notification"):
+				notification_control.show_notification("New Component Acquired: " + component.name)
+			else:
+				push_warning("NotificationUI Control node or show_notification method not found.")
 	)
 	_find_ui_and_connect.call_deferred()
 	
