@@ -4,7 +4,7 @@ class_name Projectile
 signal hit_target(target: Node3D)
 
 @export var speed: float = 30.0
-@export var damage: float = 10.0
+@export var damage: float = 25.0
 @export var lifetime: float = 5.0
 
 var direction: Vector3 = Vector3.ZERO
@@ -27,7 +27,17 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 func _on_body_entered(body: Node3D) -> void:
+	# Try to deal damage - check body first, then children (for EnemyController pattern)
+	var damaged = false
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
+		damaged = true
+	else:
+		for child in body.get_children():
+			if child.has_method("take_damage"):
+				child.take_damage(damage)
+				damaged = true
+				break
+	if damaged:
 		hit_target.emit(body)
 	queue_free()
