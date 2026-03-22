@@ -43,7 +43,7 @@ func _ready() -> void:
 	if component_graph:
 		component_graph.graph_updated.connect(_on_graph_updated)
 
-	# _populate_inventory_defaults.call_deferred()
+	_populate_inventory_defaults.call_deferred()
 	_init_codex.call_deferred()
 
 	_connect_to_player_death.call_deferred()
@@ -56,8 +56,6 @@ func _populate_inventory_defaults() -> void:
 		"res://scenes/components/attack_component.tres",
 		"res://scenes/components/speed_module.tres",
 		"res://scenes/components/jump_component.tres",
-		"res://scenes/components/regen_module.tres",
-		"res://scenes/components/armor_module.tres",
 	]
 	var slots := []
 	for child in inventory_grid.get_children():
