@@ -16,7 +16,20 @@ var velocity := Vector3.ZERO
 var is_jumping := false
 var current_jumps := 0
 var was_on_floor := true
+var is_attacking := false
 
+
+func play_attack_animation() -> void:
+	if animation_player and animation_player.has_animation("attack"):
+		is_attacking = true
+		animation_player.play("attack")
+		# Connect to animation_finished if not already connected
+		if not animation_player.animation_finished.is_connected(_on_attack_finished):
+			animation_player.animation_finished.connect(_on_attack_finished)
+
+func _on_attack_finished(anim_name: String) -> void:
+	if anim_name == "attack":
+		is_attacking = false
 
 func jump() -> void:
 	if jump_disabled or jump_height <= 0:
@@ -60,11 +73,14 @@ func move(body: CharacterBody3D, delta: float):
 func _update_animations(body: CharacterBody3D, is_on_floor: bool) -> void:
 	if not animation_player:
 		return
+	
+	# Don't override attack animation while it's playing
+	if is_attacking:
+		return
 		
 	if not is_on_floor:
 		if animation_player.current_animation == "jump":
 			var anim = animation_player.get_animation("jump")
-			# bruh
 			if animation_player.current_animation_position > anim.length * 0.5:
 				animation_player.pause()
 	else:

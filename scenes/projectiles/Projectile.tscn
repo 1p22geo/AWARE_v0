@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" uid="uid://cqx3tvhw28h6r" path="res://src/projectiles/projectile.gd" id="1_proj"]
+[ext_resource type="Shader" uid="uid://cypw88g8m3k" path="res://scenes/projectiles/glow.gdshader" id="2_glow"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bolt"]
+radius = 0.15
+
+[sub_resource type="SphereMesh" id="SphereMesh_bolt"]
+radius = 0.15
+height = 0.3
+radial_segments = 16
+rings = 8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_glow"]
+shader = ExtResource("2_glow")
+render_priority = 0
+shader_parameter/color = Color(0.6, 0.1, 0.9, 1)
+shader_parameter/glow_intensity = 2.0
+
+[node name="Projectile" type="Area3D"]
+script = ExtResource("1_proj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_bolt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_bolt")
+surface_material_override/0 = SubResource("ShaderMaterial_glow")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.7, 0.2, 1.0, 1)
+light_energy = 2.0
+omni_range = 3.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

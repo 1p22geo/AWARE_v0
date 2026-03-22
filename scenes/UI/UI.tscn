@@ -183,6 +183,7 @@ theme_override_constants/separation = 16
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+scroll_offset = Vector2(-3, -88)
 script = ExtResource("11_graph")
 
 [node name="InventoryPanel" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body"]
