@@ -1,5 +1,6 @@
 extends Control
 
+@load("res://src/core/components/component_data.gd") var ComponentData
 signal components_updated(equipped_components: Array[ComponentData])
 signal graph_updated(nodes: Dictionary, connections: Array)
 
@@ -199,8 +200,12 @@ func add_component_to_inventory(component_resource: ComponentData):
 
 	inventory_grid.add_child(new_slot)
 	
-	# The script needs to be ready before we can call its methods
-	new_slot.call_deferred("set_component", component_resource)
+	# Get the script instance and call set_component
+	var component_data_slot = new_slot as ComponentDataSlot
+	if component_data_slot:
+		component_data_slot.set_component(component_resource)
+	else:
+		push_warning("Failed to cast new_slot to ComponentDataSlot.")
 
 
 func _on_graph_updated(nodes: Dictionary, connections: Array) -> void:
