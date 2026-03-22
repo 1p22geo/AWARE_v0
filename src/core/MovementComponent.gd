@@ -22,7 +22,6 @@ func jump() -> void:
 	if jump_disabled or jump_height <= 0:
 		return
 		
-	print(current_jumps, "  ", max_jumps)
 	if current_jumps < max_jumps:
 		is_jumping = true
 		current_jumps += 1
@@ -39,7 +38,6 @@ func move(body: CharacterBody3D, delta: float):
 	else:
 		body.velocity.y = 0
 		current_jumps = 0 # Reset jump count on floor
-		print('reset')
 		
 	if is_jumping:
 		body.velocity.y = jump_height
