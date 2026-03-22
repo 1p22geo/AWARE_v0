@@ -13,33 +13,40 @@ var last_ray_result: Dictionary = {}
 func _ready() -> void:
 	print("PlayerController: ready - attack action exists: ", InputMap.has_action("attack"))
 
+func do_raycast(mouse_pos: Vector2) -> Dictionary:
+	var ray_length = 1000
+	var from = camera.project_ray_origin(mouse_pos)
+	var to = from + camera.project_ray_normal(mouse_pos) * ray_length
+
+	var space_state = body.get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	var result = space_state.intersect_ray(query)
+
+	if result:
+		movement.look_target = result.position
+		last_ray_result = result
+	else:
+		movement.look_target = to
+		last_ray_result = {}
+	return result
+
 func _unhandled_input(event: InputEvent) -> void:
 	if not camera or not body:
 		return
 
 	if event is InputEventMouseMotion:
-		var ray_length = 1000
-		var mouse_pos = event.position
-		var from = camera.project_ray_origin(mouse_pos)
-		var to = from + camera.project_ray_normal(mouse_pos) * ray_length
-
-		var space_state = body.get_world_3d().direct_space_state
-		var query = PhysicsRayQueryParameters3D.create(from, to)
-		var result = space_state.intersect_ray(query)
-
-		if result:
-			movement.look_target = result.position
-			last_ray_result = result
-		else:
-			movement.look_target = to
+		do_raycast(event.position)
 
 func attack() -> void:
-	print("PlayerController: attack called")
+	# Do a fresh raycast at the current mouse position
+	var mouse_pos = body.get_viewport().get_mouse_position()
+	var result = do_raycast(mouse_pos)
+	
 	var dest: Vector3
-	if last_ray_result.is_empty():
+	if result.is_empty():
 		dest = movement.look_target
 	else:
-		dest = last_ray_result.position
+		dest = result.position
 
 	var src = body.global_position + Vector3(0, 1.5, 0)
 
