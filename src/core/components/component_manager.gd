@@ -51,6 +51,7 @@ func _on_components_updated(_components: Array[ComponentData]) -> void:
 
 func _on_graph_updated(nodes: Dictionary, conn: Array) -> void:
 	equipped_nodes = nodes
+	print(nodes)
 	connections = conn
 	apply_stats()
 
@@ -61,7 +62,7 @@ func apply_stats() -> void:
 	var total_hp := 50.0 
 	var total_speed := 5.0 
 	var total_jump_height := 0.0 
-	var total_jump_count := 1
+	var total_jump_count := 0
 	var total_regen := 0.0
 	var calculated_armor := 0.0
 	var total_damage := 0.0

@@ -6,7 +6,7 @@ class_name MovementComponent
 @export var rotation_speed := 30.0
 @export var gravity := 55.0
 @export var jump_height := 0.0 # Vertical impulse
-@export var max_jumps := 1
+@export var max_jumps := 0
 @export var jump_disabled := false
 @export var animation_player: AnimationPlayer
 
@@ -22,6 +22,7 @@ func jump() -> void:
 	if jump_disabled or jump_height <= 0:
 		return
 		
+	print(current_jumps, "  ", max_jumps)
 	if current_jumps < max_jumps:
 		is_jumping = true
 		current_jumps += 1
@@ -33,11 +34,12 @@ func move(body: CharacterBody3D, delta: float):
 	var is_on_floor = body.is_on_floor()
 	
 	# Gravity
-	if not is_on_floor:
+	if not is_on_floor or is_jumping:
 		body.velocity.y -= gravity * delta
 	else:
 		body.velocity.y = 0
 		current_jumps = 0 # Reset jump count on floor
+		print('reset')
 		
 	# Jumping - now driven by the is_jumping flag.
 	if is_jumping:
