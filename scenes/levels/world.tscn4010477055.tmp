@@ -1,17 +1,15 @@
-[gd_scene load_steps=21 format=3 uid="uid://b4bmrng7uonyc"]
+[gd_scene load_steps=17 format=3 uid="uid://b4bmrng7uonyc"]
 
 [ext_resource type="PackedScene" uid="uid://caa1sxepyuvi0" path="res://scenes/Player/Player.tscn" id="1_lfyvx"]
 [ext_resource type="PackedScene" uid="uid://e3fla7hhclw5" path="res://assets/MODELS/world1/eine_neues_welt_model.tscn" id="2_7k8c1"]
 [ext_resource type="PackedScene" uid="uid://bekrx0o22avha" path="res://src/characters/Enemies/Enemy1.tscn" id="2_w2p53"]
-[ext_resource type="Script" uid="uid://clxexa42fivvm" path="res://src/core/ProjectileController.gd" id="3_lfyvx"]
+[ext_resource type="Script" path="res://src/core/ProjectileController.gd" id="3_lfyvx"]
 [ext_resource type="Shader" uid="uid://td1hesrm8th3" path="res://scenes/levels/glitch.gdshader" id="4_glitch"]
-[ext_resource type="Resource" uid="uid://cnbkv7d3p6v2v" path="res://scenes/components/regen_module.tres" id="6_csbb7"]
+[ext_resource type="Resource" uid="uid://cyk2m8v3j6x7n" path="res://scenes/components/synergy_attack_health.tres" id="5_syn"]
 [ext_resource type="AudioStream" uid="uid://dp1dfd03v8ate" path="res://assets/AUDIO/environment_ambient/noise.wav" id="6_gy5pc"]
-[ext_resource type="Resource" uid="uid://b5k8v3m2l7qaq" path="res://scenes/components/armor_module.tres" id="6_mmplq"]
 [ext_resource type="AudioStream" uid="uid://bbwapttb2qskg" path="res://assets/AUDIO/backgroundmusic/test.wav" id="7_0lift"]
-[ext_resource type="Resource" uid="uid://b5k8v3m2l7qaq" path="res://scenes/components/armor_module.tres" id="7_mmplq"]
-[ext_resource type="PackedScene" uid="uid://b5w7p2v2qj3f" path="res://scenes/components/ComponentGiver.tscn" id="9_comp_giver"]
-[ext_resource type="Script" uid="uid://b6uv5w4b3cr5e" path="res://src/core/level_exit_zone.gd" id="10_exitzone"]
+[ext_resource type="Resource" uid="uid://b8v3m2p7q5n1r" path="res://scenes/components/synergy_armor_regen.tres" id="7_syn"]
+[ext_resource type="PackedScene" path="res://scenes/components/ComponentGiver.tscn" id="9_comp_giver"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_glitch"]
 shader = ExtResource("4_glitch")
@@ -66,21 +64,6 @@ stream_0 = ExtResource("6_gy5pc")
 stream_count = 1
 stream_0 = ExtResource("7_0lift")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_exitzone"]
-size = Vector3(1.2635498, 7, 5.0721436)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_door"]
-transparency = 1
-blend_mode = 1
-cull_mode = 2
-albedo_color = Color(1, 0.3, 0.7, 0.7)
-emission_enabled = true
-emission = Color(1, 0.2, 0.6, 1)
-emission_energy_multiplier = 3.0
-
-[sub_resource type="QuadMesh" id="QuadMesh_door"]
-size = Vector2(3, 4)
-
 [node name="World" type="Node3D"]
 
 [node name="GlitchEffect" type="CanvasLayer" parent="."]
@@ -107,11 +90,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="ComponentGiver1" parent="." instance=ExtResource("9_comp_giver")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -5)
-component_resource = ExtResource("6_csbb7")
+component_resource = ExtResource("5_syn")
 
 [node name="ComponentGiver2" parent="." instance=ExtResource("9_comp_giver")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -5)
-component_resource = ExtResource("7_mmplq")
+component_resource = ExtResource("7_syn")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.7119541, -0.6095604, 0.34865063, 0.3404383, 0.7338541, 0.5878433, -0.6141848, -0.29982346, 0.72998834, 18.774185, 18.491755, 16.765146)
@@ -152,18 +135,3 @@ bus = &"Environment"
 stream = SubResource("AudioStreamPlaylist_dp8al")
 autoplay = true
 bus = &"BackgroundMusic"
-
-[node name="LevelExitZone" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -210.32382, 2.717494, 4.538939)
-collision_layer = 0
-monitorable = false
-script = ExtResource("10_exitzone")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelExitZone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.774292, 0.8235278, -2.0819688)
-shape = SubResource("BoxShape3D_exitzone")
-
-[node name="DoorMesh" type="MeshInstance3D" parent="LevelExitZone"]
-transform = Transform3D(-7.430936e-08, 0, 0.68, 0, 1.7, 0, -1.7, 0, -2.9723743e-08, -4.156067, 0.8235278, -2.1981187)
-material_override = SubResource("StandardMaterial3D_door")
-mesh = SubResource("QuadMesh_door")

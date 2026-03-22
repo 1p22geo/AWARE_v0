@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://bis0wm74vnyen" path="res://src/UI/component_slot.gd" id="3_slot"]
 [ext_resource type="Script" uid="uid://c6obfqb6y3qbc" path="res://src/UI/component_graph_ui.gd" id="11_graph"]
 [ext_resource type="PackedScene" uid="uid://qu7fb0cneenk" path="res://scenes/UI/death_screen.tscn" id="99_death"]
-[ext_resource type="PackedScene" path="res://scenes/UI/level_complete_screen.tscn" id="100_lvlcomplete"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_secbg"]
 content_margin_left = 16.0
@@ -183,7 +182,6 @@ theme_override_constants/separation = 16
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-scroll_offset = Vector2(-3, -88)
 script = ExtResource("11_graph")
 
 [node name="InventoryPanel" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body"]
@@ -260,6 +258,34 @@ script = ExtResource("3_slot")
 [node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot4"]
 layout_mode = 2
 text = "Jump Module"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InvSlot5" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid"]
+process_mode = 3
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+script = ExtResource("3_slot")
+
+[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot5"]
+layout_mode = 2
+text = "Regen Nano-bots"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InvSlot6" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid"]
+process_mode = 3
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+script = ExtResource("3_slot")
+
+[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot6"]
+layout_mode = 2
+text = "Armor Plate"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -517,7 +543,4 @@ theme_override_constants/separation = 8
 [node name="Menu" parent="." instance=ExtResource("3_84lt7")]
 
 [node name="DeathScreen" parent="." instance=ExtResource("99_death")]
-visible = false
-
-[node name="LevelCompleteScreen" parent="." instance=ExtResource("100_lvlcomplete")]
 visible = false
