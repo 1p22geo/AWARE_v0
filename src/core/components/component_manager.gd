@@ -1,7 +1,7 @@
 extends Node
 class_name ComponentManager
 
-@load("res://src/core/components/component.gd") var ComponentData
+const ComponentData = preload("res://src/core/components/component.gd")
 signal component_acquired(component: ComponentData)
 
 @export var player_body: CharacterBody3D
