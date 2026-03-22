@@ -3,15 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://caa1sxepyuvi0" path="res://scenes/Player/Player.tscn" id="1_lfyvx"]
 [ext_resource type="PackedScene" uid="uid://e3fla7hhclw5" path="res://assets/MODELS/world1/eine_neues_welt_model.tscn" id="2_7k8c1"]
 [ext_resource type="PackedScene" uid="uid://bekrx0o22avha" path="res://src/characters/Enemies/Enemy1.tscn" id="2_w2p53"]
-[ext_resource type="Script" uid="uid://clxexa42fivvm" path="res://src/core/ProjectileController.gd" id="3_lfyvx"]
+[ext_resource type="Script" path="res://src/core/ProjectileController.gd" id="3_lfyvx"]
 [ext_resource type="Shader" uid="uid://td1hesrm8th3" path="res://scenes/levels/glitch.gdshader" id="4_glitch"]
 [ext_resource type="Resource" uid="uid://cnbkv7d3p6v2v" path="res://scenes/components/regen_module.tres" id="6_csbb7"]
 [ext_resource type="AudioStream" uid="uid://dp1dfd03v8ate" path="res://assets/AUDIO/environment_ambient/noise.wav" id="6_gy5pc"]
-[ext_resource type="Resource" uid="uid://b5k8v3m2l7qaq" path="res://scenes/components/armor_module.tres" id="6_mmplq"]
 [ext_resource type="AudioStream" uid="uid://bbwapttb2qskg" path="res://assets/AUDIO/backgroundmusic/test.wav" id="7_0lift"]
 [ext_resource type="Resource" uid="uid://b5k8v3m2l7qaq" path="res://scenes/components/armor_module.tres" id="7_mmplq"]
-[ext_resource type="PackedScene" uid="uid://b5w7p2v2qj3f" path="res://scenes/components/ComponentGiver.tscn" id="9_comp_giver"]
-[ext_resource type="Script" uid="uid://b6uv5w4b3cr5e" path="res://src/core/level_exit_zone.gd" id="10_exitzone"]
+[ext_resource type="PackedScene" path="res://scenes/components/ComponentGiver.tscn" id="9_comp_giver"]
+[ext_resource type="Script" path="res://src/core/level_exit_zone.gd" id="10_exitzone"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_glitch"]
 shader = ExtResource("4_glitch")
