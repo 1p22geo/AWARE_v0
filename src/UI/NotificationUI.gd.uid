@@ -1,0 +1,7 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters might change in the future.
+
+[remap]
+
+path="res://src/UI/NotificationUI.gd"

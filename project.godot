@@ -24,6 +24,7 @@ config/icon="res://assets/svg/icon.svg"
 [autoload]
 
 AudioController="*res://scenes/components/AudioController.tscn"
+NotificationUI="*res://scenes/UI/NotificationUI.tscn"
 
 [display]
 

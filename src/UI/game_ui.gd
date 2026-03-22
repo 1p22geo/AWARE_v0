@@ -56,8 +56,6 @@ func _populate_inventory_defaults() -> void:
 		"res://scenes/components/attack_component.tres",
 		"res://scenes/components/speed_module.tres",
 		"res://scenes/components/jump_component.tres",
-		"res://scenes/components/regen_module.tres",
-		"res://scenes/components/armor_module.tres",
 	]
 	var slots := []
 	for child in inventory_grid.get_children():
@@ -163,6 +161,49 @@ func _on_player_death() -> void:
 
 func _on_restart_requested() -> void:
 	get_tree().reload_current_scene()
+
+func add_component_to_inventory(component_resource: ComponentData):
+	print("add_component_to_inventory called for: ", component_resource.name)
+	if inventory_grid == null:
+		return
+
+	var new_slot = PanelContainer.new()
+	new_slot.custom_minimum_size = Vector2(80, 80)
+	new_slot.size_flags_horizontal = 3
+	
+	var style_box = StyleBoxFlat.new()
+	style_box.bg_color = Color(0.1, 0.11, 0.14, 0.95)
+	style_box.border_width_left = 1
+	style_box.border_width_top = 1
+	style_box.border_width_right = 1
+	style_box.border_width_bottom = 1
+	style_box.border_color = Color(0.2, 0.95, 1, 0.28)
+	style_box.corner_radius_top_left = 10
+	style_box.corner_radius_top_right = 10
+	style_box.corner_radius_bottom_right = 10
+	style_box.corner_radius_bottom_left = 10
+	style_box.shadow_color = Color(0, 0, 0, 0.4)
+	style_box.shadow_size = 6
+	new_slot.add_theme_stylebox_override("panel", style_box)
+
+	var slot_script = load("res://src/UI/component_slot.gd")
+	new_slot.set_script(slot_script)
+
+	var label = Label.new()
+	label.name = "Label"
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	new_slot.add_child(label)
+
+	inventory_grid.add_child(new_slot)
+	
+	# Get the script instance and call set_component
+	var component_data_slot = new_slot as ComponentDataSlot
+	if component_data_slot:
+		component_data_slot.set_component(component_resource)
+	else:
+		push_warning("Failed to cast new_slot to ComponentDataSlot.")
+
 
 func _on_graph_updated(nodes: Dictionary, connections: Array) -> void:
 	graph_updated.emit(nodes, connections)

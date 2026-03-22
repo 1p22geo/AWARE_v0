@@ -6,7 +6,7 @@ const MAIN_MENU_SCENE = "res://scenes/UI/MainMenu/MainMenu.tscn"
 
 
 func _ready() -> void:
-	AudioController.set_master_volume(0.8)
+	AudioController.set_master_volume(0.5)
 	AudioController.set_sfx_volume(0.8)
 	AudioController.set_environment_volume(0.67)
 	
