@@ -32,6 +32,9 @@ func _find_ui_and_connect() -> void:
 		ui = get_tree().root.find_child("Ui", true, false)
 		
 	if ui:
+		if ui.has_method("add_component_to_inventory"):
+			component_acquired.connect(ui.add_component_to_inventory)
+
 		if ui.has_signal("components_updated"):
 			ui.components_updated.connect(_on_components_updated)
 		
