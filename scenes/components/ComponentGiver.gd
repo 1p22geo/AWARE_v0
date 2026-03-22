@@ -4,7 +4,7 @@ extends Area3D
 
 func _on_body_entered(body):
 	print("Body entered ComponentGiver: ", body.name, " group: ", body.get_groups())
-	if body.is_in_group("player"):
+	if body.is_in_group("Player"):
 		print("Player entered ComponentGiver!")
 		var player_node = body # The CharacterBody3D node
 		# Find the ComponentManager child node
