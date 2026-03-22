@@ -43,7 +43,7 @@ func _ready() -> void:
 	if component_graph:
 		component_graph.graph_updated.connect(_on_graph_updated)
 
-	_populate_inventory_defaults.call_deferred()
+	# _populate_inventory_defaults.call_deferred()
 	_init_codex.call_deferred()
 
 	_connect_to_player_death.call_deferred()
@@ -165,6 +165,7 @@ func _on_restart_requested() -> void:
 	get_tree().reload_current_scene()
 
 func add_component_to_inventory(component_resource: ComponentData):
+	print("add_component_to_inventory called for: ", component_resource.name)
 	if inventory_grid == null:
 		return
 
