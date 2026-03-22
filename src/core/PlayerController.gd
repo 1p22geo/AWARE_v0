@@ -80,8 +80,9 @@ func attack() -> void:
 		var damage = get_attack_damage()
 		projectile_controller.create_projectile(src, dest, damage)
 
-	if animation_player and animation_player.has_animation("attack"):
-		animation_player.play("attack")
+	# Play attack animation via movement component
+	if movement:
+		movement.play_attack_animation()
 
 const VOID_Y_THRESHOLD := -10.0
 const VOID_DAMAGE := 25.0
