@@ -1,7 +1,8 @@
 extends Node
 class_name ComponentManager
 
-signal component_acquired(component: Resource)
+@load("res://src/core/components/component.gd") var ComponentData
+signal component_acquired(component: ComponentData)
 
 @export var player_body: CharacterBody3D
 @export var health_component: HealthComponent
