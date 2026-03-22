@@ -1,6 +1,5 @@
 extends Control
 
-@load("res://src/core/components/component_data.gd") var ComponentData
 signal components_updated(equipped_components: Array[ComponentData])
 signal graph_updated(nodes: Dictionary, connections: Array)
 
