@@ -236,11 +236,6 @@ func _update_screen_sizes() -> void:
 	screens_container.position.y = -current_screen * h
 
 func _input(event: InputEvent) -> void:
-	# Minimal debug - print when attack action fires
-	if event.is_action("attack") and event.is_pressed():
-		print("GameUI: attack action fired")
-		_handle_attack()
-
 	if is_animating:
 		return
 

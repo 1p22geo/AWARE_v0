@@ -11,6 +11,7 @@ var direction: Vector3 = Vector3.ZERO
 var target: Vector3 = Vector3.ZERO
 var traveled_distance: float = 0.0
 var max_distance: float = 100.0
+var has_hit: bool = false
 
 func initialize(src: Vector3, dest: Vector3) -> void:
 	global_position = src
@@ -27,6 +28,10 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 func _on_body_entered(body: Node3D) -> void:
+	if has_hit:
+		return
+	has_hit = true
+	
 	# Try to deal damage - check body first, then children (for EnemyController pattern)
 	var damaged = false
 	if body.has_method("take_damage"):
