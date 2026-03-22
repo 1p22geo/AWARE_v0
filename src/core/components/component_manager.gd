@@ -20,7 +20,7 @@ var total_armor: float = 0.0
 func _ready() -> void:
 	print("ComponentManager _ready called.")
 	component_acquired.connect(
-		func(component: Resource):
+		func(component: ComponentData):
 			print("Component acquired signal connected to NotificationUI. Showing notification for: ", component.name)
 			# Access the Control node within the NotificationUI scene
 			var notification_control = NotificationUI.get_node("Control")
@@ -183,6 +183,6 @@ func apply_stats() -> void:
 func get_total_armor() -> float:
 	return total_armor
 
-func acquire_component(component: Resource):
+func acquire_component(component: ComponentData):
 	print("Acquire component called for: ", component.name)
 	emit_signal("component_acquired", component)

@@ -7,19 +7,13 @@ func show_notification(text: String, duration: float = 3.0):
 	print("NotificationUI: Showing notification for: ", text)
 	label.text = text
 	self.visible = true # Ensure the Control node is visible
+	self.modulate.a = 1.0 # Ensure it's fully visible
 	
-	if tween and tween.is_running():
-		tween.kill()
-		
-	tween = get_tree().create_tween()
-	
-	# Fade in
-	tween.tween_property(self, "modulate.a", 1.0, 0.5)
-	# Wait
-	tween.tween_interval(duration)
-	# Fade out
-	tween.tween_property(self, "modulate.a", 0.0, 0.5)
-	tween.tween_callback(func(): self.visible = false) # Hide after fading out
+	var timer = get_tree().create_timer(duration)
+	timer.timeout.connect(func():
+		self.visible = false
+		self.modulate.a = 0.0 # Reset alpha for next time
+	)
 
 func _ready():
 	modulate.a = 0.0
