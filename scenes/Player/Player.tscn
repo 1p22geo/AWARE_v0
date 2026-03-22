@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://caa1sxepyuvi0"]
+[gd_scene load_steps=18 format=3 uid="uid://caa1sxepyuvi0"]
 
 [ext_resource type="Script" uid="uid://d1igv2r1bo2ul" path="res://src/core/MovementComponent.gd" id="1_bvqhm"]
 [ext_resource type="Script" uid="uid://d31wigai530m1" path="res://src/core/components/health_component.gd" id="1_health"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://4t18gpei6jwu" path="res://src/camera/ThirdPersonCamera.gd" id="3_xcisb"]
 [ext_resource type="Script" uid="uid://xh0td0trnoks" path="res://src/core/components/synergy_data.gd" id="4_qt7jd"]
 [ext_resource type="Material" uid="uid://capa7d7o0ucpu" path="res://scenes/Player/jimmy-shadermaterial.tres" id="4_xcisb"]
+[ext_resource type="Script" path="res://src/core/ProjectileController.gd" id="5_proj"]
+[ext_resource type="PackedScene" path="res://scenes/projectiles/Projectile.tscn" id="6_proj"]
 [ext_resource type="Resource" uid="uid://cyk2m8v3j6x7n" path="res://scenes/components/synergy_attack_health.tres" id="5_syn"]
 [ext_resource type="Resource" uid="uid://dj4m8v3n1p7q2" path="res://scenes/components/synergy_jump_regen.tres" id="6_syn"]
 [ext_resource type="Resource" uid="uid://b8v3m2p7q5n1r" path="res://scenes/components/synergy_armor_regen.tres" id="7_syn"]
@@ -42,6 +44,10 @@ synergies = Array[ExtResource("4_qt7jd")]([ExtResource("5_syn"), ExtResource("6_
 script = ExtResource("2_ved6o")
 body = NodePath("..")
 camera = NodePath("../../CameraRig/Camera3D")
+
+[node name="ProjectileController" type="Node" parent="Player"]
+script = ExtResource("5_proj")
+projectile_scene = ExtResource("6_proj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 visible = false
