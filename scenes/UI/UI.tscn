@@ -8,80 +8,80 @@
 [ext_resource type="PackedScene" uid="uid://qu7fb0cneenk" path="res://scenes/UI/death_screen.tscn" id="99_death"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_secbg"]
-	content_margin_left = 16.0
-	content_margin_top = 12.0
-	content_margin_right = 16.0
-	content_margin_bottom = 12.0
-	bg_color = Color(0.07, 0.08, 0.1, 0.96)
-	border_width_left = 1
-	border_width_top = 1
-	border_width_right = 1
-	border_width_bottom = 1
-	border_color = Color(0.2, 0.95, 1, 0.22)
-	corner_radius_top_left = 12
-	corner_radius_top_right = 12
-	corner_radius_bottom_right = 12
-	corner_radius_bottom_left = 12
-	shadow_color = Color(0, 0, 0, 0.55)
-	shadow_size = 10
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
+bg_color = Color(0.07, 0.08, 0.1, 0.96)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.95, 1, 0.22)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.55)
+shadow_size = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slot"]
-	bg_color = Color(0.1, 0.11, 0.14, 0.95)
-	border_width_left = 1
-	border_width_top = 1
-	border_width_right = 1
-	border_width_bottom = 1
-	border_color = Color(0.2, 0.95, 1, 0.28)
-	corner_radius_top_left = 10
-	corner_radius_top_right = 10
-	corner_radius_bottom_right = 10
-	corner_radius_bottom_left = 10
-	shadow_color = Color(0, 0, 0, 0.4)
-	shadow_size = 6
+bg_color = Color(0.1, 0.11, 0.14, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.95, 1, 0.28)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.4)
+shadow_size = 6
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hudbg"]
-	content_margin_left = 12.0
-	content_margin_top = 6.0
-	content_margin_right = 12.0
-	content_margin_bottom = 6.0
-	bg_color = Color(0.05, 0.06, 0.08, 0.82)
-	border_width_left = 1
-	border_width_top = 1
-	border_width_right = 1
-	border_width_bottom = 1
-	border_color = Color(0.2, 0.95, 1, 0.18)
-	corner_radius_top_left = 10
-	corner_radius_top_right = 10
-	corner_radius_bottom_right = 10
-	corner_radius_bottom_left = 10
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.05, 0.06, 0.08, 0.82)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.95, 1, 0.18)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hpbg"]
-	bg_color = Color(0.05, 0.05, 0.07, 0.9)
-	corner_radius_top_left = 8
-	corner_radius_top_right = 8
-	corner_radius_bottom_right = 8
-	corner_radius_bottom_left = 8
+bg_color = Color(0.05, 0.05, 0.07, 0.9)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hpfill"]
-	bg_color = Color(1, 0.22, 0.28, 0.95)
-	corner_radius_top_left = 8
-	corner_radius_top_right = 8
-	corner_radius_bottom_right = 8
-	corner_radius_bottom_left = 8
+bg_color = Color(1, 0.22, 0.28, 0.95)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_energybg"]
-	bg_color = Color(0.05, 0.05, 0.07, 0.9)
-	corner_radius_top_left = 8
-	corner_radius_top_right = 8
-	corner_radius_bottom_right = 8
-	corner_radius_bottom_left = 8
+bg_color = Color(0.05, 0.05, 0.07, 0.9)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_energyfill"]
-	bg_color = Color(0.2, 0.95, 1, 0.95)
-	corner_radius_top_left = 8
-	corner_radius_top_right = 8
-	corner_radius_bottom_right = 8
-	corner_radius_bottom_left = 8
+bg_color = Color(0.2, 0.95, 1, 0.95)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Ui" type="Control"]
 process_mode = 3
@@ -140,8 +140,8 @@ theme_override_constants/separation = 8
 
 [node name="Title" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Header"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
 theme_override_colors/font_color = Color(0.2, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 24
 text = "COMPS"
 
 [node name="Subtitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Header"]
@@ -182,6 +182,7 @@ theme_override_constants/separation = 16
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+scroll_offset = Vector2(-3, -88)
 script = ExtResource("11_graph")
 
 [node name="InventoryPanel" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body"]
@@ -191,8 +192,8 @@ theme_override_constants/separation = 6
 
 [node name="InvTitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
 theme_override_colors/font_color = Color(0.2, 0.95, 1, 0.95)
+theme_override_font_sizes/font_size = 20
 text = "INVENTORY"
 horizontal_alignment = 1
 
@@ -247,48 +248,6 @@ text = "Speed Module"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InvSlot4" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid"]
-process_mode = 3
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
-script = ExtResource("3_slot")
-
-[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot4"]
-layout_mode = 2
-text = "Jump Module"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="InvSlot5" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid"]
-process_mode = 3
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
-script = ExtResource("3_slot")
-
-[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot5"]
-layout_mode = 2
-text = "Regen Nano-bots"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="InvSlot6" type="PanelContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid"]
-process_mode = 3
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
-script = ExtResource("3_slot")
-
-[node name="Label" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox/Body/InventoryPanel/InventoryGrid/InvSlot6"]
-layout_mode = 2
-text = "Armor Plate"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Footer" type="HBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CompsScreen/CompsVBox"]
 layout_mode = 2
 
@@ -313,8 +272,8 @@ theme_override_constants/separation = 6
 
 [node name="StatsTitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
 theme_override_colors/font_color = Color(0.2, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 24
 text = "STATS"
 
 [node name="StatsGrid" type="GridContainer" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/StatsPanel"]
@@ -434,8 +393,8 @@ theme_override_constants/separation = 6
 
 [node name="SynTitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/SynergiesPanel"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
 theme_override_colors/font_color = Color(0.2, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 24
 text = "ACTIVE SYNERGIES"
 
 [node name="SynergiesList" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/StatsScreen/HBox/SynergiesPanel"]
@@ -456,8 +415,8 @@ theme_override_constants/separation = 8
 
 [node name="CodexTitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CodexScreen/CodexVBox/CodexHeader"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
 theme_override_colors/font_color = Color(0.2, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 24
 text = "COMPENDIUM"
 
 [node name="CodexSubtitle" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CodexScreen/CodexVBox/CodexHeader"]
@@ -472,12 +431,11 @@ size_flags_vertical = 3
 theme_override_constants/separation = 16
 
 [node name="CodexList" type="ItemList" parent="VBox/ScreenClipper/ScreensContainer/CodexScreen/CodexVBox/CodexBody"]
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_minimum_size = Vector2(320, 0)
 allow_reselect = true
-select_mode = 0
 
 [node name="CodexDetails" type="VBoxContainer" parent="VBox/ScreenClipper/ScreensContainer/CodexScreen/CodexVBox/CodexBody"]
 layout_mode = 2
@@ -487,19 +445,17 @@ theme_override_constants/separation = 8
 
 [node name="CodexName" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CodexScreen/CodexVBox/CodexBody/CodexDetails"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
 theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 20
 text = "-"
 
 [node name="CodexDesc" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CodexScreen/CodexVBox/CodexBody/CodexDetails"]
 layout_mode = 2
 autowrap_mode = 3
-text = ""
 
 [node name="CodexStats" type="Label" parent="VBox/ScreenClipper/ScreensContainer/CodexScreen/CodexVBox/CodexBody/CodexDetails"]
 layout_mode = 2
 autowrap_mode = 3
-text = ""
 
 [node name="BottomHUD" type="PanelContainer" parent="VBox"]
 unique_name_in_owner = true
