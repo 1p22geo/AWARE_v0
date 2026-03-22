@@ -1,14 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://b4bmrng7uonyc"]
+[gd_scene load_steps=17 format=3 uid="uid://b4bmrng7uonyc"]
 
 [ext_resource type="PackedScene" uid="uid://caa1sxepyuvi0" path="res://scenes/Player/Player.tscn" id="1_lfyvx"]
 [ext_resource type="PackedScene" uid="uid://e3fla7hhclw5" path="res://assets/MODELS/world1/eine_neues_welt_model.tscn" id="2_7k8c1"]
 [ext_resource type="PackedScene" uid="uid://bekrx0o22avha" path="res://src/characters/Enemies/Enemy1.tscn" id="2_w2p53"]
 [ext_resource type="Shader" uid="uid://td1hesrm8th3" path="res://scenes/levels/glitch.gdshader" id="4_glitch"]
+[ext_resource type="Resource" uid="uid://r537m50tge1g" path="res://scenes/components/jump_component.tres" id="5_csbb7"]
 [ext_resource type="AudioStream" uid="uid://dp1dfd03v8ate" path="res://assets/AUDIO/environment_ambient/noise.wav" id="6_gy5pc"]
+[ext_resource type="Resource" uid="uid://b5k8v3m2l7qaq" path="res://scenes/components/armor_module.tres" id="6_mmplq"]
 [ext_resource type="AudioStream" uid="uid://bbwapttb2qskg" path="res://assets/AUDIO/backgroundmusic/test.wav" id="7_0lift"]
+[ext_resource type="Resource" uid="uid://cnbkv7d3p6v2v" path="res://scenes/components/regen_module.tres" id="7_de0io"]
 [ext_resource type="PackedScene" uid="uid://b5w7p2v2qj3f" path="res://scenes/components/ComponentGiver.tscn" id="9_comp_giver"]
-[ext_resource type="Resource" uid="uid://cyk2m8v3j6x7n" path="res://scenes/components/synergy_attack_health.tres" id="5_syn"]
-[ext_resource type="Resource" uid="uid://b8v3m2p7q5n1r" path="res://scenes/components/synergy_armor_regen.tres" id="7_syn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_glitch"]
 shader = ExtResource("4_glitch")
@@ -85,11 +86,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="ComponentGiver1" parent="." instance=ExtResource("9_comp_giver")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -5)
-component_resource = ExtResource("5_syn")
+component_resource = ExtResource("5_csbb7")
 
 [node name="ComponentGiver2" parent="." instance=ExtResource("9_comp_giver")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -5)
-component_resource = ExtResource("7_syn")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -133.79355, 1.9999981, -10.925659)
+component_resource = ExtResource("6_mmplq")
+
+[node name="ComponentGiver3" parent="." instance=ExtResource("9_comp_giver")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -232.14662, 1.9999981, 0.050289154)
+component_resource = ExtResource("7_de0io")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.7119541, -0.6095604, 0.34865063, 0.3404383, 0.7338541, 0.5878433, -0.6141848, -0.29982346, 0.72998834, 18.774185, 18.491755, 16.765146)

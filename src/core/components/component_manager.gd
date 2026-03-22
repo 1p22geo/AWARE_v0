@@ -47,9 +47,6 @@ func _find_ui_and_connect() -> void:
 		else:
 			print("UI DOES NOT have add_component_to_inventory method.")
 
-		if ui.has_signal("components_updated"):
-			ui.components_updated.connect(_on_components_updated)
-		
 		# For the graph-based UI, we expect a slightly different update
 		if ui.has_signal("graph_updated"):
 			ui.graph_updated.connect(_on_graph_updated)
