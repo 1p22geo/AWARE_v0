@@ -41,7 +41,6 @@ func move(body: CharacterBody3D, delta: float):
 		current_jumps = 0 # Reset jump count on floor
 		print('reset')
 		
-	# Jumping - now driven by the is_jumping flag.
 	if is_jumping:
 		body.velocity.y = jump_height
 		is_jumping = false
@@ -65,22 +64,17 @@ func _update_animations(body: CharacterBody3D, is_on_floor: bool) -> void:
 		return
 		
 	if not is_on_floor:
-		# Mid-air logic: Pause jump animation near its midpoint (takeoff finished)
 		if animation_player.current_animation == "jump":
 			var anim = animation_player.get_animation("jump")
-			# Pause at roughly 50% through the animation to hold the 'in-air' pose
+			# bruh
 			if animation_player.current_animation_position > anim.length * 0.5:
 				animation_player.pause()
 	else:
-		# Just landed
 		if not was_on_floor:
 			if animation_player.current_animation == "jump":
-				# Resume to play the landing part of the animation
 				animation_player.play()
-				# We wait for it to finish before switching to idle/walk
 				return 
 		
-		# Regular floor animations (only if jump isn't finishing)
 		if animation_player.current_animation == "jump" and animation_player.is_playing():
 			return
 

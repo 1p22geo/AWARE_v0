@@ -15,8 +15,6 @@ func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
 	if data is ComponentData:
-		# Convert local mouse position to graph space
-		# Graph space = (local_pos + scroll_offset) / zoom
 		var graph_pos = (at_position + scroll_offset) / zoom
 		add_component(data, graph_pos)
 
@@ -27,28 +25,22 @@ func add_component(comp_resource: ComponentData, pos: Vector2) -> void:
 	node.title = comp_resource.name
 	node.position_offset = pos
 	
-	# Defensive property setting for Godot 4 variations
+	# to nie działa na starszej wersji
 	if "show_close" in node:
 		node.set("show_close", true)
 	elif "show_close_button" in node:
 		node.set("show_close_button", true)
 	
-	# Duplicate resource so each instance is unique
 	var comp_instance = comp_resource.duplicate()
 	nodes_data[id] = { "data": comp_instance }
 	
-	# Add some info labels
 	var label = Label.new()
 	label.text = "Cost: " + str(comp_instance.power_cost)
 	node.add_child(label)
 	
-	# Add slots (input and output) using the unified set_slot method
-	# Some versions use different signatures, so we try the most common ones
 	if node.has_method("set_slot"):
-		# Try Godot 4.0-4.3 style first
 		node.set_slot(0, true, 0, Color.AQUA, true, 0, Color.AQUA)
 	
-	# Defensive signal connection
 	if node.has_signal("close_request"):
 		node.close_request.connect(_on_node_close.bind(id))
 	elif node.has_signal("delete_request"):
@@ -62,7 +54,6 @@ func add_component(comp_resource: ComponentData, pos: Vector2) -> void:
 func _on_node_close(id: String) -> void:
 	var node = get_node(id)
 	if node:
-		# Remove connections
 		var to_remove = []
 		for c in get_connection_list():
 			if c.from_node == id or c.to_node == id:
@@ -75,10 +66,8 @@ func _on_node_close(id: String) -> void:
 		_emit_update()
 
 func _on_connection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
-	# Prevent self-connection
 	if from_node == to_node: return
 	
-	# Check if already connected
 	for c in get_connection_list():
 		if c.from_node == from_node and c.to_node == to_node: return
 		if c.from_node == to_node and c.to_node == from_node: return
@@ -99,7 +88,6 @@ func highlight_connections(indices: Array) -> void:
 	for i in range(connections.size()):
 		var c = connections[i]
 		if i in indices:
-			# Highlight synergized connection
 			set_connection_activity(c.from_node, c.from_port, c.to_node, c.to_port, 1.0)
 		else:
 			set_connection_activity(c.from_node, c.from_port, c.to_node, c.to_port, 0.0)
