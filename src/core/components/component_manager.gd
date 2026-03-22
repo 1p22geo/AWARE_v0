@@ -17,6 +17,10 @@ var total_power_cost: float = 0.0
 var total_armor: float = 0.0
 
 func _ready() -> void:
+	component_acquired.connect(
+		func(component: Resource):
+			NotificationUI.show_notification("New Component Acquired: " + component.name)
+	)
 	_find_ui_and_connect.call_deferred()
 	
 	if health_component:

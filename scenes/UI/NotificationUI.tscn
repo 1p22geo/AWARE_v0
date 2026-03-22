@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2wexgy6f3w2j"]
+
+[ext_resource type="Script" path="res://src/UI/NotificationUI.gd" id="1_cptub"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1y7h7"]
+font_size = 32
+
+[node name="NotificationUI" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -300.0
+offset_bottom = 100.0
+grow_horizontal = 0
+script = ExtResource("1_cptub")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Notification Text"
+label_settings = SubResource("LabelSettings_1y7h7")
+horizontal_alignment = 1
+vertical_alignment = 1
