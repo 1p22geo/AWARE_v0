@@ -2,12 +2,12 @@ extends Camera3D
 class_name ThirdPersonCamera
 
 @export var target: Node3D
-@export var default_offset := Vector3(0, 8, 10)
+@export var default_offset := Vector3(10, 8, 10)
 @export var map_offset := Vector3(0, 100, 80)
-@export var follow_speed := 4.0 
+@export var follow_speed := 10.0 
 @export var zoom_speed := 5.0
 @export var collision_margin := 0.5
-@export var look_ahead_distance := 3.0 
+@export var look_ahead_distance := 0.0 
 
 var smoothed_position := Vector3.ZERO
 var is_map_view := false
